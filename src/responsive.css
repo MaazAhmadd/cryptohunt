@@ -1,0 +1,9 @@
+@media only screen and (max-width: 756px){
+	.add_coin_inner{
+		grid-template-columns: auto !important;
+		grid-template-rows: auto auto !important;
+	}
+	.add_coin_right .first_div{
+		margin-top: 1rem;
+}
+}

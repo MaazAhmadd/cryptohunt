@@ -4,9 +4,10 @@ const mysql = require("mysql");
 /** MYSQL DATAABASE **/
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "cryptohunt",
-  password: "cryptohunt",
+  user: "maaz",
+  password: "1qaz1qaz",
   database: "cryptohunt",
+  multipleStatements: true,
 });
 
 connection.connect();

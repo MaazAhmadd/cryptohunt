@@ -61,17 +61,6 @@ function Home() {
   const handleAllTimeBest = async () => {
     console.log(bestTodayCoin);
     setTodaysBest(false);
-    let allTodayCoins = [];
-    bestTodayCoin[0].forEach(async (coin) => {
-      await axios
-        .get(`http://localhost:8080/coins/${coin.coin_id}`)
-        .then((res) => {
-          allTodayCoins.push(res.data);
-        });
-    });
-    console.log(allTodayCoins);
-    setBestTodayCoins(allTodayCoins);
-    return null;
   };
   let todaysBestClass = "bests ";
   todaysBestClass += todaysBest ? "selected" : "";
@@ -104,9 +93,9 @@ function Home() {
       {todaysBest ? (
         <BestCoins promotedCoin={bestCoin} />
       ) : (
-        <BestCoins promotedCoin={bestTodayCoin} />
+        <BestCoins promotedCoin={bestTodayCoin[0]} />
       )}
-      {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
+      {admin == 0 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
     </>
   );
 }

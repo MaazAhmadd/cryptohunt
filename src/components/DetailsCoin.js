@@ -14,19 +14,20 @@ export default function DetailsCoin() {
   const [likedS, setLiked] = React.useState(0);
 
   let splitted = window.location.href.split("/");
-  let url = splitted[splitted.length - 1];
-  let linkk = `http://localhost:8080/coins/${url}`;
+  let id = splitted[splitted.length - 1];
+  let linkk = `http://localhost:8080/coins/${id}`;
   const getCoinDetailsData = async () => {
     //fetch
     await axios.get(linkk).then(({ data }) => {
-      setDetailsCoins(data);
+      setDetailsCoins(data[0]);
     });
   };
-
-  React.useEffect(() => {
+  const getRandomCoins = async () => {
     //fetch
-    getCoinDetailsData();
-  }, []);
+    await axios.get("http://localhost:8080/random").then(({ data }) => {
+      setRandomCoins(data);
+    });
+  };
 
   const moonHandler = async (moon, id) => {
     setMoon(Number(moon) + 1);
@@ -52,13 +53,12 @@ export default function DetailsCoin() {
     setLiked(Number(liked) + 1);
     await axios.get(`http://localhost:8080/reacts/${id}/liked`);
   };
-  let coin = detailsCoins;
-  const getRandomCoins = async () => {
+  // let detailsCoins = [];
+  React.useEffect(() => {
     //fetch
-    await axios.get("http://localhost:8080/random").then(({ data }) => {
-      setRandomCoins(data);
-    });
-  };
+    getCoinDetailsData();
+    getRandomCoins();
+  }, []);
 
   return (
     <>
@@ -82,13 +82,13 @@ export default function DetailsCoin() {
         <div className="details-left">
           <div className="details-left-top">
             <img
-              src={coin.logo}
+              src={detailsCoins.logo}
               alt="coin_logo"
               style={{ marginRight: "2%" }}
             />
             <h2>
-              {coin.name} {"("}
-              {coin.symbol}
+              {detailsCoins.name} {"("}
+              {detailsCoins.symbol}
               {")"}
             </h2>
             <button
@@ -98,38 +98,38 @@ export default function DetailsCoin() {
             >
               <BsCapslockFill />
               <span> </span>
-              {!coin.votes_count ? "0" : coin.votes_count}
+              {!detailsCoins.votes_count ? "0" : detailsCoins.votes_count}
             </button>
             <br />
             <p className="details-left-chain">
-              Binance Smart Chain: {coin.binancesmartchain}
+              Binance Smart Chain: {detailsCoins.binancesmartchain}
             </p>
-            <p className="details-left-desc">{coin.description}</p>
+            <p className="details-left-desc">{detailsCoins.description}</p>
           </div>
           <div className="details-reacts">
             <span
-              onClick={() => moonHandler(coin.moon, coin.id)}
+              onClick={() => moonHandler(detailsCoins.moon, detailsCoins.id)}
               title="To the moon"
               className="details-reacts_icons"
             >
               🚀
             </span>
             <span
-              onClick={() => fireHandler(coin.fire, coin.id)}
+              onClick={() => fireHandler(detailsCoins.fire, detailsCoins.id)}
               title="On fire"
               className="details-reacts_icons"
             >
               🔥
             </span>
             <span
-              onClick={() => gemHandler(coin.gem, coin.id)}
+              onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
               title="Gem"
               className="details-reacts_icons"
             >
               💎
             </span>
             <span
-              onClick={() => heartHandler(coin.heart, coin.id)}
+              onClick={() => heartHandler(detailsCoins.heart, detailsCoins.id)}
               title="Love it"
               className="details-reacts_icons"
               style={{ color: "#f83a3a", fontSize: "28px" }}
@@ -137,40 +137,40 @@ export default function DetailsCoin() {
               <BsHeartFill />
             </span>
             <span
-              onClick={() => joyHandler(coin.joy, coin.id)}
+              onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
               title="Joy"
               className="details-reacts_icons"
             >
               😀
             </span>
             <span
-              onClick={() => likedHandler(coin.like, coin.id)}
+              onClick={() => likedHandler(detailsCoins.like, detailsCoins.id)}
               title="Like it"
               className="details-reacts_icons"
             >
               👍
             </span>
-            <span>{moonS || coin.moon}</span>
-            <span>{fireS || coin.fire}</span>
-            <span>{gemS || coin.gem}</span>
-            <span>{heartS || coin.heart}</span>
-            <span>{joyS || coin.joy}</span>
-            <span>{likedS || coin.liked}</span>
+            <span>{moonS || detailsCoins.moon}</span>
+            <span>{fireS || detailsCoins.fire}</span>
+            <span>{gemS || detailsCoins.gem}</span>
+            <span>{heartS || detailsCoins.heart}</span>
+            <span>{joyS || detailsCoins.joy}</span>
+            <span>{likedS || detailsCoins.liked}</span>
           </div>
         </div>
         <div className="details-right">
           <div className="details-right-price">
             <p className="details-right-price-h">Price</p>
 
-            <p className="details-right-price-b">{coin.price}</p>
+            <p className="details-right-price-b">{detailsCoins.price}</p>
             <br />
             <p className="details-right-price-h">Market Cap</p>
 
-            <p className="details-right-price-b">{coin.market_cap}</p>
+            <p className="details-right-price-b">{detailsCoins.market_cap}</p>
             <br />
             <p className="details-right-price-h">Launch date</p>
 
-            <p className="details-right-price-b">{coin.launch}</p>
+            <p className="details-right-price-b">{detailsCoins.launch}</p>
             <br />
           </div>
           <div className="details-right-socials">

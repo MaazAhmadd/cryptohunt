@@ -9,8 +9,8 @@ const api = require("./api_calls");
 /** MYSQL DATAABASE **/
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "cryptohunt",
-  password: "W#xcv&YUI(mnb",
+  user: "maaz",
+  password: "1qaz1qaz",
   database: "cryptohunt",
   multipleStatements: true,
 });
@@ -184,37 +184,23 @@ app.get("/coins", function (req, res) {
   //end fetching
 });
 app.get("/coins/today", function (req, res) {
-  let coin_results = [];
+  console.log("/today called");
 
-  // connection
-  //   .query(`SELECT * FROM votes WHERE time >= NOW() - INTERVAL 1 DAY`)
-  //   .then((rows) => {
-  //     rows[0].filter(
-  //       (v, i, a) => a.findIndex((t) => t.coin_id === v.coin_id) === i
-  //     );
-  //     console.log(rows[0]);
-  //   });
-  // ,
-  // async function (error, results, fields) {
-  //   if (results.length > 0) {
-  //     coin_results.push(results[0]);
-  // for each result
-  // results.forEach((result) => {
-  //   await connection.query(
-  //     `SELECT * FROM coin where id = ${result.coin_id}`,
-  //     function (error, results, fields) {
-  //       results.forEach((result) => {
-  //         if (result.status !== "pending") {
-  //           api.updateCoin(result.name);
-  //           coin_results.push(result);
-  //         }
-  //       });
-  //     }
+  connection.query(
+    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;`,
+    function (error, results, fields) {
+      if (results.length > 0) {
+        let coin_results = [];
+        coin_results.push(results);
+        res.send(JSON.stringify({ coin_results }));
+      }
+      // })
+    }
+  );
   //   );
   // });
   // for each result
   // }
-  res.send(JSON.stringify({ coin_results }));
   //   }
   // );
   //end fetching
@@ -240,6 +226,7 @@ app.post("/vote", function (req, res) {
               if (err) throw err;
             }
           );
+          res.send(createResponse("success", "Upvoted!"));
         }
       }
     );

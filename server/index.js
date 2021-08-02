@@ -9,11 +9,18 @@ const api = require("./api_calls");
 /** MYSQL DATAABASE **/
 var connection = mysql.createConnection({
   host: "localhost",
-  user: "maaz",
-  password: "1qaz1qaz",
+  user: "cryptohunt",
+  password: "cryptohunt",
   database: "cryptohunt",
   multipleStatements: true,
 });
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "maaz",
+//   password: "1qaz1qaz",
+//   database: "cryptohunt",
+//   multipleStatements: true,
+// });
 
 connection.connect();
 /** MYSQL DATAABASE **/

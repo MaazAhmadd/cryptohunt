@@ -30,26 +30,44 @@ export default function DetailsCoin() {
   };
 
   const moonHandler = async (moon, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setMoon(Number(moon) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/moon`);
   };
   const fireHandler = async (fire, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setFire(Number(fire) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/fire`);
   };
   const gemHandler = async (gem, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setGem(Number(gem) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/gem`);
   };
   const heartHandler = async (heart, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setHeart(Number(heart) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/heart`);
   };
   const joyHandler = async (joy, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setJoy(Number(joy) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/joy`);
   };
   const likedHandler = async (liked, id) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     setLiked(Number(liked) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/liked`);
   };

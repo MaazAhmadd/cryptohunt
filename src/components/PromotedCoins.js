@@ -40,6 +40,9 @@ export default function PromotedCoins({ promotedCoin }) {
   });
   // <Link to="/register">Register Now</Link>
   const handleClickRow = (row, cell) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     if (cell.key.includes("vote")) {
       doVote(row.id);
       // voted

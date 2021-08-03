@@ -20,6 +20,9 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
   const [showSearch, setShowSearch] = React.useState(false);
 
   const handleClickRow = (row, cell) => {
+    if (localStorage.getItem("logged_in") != 1) {
+      window.location.href = "./login";
+    }
     if (cell.key.includes("vote")) {
       return null;
     } else {

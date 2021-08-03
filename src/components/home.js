@@ -97,7 +97,7 @@ function Home() {
       ) : (
         <BestCoins promotedCoin={bestTodayCoin[0]} />
       )}
-      {admin == 0 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
+      {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
     </>
   );
 }

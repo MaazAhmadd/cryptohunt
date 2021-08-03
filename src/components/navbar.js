@@ -19,12 +19,14 @@ const Nav = styled.nav`
 function Navbar() {
   return (
     <Nav>
-      <div className="header_logo_outer">
-        <h3 className="header_logo_inner">
-          <Link to="/">CryptoHunt</Link>
-        </h3>
+      <div className="nav_outer">
+        <div className="header_logo_outer">
+          <h3 className="header_logo_inner">
+            <Link to="/">CryptoHunt</Link>
+          </h3>
+        </div>
+        <Burger />
       </div>
-      <Burger />
     </Nav>
   );
   // <>

@@ -16,7 +16,7 @@ app.use(cors());
 //   multipleStatements: true,
 // });
 var connection = mysql.createConnection({
-  host: "localost",
+  host: "localhost",
   user: "cryptohunt",
   password: "cryptohunt",
   database: "cryptohunt",

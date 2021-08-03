@@ -18,27 +18,29 @@ function Home() {
 
   const getCoinPromotedData = async () => {
     //fetch
-    await axios.get("http://localhost:8080/coins/promoted").then(({ data }) => {
-      setPromotedCoins(data.coin_results);
-      setStatus(true);
-    });
+    await axios
+      .get("http://34.85.128.15:8080/coins/promoted")
+      .then(({ data }) => {
+        setPromotedCoins(data.coin_results);
+        setStatus(true);
+      });
   };
   const getCoinBestData = async () => {
     //fetch
-    await axios.get("http://localhost:8080/coins").then(({ data }) => {
+    await axios.get("http://34.85.128.15:8080/coins").then(({ data }) => {
       setBestCoins(data.coin_results);
     });
   };
   const getCoinTodayBestData = async () => {
     //fetch
-    await axios.get("http://localhost:8080/coins/today").then(({ data }) => {
+    await axios.get("http://34.85.128.15:8080/coins/today").then(({ data }) => {
       setBestTodayCoins(data.coin_results);
     });
   };
   const getCoinUnapprovedData = async () => {
     //fetch
     await axios
-      .get("http://localhost:8080/coins/unapproved")
+      .get("http://34.85.128.15:8080/coins/unapproved")
       .then(({ data }) => {
         setUnapprovedCoins(data.coin_results);
       });

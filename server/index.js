@@ -8,14 +8,14 @@ const api = require("./api_calls");
 
 /** MYSQL DATAABASE **/
 // var connection = mysql.createConnection({
-//   host: "localhost",
+//   host: "34.85.128.15",
 //   user: "cryptohunt",
 //   password: "cryptohunt",
 //   database: "cryptohunt",
 //   multipleStatements: true,
 // });
 var connection = mysql.createConnection({
-  host: "localhost",
+  host: "34.85.128.15",
   user: "maaz",
   password: "1qaz1qaz",
   database: "cryptohunt",

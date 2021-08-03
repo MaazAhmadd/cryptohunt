@@ -15,7 +15,7 @@ export default function DetailsCoin() {
 
   let splitted = window.location.href.split("/");
   let id = splitted[splitted.length - 1];
-  let linkk = `http://localhost:8080/coins/${id}`;
+  let linkk = `http://34.85.128.15:8080/coins/${id}`;
   const getCoinDetailsData = async () => {
     //fetch
     await axios.get(linkk).then(({ data }) => {
@@ -24,34 +24,34 @@ export default function DetailsCoin() {
   };
   const getRandomCoins = async () => {
     //fetch
-    await axios.get("http://localhost:8080/random").then(({ data }) => {
+    await axios.get("http://34.85.128.15:8080/random").then(({ data }) => {
       setRandomCoins(data);
     });
   };
 
   const moonHandler = async (moon, id) => {
     setMoon(Number(moon) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/moon`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/moon`);
   };
   const fireHandler = async (fire, id) => {
     setFire(Number(fire) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/fire`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/fire`);
   };
   const gemHandler = async (gem, id) => {
     setGem(Number(gem) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/gem`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/gem`);
   };
   const heartHandler = async (heart, id) => {
     setHeart(Number(heart) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/heart`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/heart`);
   };
   const joyHandler = async (joy, id) => {
     setJoy(Number(joy) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/joy`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/joy`);
   };
   const likedHandler = async (liked, id) => {
     setLiked(Number(liked) + 1);
-    await axios.get(`http://localhost:8080/reacts/${id}/liked`);
+    await axios.get(`http://34.85.128.15:8080/reacts/${id}/liked`);
   };
   // let detailsCoins = [];
   React.useEffect(() => {

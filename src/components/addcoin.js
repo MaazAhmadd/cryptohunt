@@ -45,7 +45,7 @@ function AddCoin() {
 
       await axios
         .post(
-          "http://localhost:8080/add_coin",
+          "http://34.85.128.15:8080/add_coin",
           qs.stringify({
             name: coin.name,
             symbol: coin.symbol,

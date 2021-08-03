@@ -14,13 +14,13 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `http://localhost:3000/coins/${row.id}`);
+      return (window.location.href = `http://34.85.128.15:3000/coins/${row.id}`);
     }
   };
 
   const approve = async (id) => {
     await axios.post(
-      "http://localhost:8080/approve_coin",
+      "http://34.85.128.15:8080/approve_coin",
       qs.stringify({
         coin_id: id,
       })
@@ -28,7 +28,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
   };
   const reject = async (id) => {
     await axios.post(
-      "http://localhost:8080/reject_coin",
+      "http://34.85.128.15:8080/reject_coin",
       qs.stringify({
         coin_id: id,
       })

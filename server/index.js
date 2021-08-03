@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
-var cors = require("cors");
 const axios = require("axios");
 const api = require("./api_calls");
 
+app.use(cors());
 /** MYSQL DATAABASE **/
 // var connection = mysql.createConnection({
 //   host: "34.85.128.15",
@@ -15,9 +16,9 @@ const api = require("./api_calls");
 //   multipleStatements: true,
 // });
 var connection = mysql.createConnection({
-  host: "34.85.128.15",
-  user: "maaz",
-  password: "1qaz1qaz",
+  host: "localost",
+  user: "cryptohunt",
+  password: "cryptohunt",
   database: "cryptohunt",
   multipleStatements: true,
 });
@@ -38,16 +39,16 @@ app.listen(8080, () => console.log("listening on port 8080"));
 //   );
 //   next();
 // });
-app.use((req, res, next) => {
-  res.set("Content-Type", "application/json");
-  res.append("Access-Control-Allow-Origin", ["*"]);
-  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.append(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.set("Content-Type", "application/json");
+//   res.append("Access-Control-Allow-Origin", ["*"]);
+//   res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//   res.append(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 
 function createResponse(type, response, role) {
   if (role !== "" || role !== null) {

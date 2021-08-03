@@ -48,7 +48,7 @@ export default function PromotedCoins({ promotedCoin }) {
       // console.log("vote clicked ", row, row.vote.props.className, cell);
       return null;
     } else {
-      return (window.location.href = `http://34.85.128.15:3000/coins/${row.id}`);
+      return (window.location.href = `http://34.85.128.15/coins/${row.id}`);
     }
   };
   return (

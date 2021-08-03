@@ -14,7 +14,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `http://34.85.128.15:3000/coins/${row.id}`);
+      return (window.location.href = `http://34.85.128.15/coins/${row.id}`);
     }
   };
 

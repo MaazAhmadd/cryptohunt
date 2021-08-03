@@ -10,9 +10,9 @@ const mysql = require("mysql");
 //   multipleStatements: true,
 // });
 var connection = mysql.createConnection({
-  host: "34.85.128.15",
-  user: "maaz",
-  password: "1qaz1qaz",
+  host: "localhost",
+  user: "cryptohunt",
+  password: "cryptohunt",
   database: "cryptohunt",
   multipleStatements: true,
 });

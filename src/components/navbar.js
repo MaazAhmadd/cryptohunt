@@ -1,6 +1,7 @@
 import "../App.css";
 import Burger from "./Burger";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Nav = styled.nav`
   width: 100%;

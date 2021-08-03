@@ -11,10 +11,6 @@ import { BiLeftArrowAlt } from "react-icons/bi/";
 const qs = require("querystring");
 
 function AddCoin() {
-  if (localStorage.getItem("logged_in") != 1) {
-    window.location.href = "./login";
-    return;
-  }
   const [coin, addCoin] = useState({
     name: "",
     symbol: "",
@@ -30,8 +26,12 @@ function AddCoin() {
     telegram: "",
     twitter: "",
   });
-
   const [resp, setResp] = useState("");
+
+  if (localStorage.getItem("logged_in") != 1) {
+    window.location.href = "./login";
+    return;
+  }
 
   async function doLogin(e) {
     if (

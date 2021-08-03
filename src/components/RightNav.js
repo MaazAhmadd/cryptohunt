@@ -34,7 +34,7 @@ const RightNav = ({ open }) => {
     localStorage.getItem("logged_in") == 1 ? false : true;
 
   return (
-    <div className="nav_outer">
+    <div className="header_navbar_right_outer">
       <Ul open={open} className="header_navbar_right_inner">
         <li className="header_item">
           <Link to="/add_coin" className="header_link">

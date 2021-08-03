@@ -326,16 +326,16 @@ tr:hover {
   font-weight: 600;
   margin-top: 3%;
   float: right;
-  margin-right: 44%;
+  margin-right: 43%;
 }
 @media screen and (max-width: 1220px) {
   .details-left > div > h2 {
-    margin-right: 38%;
+    margin-right: 37%;
   }
 }
 @media screen and (max-width: 1090px) {
   .details-left > div > h2 {
-    margin-right: 30%;
+    margin-right: 29%;
   }
 }
 @media screen and (max-width: 950px) {

@@ -7,20 +7,20 @@ const axios = require("axios");
 const api = require("./api_calls");
 
 /** MYSQL DATAABASE **/
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "cryptohunt",
-  password: "cryptohunt",
-  database: "cryptohunt",
-  multipleStatements: true,
-});
 // var connection = mysql.createConnection({
 //   host: "localhost",
-//   user: "maaz",
-//   password: "1qaz1qaz",
+//   user: "cryptohunt",
+//   password: "cryptohunt",
 //   database: "cryptohunt",
 //   multipleStatements: true,
 // });
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "maaz",
+  password: "1qaz1qaz",
+  database: "cryptohunt",
+  multipleStatements: true,
+});
 
 connection.connect();
 /** MYSQL DATAABASE **/
@@ -191,8 +191,6 @@ app.get("/coins", function (req, res) {
   //end fetching
 });
 app.get("/coins/today", function (req, res) {
-  console.log("/today called");
-
   connection.query(
     `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;`,
     function (error, results, fields) {
@@ -224,11 +222,12 @@ app.post("/vote", function (req, res) {
     connection.query(
       `SELECT * FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
       function (error, results, fields) {
-        if (results.length == 1) {
+        if (results.length >= 1) {
           res.send(createResponse("error", "Already Upvoted!"));
         } else {
           connection.query(
             `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW());UPDATE coin SET votes_count = votes_count+1 WHERE id = ${coin_id}`,
+            // `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW())`,
             function (err, success) {
               if (err) throw err;
             }
@@ -242,6 +241,7 @@ app.post("/vote", function (req, res) {
     //remove vote
     connection.query(
       `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}';UPDATE coin SET votes_count = votes_count-1 WHERE id = ${coin_id}`,
+      // `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
       function (error, results, fields) {
         res.send(createResponse("success", "Vote Removed!"));
       }
@@ -256,9 +256,12 @@ app.post("/get/votes", async function (req, res) {
   var total_rows_in;
   connection.query(
     `Select * from votes where coin_id='${coin_id}'`,
+    // `Select votes_count from coin where id='${coin_id}'`,
     function (error, results, fields) {
+      console.log(results);
       total_rows_in = results.length;
       res.send(JSON.stringify({ votes: total_rows_in }));
+      // res.send(JSON.stringify({ votes: results }));
     }
   );
 });

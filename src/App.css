@@ -222,11 +222,16 @@ tr:hover {
   border-radius: 7px;
   transition: 0.02s background-color;
 }
-/* .promoted-table_votebtn:hover {
+.promoted-table_votebtn:hover {
   transition-delay: 0.02s;
   background-color: #28a745;
   color: #fff;
-} */
+}
+.promoted-table_votebtn_green:hover {
+  transition-delay: 0.02s;
+  background-color: #28a745;
+  color: #fff;
+}
 .promoted-table_heading {
   padding-left: 5%;
   margin-bottom: -0.6%;

@@ -1,26 +1,29 @@
 import { BsCaretUpFill, BsCaretDownFill, BsCapslockFill } from "react-icons/bs";
 import doVote from "./doVote";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default (coins) => {
-  let [voted, setVoted] = useState(false);
+  // let [voted, setVoted] = useState(false);
   let [voteClass, setVoteClass] = useState("promoted-table_votebtn");
-  const handleVoteClick = (id) => {
-    doVote(id);
-    // if (voted == true) {
-    //   setVoted(false);
-    //   setVoteClass("promoted-table_votebtn");
-    // } else {
-    //   setVoted(true);
-    //   setVoteClass("promoted-table_votebtn_green");
-    // }
-    // window.location.reload(false);
-  };
+
   // console.log(voted);
   // console.log(voteClass);
   let allCoins = [];
   coins.forEach((coin) => {
+    let voted = false;
+    const handleVoteClick = (e) => {
+      // console.log("eventttttttt ", e);
+      // voted
+      //   ? (e.target.className = "promoted-table_votebtn_green")
+      //   : (e.target.className = "promoted-table_votebtn");
+      voted = !voted;
+      // voted == true ? setVoted(false) : setVoted(true);
+
+      // window.location.reload(false);
+    };
+
     let voteC = coin.votes_count;
     let dateDiff = Math.ceil(
       (new Date(coin.launch) -
@@ -39,7 +42,9 @@ export default (coins) => {
         <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
       ),
       name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-      volumeChange: (
+      volumeChange: !change ? (
+        <span>-</span>
+      ) : (
         <div
           className={
             isVolumePositive ? "volume_color_green" : "volume_color_red"
@@ -57,9 +62,11 @@ export default (coins) => {
         : `Launching Today`,
       vote: (
         <button
-          onClick={() => handleVoteClick(coin.id)}
+          onClick={handleVoteClick}
           title="Vote?"
-          className={voteClass}
+          className={
+            voted ? "promoted-table_votebtn_green" : "promoted-table_votebtn"
+          }
         >
           <BsCapslockFill />
           <span> </span>

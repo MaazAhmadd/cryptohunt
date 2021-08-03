@@ -1,8 +1,10 @@
 import React from "react";
 import manupilatingData from "./utils/manupilatingData";
 import { useTable } from "react-table";
+import doVote from "./utils/doVote";
 
 export default function PromotedCoins({ promotedCoin }) {
+  // const [voted, setVoted] = React.useState(false);
   const promotedCoins = manupilatingData(promotedCoin);
   const dataPromoted = React.useMemo(() => promotedCoins, [promotedCoin]);
 
@@ -39,6 +41,11 @@ export default function PromotedCoins({ promotedCoin }) {
   // <Link to="/register">Register Now</Link>
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
+      doVote(row.id);
+      // voted
+      //   ? (row.vote.props.className = "promoted-table_votebtn_green")
+      //   : (row.vote.props.className = "promoted-table_votebtn");
+      // console.log("vote clicked ", row, row.vote.props.className, cell);
       return null;
     } else {
       return (window.location.href = `http://localhost:3000/coins/${row.id}`);

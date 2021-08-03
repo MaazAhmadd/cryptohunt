@@ -1,5 +1,6 @@
 import "../App.css";
 import { Link } from "react-router-dom";
+import Burger from "./Burger";
 import styled from "styled-components";
 
 const Nav = styled.nav`

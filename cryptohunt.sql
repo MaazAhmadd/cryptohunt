@@ -66,7 +66,14 @@ INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `ad
 INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `additional`, `binancesmartchain`, `ethereum`, `solana`, `polygon`, `website`, `telegram`, `twitter`, `status`, `added_by`, `featured`, `price`, `market_cap`, `volume_change_24h`, `votes_count`,`moon`,`fire`,`gem`,`heart`,`joy`,`liked`) VALUES
 (1, 'Bitcoin', 'test', 'testeststes esatsea', 'https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 1, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1'); 
 INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `additional`, `binancesmartchain`, `ethereum`, `solana`, `polygon`, `website`, `telegram`, `twitter`, `status`, `added_by`, `featured`, `price`, `market_cap`, `volume_change_24h`, `votes_count`,`moon`,`fire`,`gem`,`heart`,`joy`,`liked`) VALUES
-(4, 'Etherium', 'test', 'testeststes esatsea', 'https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 1, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1');  
+(12, 'Bitcoin5', 'test', 'testeststes esatsea', 'https://pngimg.com/uploads/bitcoin/bitcoin_PNG48.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 0, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1');  
+-- UPDATE coin set featured = 0 where id = 4;
+-- UPDATE coin set featured = 0 where id = 5;
+-- UPDATE coin set featured = 0 where id = 7;
+-- UPDATE coin set featured = 0 where id = 8;
+-- UPDATE coin set featured = 0 where id = 9;
+-- UPDATE coin set featured = 0 where id = 10;
+-- UPDATE coin set featured = 0 where id = 11;
 
 
 -- --------------------------------------------------------

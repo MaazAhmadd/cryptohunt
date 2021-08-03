@@ -1,40 +1,46 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
-.pbody{
-    padding-left: 10px;
-    padding-right: 10px;
+.pbody {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 /** 
   Login
 **/
-.login_wrapper_outer{
+.login_wrapper_outer {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-.login_wrapper{
+.login_wrapper {
   width: 35vw;
   display: flex;
   flex-direction: column;
 }
-.login_wrapper button,.input_wrapper{
+@media screen and (max-width: 768px) {
+  .login_wrapper {
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.login_wrapper button,
+.input_wrapper {
   margin-top: 1rem;
-
 }
-.input_wrapper input{
-  width: 100% !important
+.input_wrapper input {
+  width: 100% !important;
 }
-.input_wrapper *{
+.input_wrapper * {
   width: 100% !important;
 }
 

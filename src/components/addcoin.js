@@ -13,6 +13,7 @@ const qs = require("querystring");
 function AddCoin() {
   if (localStorage.getItem("logged_in") != 1) {
     window.location.href = "./login";
+    return;
   }
   const [coin, addCoin] = useState({
     name: "",

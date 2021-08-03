@@ -32,6 +32,7 @@ export default function DetailsCoin() {
   const moonHandler = async (moon, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setMoon(Number(moon) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/moon`);
@@ -39,6 +40,7 @@ export default function DetailsCoin() {
   const fireHandler = async (fire, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setFire(Number(fire) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/fire`);
@@ -46,6 +48,7 @@ export default function DetailsCoin() {
   const gemHandler = async (gem, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setGem(Number(gem) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/gem`);
@@ -53,6 +56,7 @@ export default function DetailsCoin() {
   const heartHandler = async (heart, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setHeart(Number(heart) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/heart`);
@@ -60,6 +64,7 @@ export default function DetailsCoin() {
   const joyHandler = async (joy, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setJoy(Number(joy) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/joy`);
@@ -67,6 +72,7 @@ export default function DetailsCoin() {
   const likedHandler = async (liked, id) => {
     if (localStorage.getItem("logged_in") != 1) {
       window.location.href = "http://34.85.128.15/login";
+      return;
     }
     setLiked(Number(liked) + 1);
     await axios.get(`http://34.85.128.15:8080/reacts/${id}/liked`);

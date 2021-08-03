@@ -31,7 +31,7 @@ function Login() {
             if (resp.data.role == "admin") {
               // its admin
               localStorage.setItem("is_admin", 1);
-              window.location.href = "./dashboard";
+              window.location.href = "./";
             } else {
               window.location.href = "./";
             }

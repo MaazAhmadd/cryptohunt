@@ -694,22 +694,7 @@ nav {
   display: flex;
   flex-direction: row;
 }
-@media screen and (max-width: 768px) {
-  .newsletter-main {
-    display: flex;
-    flex-direction: column;
-  }
-  .newsletter_left > img {
-    width: 350px;
-    height: auto;
-  }
-  .newsletter_subscribe {
-    text-align: center;
-  }
-  .newsletter_line {
-    text-align: center;
-  }
-}
+
 .newsletter_right {
   width: 86%;
   display: flex;
@@ -732,6 +717,22 @@ nav {
 .newsletter_line {
   font-size: 12px;
   text-align: left;
+}
+@media screen and (max-width: 768px) {
+  .newsletter-main {
+    display: flex;
+    flex-direction: column;
+  }
+  .newsletter_left > img {
+    width: 350px;
+    height: auto;
+  }
+  .newsletter_subscribe {
+    text-align: center;
+  }
+  .newsletter_line {
+    text-align: center;
+  }
 }
 
 svg {

@@ -3,6 +3,7 @@ import React from "react";
 export default function footer() {
   return (
     <footer className="footer-main">
+      <br />
       <ul>
         <li>Disclaimer</li>
         <li>Privacy Policy</li>
@@ -12,7 +13,6 @@ export default function footer() {
       <img src="" alt="" />
       <img src="" alt="" />
       <p>Cryptohunt © 2021 - contact@cryptohunt.com</p>
-      <br />
       <br />
     </footer>
   );

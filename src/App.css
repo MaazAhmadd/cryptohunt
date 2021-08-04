@@ -580,9 +580,10 @@ table th {
   text-align: center;
 }
 .footer-main > ul > li {
+  cursor: pointer;
   color: gray;
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   padding: 0 9px;
   display: inline;
 }
@@ -590,5 +591,6 @@ table th {
   color: #202020;
 }
 .footer-main > p {
+  margin-top: -6px;
   color: #202020;
 }

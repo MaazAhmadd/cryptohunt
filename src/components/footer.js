@@ -2,7 +2,7 @@ import React from "react";
 
 export default function footer() {
   return (
-    <footer>
+    <footer className="footer-main">
       <ul>
         <li>Disclaimer</li>
         <li>Privacy Policy</li>

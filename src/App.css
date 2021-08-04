@@ -575,3 +575,10 @@ table th {
 .details-left-chain {
   width: 100vw !important;
 }
+
+.footer-main {
+  text-align: center;
+}
+.footer-main > ul > li {
+  display: inline;
+}

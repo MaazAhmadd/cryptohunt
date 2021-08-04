@@ -37,6 +37,13 @@ body {
 }
 .header_item {
   padding-left: 2rem;
+  color: gray;
+}
+.header_item:hover {
+  color: white;
+}
+.header_navbar_right_outer > ul {
+  margin-top: -3%;
 }
 /** 
 	Navbar 
@@ -641,4 +648,7 @@ table th {
   margin: 4px;
   border-radius: 20px;
   background-color: #4b9cdb;
+}
+nav {
+  padding: 0 !important;
 }

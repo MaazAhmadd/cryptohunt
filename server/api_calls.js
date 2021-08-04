@@ -31,17 +31,19 @@ module.exports = {
         `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true&include_last_updated_at=true`
       )
       .then((response) => {
-        var current_price = response.data[coin].usd;
-        var market_cap = Math.round(response.data[coin].usd_market_cap);
-        var onedaychange = response.data[coin].usd_24h_change;
+        if (response.data[coin]) {
+          var current_price = response.data[coin].usd;
+          var market_cap = Math.round(response.data[coin].usd_market_cap);
+          var onedaychange = response.data[coin].usd_24h_change;
 
-        connection.query(
-          `UPDATE coin set price='${current_price}',market_cap='${market_cap}',volume_change_24h='${onedaychange}' where name='${coin_normal}'`,
-          function (error, results, fields) {
-            if (error) throw err;
-            console.log("Updated");
-          }
-        );
+          connection.query(
+            `UPDATE coin set price='${current_price}',market_cap='${market_cap}',volume_change_24h='${onedaychange}' where name='${coin_normal}'`,
+            function (error, results, fields) {
+              if (error) throw err;
+              console.log("Updated");
+            }
+          );
+        }
       }); //price is fetched
   },
 };

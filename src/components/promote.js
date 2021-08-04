@@ -39,6 +39,7 @@ export default function Promote() {
       >
         <div
           style={{
+            textAlign: "center",
             flexBasis: "0",
             flexGrow: "1",
             maxWidth: "100%",
@@ -53,6 +54,7 @@ export default function Promote() {
         </div>
         <div
           style={{
+            textAlign: "center",
             flexBasis: "0",
             flexGrow: "1",
             maxWidth: "100%",
@@ -67,6 +69,7 @@ export default function Promote() {
         </div>
         <div
           style={{
+            textAlign: "center",
             flexBasis: "0",
             flexGrow: "1",
             maxWidth: "100%",
@@ -86,12 +89,25 @@ export default function Promote() {
           boxShadow: "0 5px 15px rgb(0 0 0 / 35%)",
           borderRadius: ".5em",
           textAlign: "center",
+          marginBottom: "6%",
         }}
       >
         <div>Official Alexa rank by Amazon</div>
         <a href="https://www.alexa.com/siteinfo/coinhunt.cc" target="_blank">
           coinhunt.cc Competitive Analysis, Marketing Mix and Traffic - Alexa
         </a>
+      </div>
+      <div style={{ fontSize: "18px" }}>
+        To promote your coin
+        <br />
+        <a href="mfdilto:condtact@codinhudnt.ccd?">
+          Mail to: contact@cryptohunt.cc
+        </a>
+        <br />
+        <div style={{ fontSize: ".9rem" }}>
+          Do never pay anyone for a promotion on our platform, unless you have
+          received a confirmation email from this address.
+        </div>
       </div>
     </div>
   );

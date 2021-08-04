@@ -632,6 +632,7 @@ table th {
   display: inline-block;
   width: 15px;
   height: 15px;
+  margin: 3px;
   border-radius: 15px;
   background-color: #4b9cdb;
 }

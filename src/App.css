@@ -616,3 +616,21 @@ table th {
     transform: translate(0, 0);
   }
 }
+.load-wrapp {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.load-wrapp:last-child {
+  margin-right: 0;
+}
+
+.line {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  background-color: #4b9cdb;
+}

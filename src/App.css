@@ -184,6 +184,13 @@ td:last-child {
   width: 89%;
 }
 @media screen and (max-width: 768px) {
+  .promoted-table {
+    width: 300px;
+    white-space: nowrap;
+    overflow: auto;
+  }
+}
+@media screen and (max-width: 768px) {
   table {
     width: 300px;
     white-space: nowrap;
@@ -207,12 +214,13 @@ td:last-child {
 tr {
   transition: 0.02s background-color;
 }
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   tr {
+    width: 300px;
     white-space: nowrap;
     overflow: auto;
   }
-} */
+}
 tr:hover {
   transition-delay: 0.02s;
   background-color: lightgray;

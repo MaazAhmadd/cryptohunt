@@ -722,7 +722,8 @@ nav {
   border-style: none;
 }
 .newsletter_left > img {
-  width: 450px;
+  /* width: 450px; */
+  width: 100%;
   height: auto;
 }
 .newsletter_subscribe {
@@ -742,10 +743,9 @@ nav {
     margin-left: 13%;
     margin-bottom: 10%;
   }
-  .newsletter_left > img {
+  /* .newsletter_left > img {
     width: 350px;
-    height: auto;
-  }
+  } */
   .newsletter_subscribe {
     text-align: left;
   }
@@ -753,11 +753,11 @@ nav {
     text-align: left;
   }
 }
-@media screen and (max-width: 550px) {
+/* @media screen and (max-width: 550px) {
   .newsletter_left > img {
     width: 265px;
   }
-}
+} */
 
 svg {
   vertical-align: middle;

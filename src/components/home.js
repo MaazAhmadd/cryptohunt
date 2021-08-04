@@ -102,7 +102,14 @@ function Home() {
           {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
         </div>
       ) : (
-        <p>loading...</p>
+        <div class="load-wrapp">
+          <div class="load-3">
+            <p>Loading 3</p>
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+        </div>
       )}
     </>
   );

@@ -22,7 +22,7 @@ a {
   color: #007bff;
 }
 input {
-  background-color: white;
+  background-color: white !important;
 }
 /** 
 	Navbar o

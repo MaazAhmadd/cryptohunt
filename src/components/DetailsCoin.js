@@ -198,11 +198,17 @@ export default function DetailsCoin() {
             <br />
           </div>
           <div className="details-right-socials">
-            <button>Telegram</button>
+            <a href={detailsCoins.telegram}>
+              <button>Telegram</button>
+            </a>
             <br />
-            <button>Twitter</button>
+            <a href={detailsCoins.twitter}>
+              <button>Twitter</button>
+            </a>
             <br />
-            <button>Website</button>
+            <a href={detailsCoins.website}>
+              <button>Website</button>
+            </a>
             <br />
           </div>
           <div className="details-right-more">

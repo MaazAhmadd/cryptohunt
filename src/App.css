@@ -580,5 +580,6 @@ table th {
   text-align: center;
 }
 .footer-main > ul > li {
+  padding: 0 10px;
   display: inline;
 }

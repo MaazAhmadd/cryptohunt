@@ -52,7 +52,9 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
           <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
         ),
         name: coin.name,
-        volumeChange: (
+        volumeChange: Number.isNaN(change) ? (
+          <span>-</span>
+        ) : (
           <div
             className={
               isVolumePositive ? "volume_color_green" : "volume_color_red"

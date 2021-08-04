@@ -667,3 +667,10 @@ table th {
 nav {
   padding: 0 !important;
 }
+
+.promote_coin_hero {
+  text-align: center;
+  background-color: white;
+  margin: 5%;
+  padding: 3%;
+}

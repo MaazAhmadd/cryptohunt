@@ -130,36 +130,38 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
   });
 
   return (
-    <div className="promoted-table_div">
+    <>
       <h1 className="promoted-table_heading">Pending coins</h1>
-      <table {...getTablePropsAdmin()} className="promoted-table">
-        <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
-          {rowsAdmin.map((row) => {
-            prepareRowAdmin(row);
-            return (
-              <tr
-                onClick={() => console.log(row.original)}
-                {...row.getRowProps()}
-                className="promoted-table_row promoted-table_data_underline"
-              >
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      onClick={() =>
-                        handleClickRow(row.original, cell.getCellProps())
-                      }
-                      {...cell.getCellProps()}
-                      className="promoted-table_data"
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+      <div className="promoted-table_div">
+        <table {...getTablePropsAdmin()} className="promoted-table">
+          <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
+            {rowsAdmin.map((row) => {
+              prepareRowAdmin(row);
+              return (
+                <tr
+                  onClick={() => console.log(row.original)}
+                  {...row.getRowProps()}
+                  className="promoted-table_row promoted-table_data_underline"
+                >
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        onClick={() =>
+                          handleClickRow(row.original, cell.getCellProps())
+                        }
+                        {...cell.getCellProps()}
+                        className="promoted-table_data"
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

@@ -6,19 +6,15 @@ export default function Newsletter() {
       <div className="newsletter-outer">
         <div className="newsletter-main">
           <div className="newsletter_left">
-            <img
-              style={{ width: "450px", height: "auto" }}
-              src="bike.svg"
-              alt="Logo"
-            />
+            <img src="bike.svg" alt="Logo" />
           </div>
           <div className="newsletter_right">
-            <div style={{ textAlign: "left", paddingTop: "5px" }}>
+            <div className="newsletter_subscribe">
               <div style={{ fontSize: "22px", fontWeight: "600" }}>
                 Subscribe to our newsletter
               </div>
             </div>
-            <div style={{ fontSize: "12px", textAlign: "left" }}>
+            <div className="newsletter_line">
               Get the best high potential coins right into your inbox.
             </div>
             <div>

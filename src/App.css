@@ -699,6 +699,16 @@ nav {
     display: flex;
     flex-direction: column;
   }
+  .newsletter_left > img {
+    width: 350px;
+    height: auto;
+  }
+  .newsletter_subscribe {
+    text-align: center;
+  }
+  .newsletter_line {
+    text-align: center;
+  }
 }
 .newsletter_right {
   width: 86%;
@@ -710,6 +720,18 @@ nav {
   width: 100%;
   vertical-align: middle;
   border-style: none;
+}
+.newsletter_left > img {
+  width: 450px;
+  height: auto;
+}
+.newsletter_subscribe {
+  text-align: left;
+  padding-top: 5px;
+}
+.newsletter_line {
+  font-size: 12px;
+  text-align: left;
 }
 
 svg {

@@ -130,7 +130,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
   });
 
   return (
-    <>
+    <div className="promoted-table_div">
       <h1 className="promoted-table_heading">Pending coins</h1>
       <table {...getTablePropsAdmin()} className="promoted-table">
         <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
@@ -160,6 +160,6 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }

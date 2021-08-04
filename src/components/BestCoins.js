@@ -154,77 +154,79 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
 
   return (
     <>
-      <table {...getTablePropsBest()} className="promoted-table">
-        <p style={{ display: "inline-block" }}>
-          <button
-            onClick={onSearchClick}
-            style={{
-              border: "none",
-              backgroundColor: "#28a745",
-              color: "white",
-              height: "25px",
-              width: "70px",
-            }}
-          >
-            <BsSearch />
-            <i> </i>Search
-          </button>
-          <br />
-          {showSearch ? (
-            <GlobalFilter
-              filter={globalFilter}
-              setFilter={setGlobalFilterBest}
-            />
-          ) : null}
-        </p>
-        <thead>
-          {headerGroupsBest.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <BsCaretUpFill />
+      <div className="promoted-table_div">
+        <table {...getTablePropsBest()} className="promoted-table">
+          <p style={{ display: "inline-block" }}>
+            <button
+              onClick={onSearchClick}
+              style={{
+                border: "none",
+                backgroundColor: "#28a745",
+                color: "white",
+                height: "25px",
+                width: "70px",
+              }}
+            >
+              <BsSearch />
+              <i> </i>Search
+            </button>
+            <br />
+            {showSearch ? (
+              <GlobalFilter
+                filter={globalFilter}
+                setFilter={setGlobalFilterBest}
+              />
+            ) : null}
+          </p>
+          <thead>
+            {headerGroupsBest.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <BsCaretUpFill />
+                        ) : (
+                          <BsCaretDownFill />
+                        )
                       ) : (
-                        <BsCaretDownFill />
-                      )
-                    ) : (
-                      ""
-                    )}
-                  </span>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
-          {pageBest.map((row) => {
-            prepareRowBest(row);
-            return (
-              <tr
-                {...row.getRowProps()}
-                className="promoted-table_row promoted-table_data_underline"
-              >
-                {row.cells.map((cell) => {
-                  return (
-                    <td
-                      onClick={() =>
-                        handleClickRow(row.original, cell.getCellProps())
-                      }
-                      {...cell.getCellProps()}
-                      className="promoted-table_data"
-                    >
-                      {cell.render("Cell")}
-                    </td>
-                  );
-                })}
+                        ""
+                      )}
+                    </span>
+                  </th>
+                ))}
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
+            {pageBest.map((row) => {
+              prepareRowBest(row);
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  className="promoted-table_row promoted-table_data_underline"
+                >
+                  {row.cells.map((cell) => {
+                    return (
+                      <td
+                        onClick={() =>
+                          handleClickRow(row.original, cell.getCellProps())
+                        }
+                        {...cell.getCellProps()}
+                        className="promoted-table_data"
+                      >
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       <div className="promoted-pagination">
         <span>
           Page{" "}

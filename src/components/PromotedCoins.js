@@ -56,7 +56,7 @@ export default function PromotedCoins({ promotedCoin }) {
     }
   };
   return (
-    <div>
+    <div className="promoted-table_div">
       <h1 className="promoted-table_heading">Promoted coins</h1>
       <table {...getTablePropsPromoted()} className="promoted-table">
         <tbody {...getTableBodyPropsPromoted()} className="promoted-table_body">

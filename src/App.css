@@ -184,19 +184,20 @@ td:last-child {
   width: 89%;
 }
 @media screen and (max-width: 768px) {
-  .promoted-table {
+  .promoted-table_div {
     width: 300px;
     white-space: nowrap;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
   }
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   table {
     width: 300px;
     white-space: nowrap;
     overflow: auto;
   }
-}
+} */
 
 .promoted-table_row {
   cursor: pointer;
@@ -214,13 +215,13 @@ td:last-child {
 tr {
   transition: 0.02s background-color;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   tr {
     width: 300px;
     white-space: nowrap;
     overflow: auto;
   }
-}
+} */
 tr:hover {
   transition-delay: 0.02s;
   background-color: lightgray;

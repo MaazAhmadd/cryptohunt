@@ -5,13 +5,7 @@ export default function Newsletter() {
     <div className="newsletter-outer-outer">
       <div className="newsletter-outer">
         <div className="newsletter-main">
-          <div
-            style={{
-              width: "100%",
-              verticalAlign: "middle",
-              borderStyle: "none",
-            }}
-          >
+          <div className="newsletter_left">
             <img
               style={{ width: "450px", height: "auto" }}
               src="bike.svg"
@@ -32,7 +26,7 @@ export default function Newsletter() {
                 <div style={{ marginBlock: "1rem" }}>
                   <input
                     style={{
-                      font: "400 13.3333px Arial",
+                      font: "400 13.3px Arial",
                       WebkitRtlOrdering: "logical",
                       cursor: "text",
                       textAlign: "start",
@@ -68,7 +62,7 @@ export default function Newsletter() {
                 </div>
                 <button
                   style={{
-                    font: "400 13.3333px Arial",
+                    font: "400 13.3px Arial",
                     alignItems: "flex-start",
                     textIndent: "0px",
                     textShadow: "none",

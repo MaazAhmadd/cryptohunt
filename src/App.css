@@ -694,12 +694,24 @@ nav {
   display: flex;
   flex-direction: row;
 }
+@media screen and (max-width: 768px) {
+  .newsletter-main {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .newsletter_right {
   width: 86%;
   display: flex;
   flex-direction: column;
   padding-top: 4%;
 }
+.newsletter_left {
+  width: 100%;
+  vertical-align: middle;
+  border-style: none;
+}
+
 svg {
   vertical-align: middle;
 }

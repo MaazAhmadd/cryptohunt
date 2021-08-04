@@ -93,8 +93,8 @@ export default function Promote() {
         }}
       >
         <div>Official Alexa rank by Amazon</div>
-        <a href="https://www.alexa.com/siteinfo/coinhunt.cc" target="_blank">
-          coinhunt.cc Competitive Analysis, Marketing Mix and Traffic - Alexa
+        <a href="https://www.alexa.com/siteinfo/cryptohunt.cc" target="_blank">
+          cryptohunt.cc Competitive Analysis, Marketing Mix and Traffic - Alexa
         </a>
       </div>
       <div style={{ fontSize: "18px" }}>

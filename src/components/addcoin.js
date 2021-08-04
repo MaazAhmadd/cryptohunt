@@ -48,7 +48,7 @@ function AddCoin() {
         .post(
           "http://34.85.128.15:8080/add_coin",
           qs.stringify({
-            name: coin.name,
+            name: coin.name.split(" ").join(""),
             symbol: coin.symbol,
             description: coin.description,
             logo: coin.logo,

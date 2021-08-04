@@ -723,15 +723,18 @@ nav {
     display: flex;
     flex-direction: column;
   }
+  .newsletter_right {
+    margin-left: 13%;
+  }
   .newsletter_left > img {
     width: 350px;
     height: auto;
   }
   .newsletter_subscribe {
-    text-align: center;
+    text-align: left;
   }
   .newsletter_line {
-    text-align: center;
+    text-align: left;
   }
 }
 

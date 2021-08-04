@@ -562,7 +562,7 @@ table th {
   font-size: 1rem;
 }
 table th:hover {
-  color: rgb(105, 105, 105);
+  color: gray;
 }
 
 .dosearch,

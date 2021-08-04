@@ -42,7 +42,7 @@ export default (coins) => {
         <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
       ),
       name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-      volumeChange: !change ? (
+      volumeChange: Number.isNaN(change) ? (
         <span>-</span>
       ) : (
         <div

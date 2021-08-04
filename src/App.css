@@ -183,6 +183,12 @@ td:last-child {
   margin: 2% 5%;
   width: 89%;
 }
+@media screen and (max-width: 768px) {
+}
+.promoted-table {
+  overflow: auto;
+}
+
 .promoted-table_row {
   cursor: pointer;
   width: 100%;

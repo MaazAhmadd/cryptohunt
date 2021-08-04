@@ -561,6 +561,9 @@ table th {
   padding-bottom: 0.7rem;
   font-size: 1rem;
 }
+table th:hover {
+  color: rgb(105, 105, 105);
+}
 
 .dosearch,
 .doSearchInput {

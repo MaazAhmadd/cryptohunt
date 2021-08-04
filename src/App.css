@@ -208,6 +208,7 @@ tr {
 @media screen and (max-width: 768px) {
 }
 tr {
+  white-space: nowrap;
   overflow: auto;
 }
 tr:hover {

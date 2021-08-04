@@ -367,11 +367,13 @@ tr:hover {
 }
 @media screen and (max-width: 1090px) {
   .details-left > div > h2 {
+    font-size: xx-large;
     margin-right: 29%;
   }
 }
 @media screen and (max-width: 950px) {
   .details-left > div > h2 {
+    font-size: x-large;
     margin-right: 20%;
   }
 }
@@ -480,6 +482,9 @@ tr:hover {
   }
 }
 @media screen and (max-width: 768px) {
+  h2 {
+    font-size: large;
+  }
   .details-page {
     grid-template-rows: 55%;
   }

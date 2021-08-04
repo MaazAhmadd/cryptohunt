@@ -133,6 +133,11 @@ table {
   border-top-right-radius: 5px;
   background-color: white;
 }
+@media screen and (max-width: 768px) {
+}
+table {
+  overflow: auto;
+}
 .promoted-pagination {
   margin-left: 9%;
   margin-bottom: 2%;

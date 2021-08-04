@@ -12,6 +12,8 @@ export default function footer() {
       <img src="" alt="" />
       <img src="" alt="" />
       <p>Cryptohunt © 2021 - contact@cryptohunt.com</p>
+      <br />
+      <br />
     </footer>
   );
 }

@@ -580,6 +580,15 @@ table th {
   text-align: center;
 }
 .footer-main > ul > li {
-  padding: 0 10px;
+  color: gray;
+  font-weight: 500;
+  font-size: 1.3rem;
+  padding: 0 9px;
   display: inline;
+}
+.footer-main > ul > li:hover {
+  color: #202020;
+}
+.footer-main > p {
+  color: #202020;
 }

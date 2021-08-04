@@ -183,11 +183,12 @@ td:last-child {
   margin: 2% 5%;
   width: 89%;
 }
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
+  .promoted-table {
+    white-space: nowrap;
+    overflow: auto;
+  }
 }
-.promoted-table {
-  overflow: auto;
-} */
 
 .promoted-table_row {
   cursor: pointer;
@@ -205,12 +206,12 @@ td:last-child {
 tr {
   transition: 0.02s background-color;
 }
-@media screen and (max-width: 768px) {
-}
-tr {
-  white-space: nowrap;
-  overflow: auto;
-}
+/* @media screen and (max-width: 768px) {
+  tr {
+    white-space: nowrap;
+    overflow: auto;
+  }
+} */
 tr:hover {
   transition-delay: 0.02s;
   background-color: lightgray;

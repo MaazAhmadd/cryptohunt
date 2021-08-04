@@ -12,7 +12,11 @@ export default function Newsletter() {
               borderStyle: "none",
             }}
           >
-            <img src="bike.svg" alt="Logo" />
+            <img
+              style={{ width: "450px", height: "auto" }}
+              src="bike.svg"
+              alt="Logo"
+            />
           </div>
           <div className="newsletter_right">
             <div style={{ textAlign: "left", paddingTop: "5px" }}>

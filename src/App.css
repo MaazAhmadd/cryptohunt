@@ -438,7 +438,7 @@ tr:hover {
   margin: 5% 0;
   background-color: white;
 }
-.details-right-socials > button {
+.details-right-socials > a > button {
   transition: 0.02s background-color;
   border: none;
   border-radius: 5px;
@@ -449,7 +449,7 @@ tr:hover {
   width: 100%;
   font-size: larger;
 }
-.details-right-socials > button:hover {
+.details-right-socials > a > button:hover {
   transition-delay: 0.02s;
   background-color: green;
 }

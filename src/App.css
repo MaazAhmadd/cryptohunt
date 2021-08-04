@@ -493,12 +493,13 @@ tr:hover {
     grid-template-rows: 55%;
   }
   .details-left {
+    row-gap: 5%;
     grid-column: 1/12;
     width: 90%;
     height: 100%;
-    margin-bottom: 5%;
   }
   .details-right {
+    row-gap: 5%;
     grid-column: 1/12;
     margin-left: 5%;
     width: 90%;

@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Footer from "./components/footer";
+import Promote from "./components/promote";
 import Home from "./components/home";
 import DetailsCoin from "./components/DetailsCoin";
 import Login from "./components/login";
@@ -47,6 +48,10 @@ function App() {
 
       <Switch>
         <Route path="/add_coin" exact component={AddCoin} />
+      </Switch>
+
+      <Switch>
+        <Route path="/promote" exact component={Promote} />
       </Switch>
 
       <Footer />

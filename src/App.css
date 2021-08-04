@@ -190,6 +190,9 @@ td:last-child {
     overflow-x: auto;
     overflow-y: hidden;
   }
+  td {
+    padding: auto 5px;
+  }
 }
 /* @media screen and (max-width: 768px) {
   table {

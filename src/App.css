@@ -294,7 +294,8 @@ tr:hover {
 }
 .bests:hover {
   transition-delay: 0.02s;
-  background-color: rgba(93, 142, 104, 0.2);
+  background-blend-mode: lighten;
+  background-color: rgba(93, 142, 104, 0.5);
   color: white;
 }
 .bests-header {

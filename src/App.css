@@ -292,12 +292,12 @@ tr:hover {
 .bests:last-child {
   border-top-right-radius: 5px;
 }
-.bests:hover {
+/* .bests:hover {
   transition-delay: 0.02s;
   background-blend-mode: lighten;
   background-color: rgba(93, 142, 104, 0.5);
   color: white;
-}
+} */
 .bests-header {
   margin-left: 5%;
   margin-bottom: -2%;

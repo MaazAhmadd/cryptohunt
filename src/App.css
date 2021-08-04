@@ -494,18 +494,14 @@ tr:hover {
   }
   .details-left {
     grid-column: 1/12;
+    width: 90%;
+    height: 60vh;
   }
   .details-right {
     grid-column: 1/12;
-  }
-  .details-left {
-    width: 90%;
-    height: 100vh;
-  }
-  .details-right {
     margin-left: 5%;
     width: 90%;
-    height: 100vh;
+    height: 100%;
   }
 }
 /* reacts */

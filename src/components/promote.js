@@ -3,7 +3,18 @@ import React from "react";
 export default function Promote() {
   return (
     <div className="promote_coin_hero">
-      <img src="promote.svg" alt="promote" />
+      <div style={{ textAlign: "left", width: "100%" }}>
+        <img
+          style={{
+            width: "20%",
+            marginLeft: "39%",
+            verticalAlign: "middle",
+            borderStyle: "none",
+          }}
+          src="promote.svg"
+          alt="promote"
+        />
+      </div>
       <div
         style={{
           width: "100%",

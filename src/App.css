@@ -39,7 +39,7 @@ body {
   padding-left: 2rem;
 }
 .header_link {
-  color: gray !important;
+  color: rgb(175, 175, 175) !important;
 }
 .header_link:hover {
   color: white !important;
@@ -602,6 +602,14 @@ table th {
 .footer-main > p {
   margin-top: -6px;
   color: #202020;
+}
+@media screen and (max-width: 768px) {
+  .footer-main > ul > li {
+    display: block;
+  }
+  .footer-main > p {
+    font-size: 0.9rem;
+  }
 }
 
 /* loading_screen */

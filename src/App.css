@@ -753,6 +753,11 @@ nav {
     text-align: left;
   }
 }
+@media screen and (max-width: 550px) {
+  .newsletter_left > img {
+    width: 265px;
+  }
+}
 
 svg {
   vertical-align: middle;

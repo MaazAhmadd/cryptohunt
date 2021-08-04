@@ -32,8 +32,8 @@ module.exports = {
       )
       .then((response) => {
         var current_price = response.data[coin].usd;
-        var market_cap = response.data[coin].usd_market_cap;
-        var onedaychange = Math.round(response.data[coin].usd_24h_change);
+        var market_cap = Math.round(response.data[coin].usd_market_cap);
+        var onedaychange = response.data[coin].usd_24h_change;
 
         connection.query(
           `UPDATE coin set price='${current_price}',market_cap='${market_cap}',volume_change_24h='${onedaychange}' where name='${coin_normal}'`,

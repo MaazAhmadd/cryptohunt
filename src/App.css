@@ -133,11 +133,11 @@ table {
   border-top-right-radius: 5px;
   background-color: white;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   table {
     overflow: auto;
   }
-}
+} */
 .promoted-pagination {
   margin-left: 9%;
   margin-bottom: 2%;
@@ -183,11 +183,11 @@ td:last-child {
   margin: 2% 5%;
   width: 89%;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
 }
 .promoted-table {
   overflow: auto;
-}
+} */
 
 .promoted-table_row {
   cursor: pointer;
@@ -204,6 +204,11 @@ td:last-child {
 }
 tr {
   transition: 0.02s background-color;
+}
+@media screen and (max-width: 768px) {
+}
+tr {
+  overflow: auto;
 }
 tr:hover {
   transition-delay: 0.02s;

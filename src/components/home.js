@@ -72,32 +72,38 @@ function Home() {
 
   return (
     <>
-      {status ? <div className="promoted_wrapper"></div> : "loading"}
-      <PromotedCoins promotedCoin={promotedCoin} />
-      <div className="bests-header">
-        <button
-          onClick={() => {
-            handleTodaysBest();
-          }}
-          className={todaysBestClass}
-        >
-          All time best
-        </button>
-        <button
-          onClick={() => {
-            handleAllTimeBest();
-          }}
-          className={allTimeBestClass}
-        >
-          Today's Best
-        </button>
-      </div>
-      {todaysBest ? (
-        <BestCoins promotedCoin={bestCoin} />
+      {/* {status ? <div className="promoted_wrapper"></div> : <p>loading...</p>} */}
+      {status ? (
+        <div>
+          <PromotedCoins promotedCoin={promotedCoin} />
+          <div className="bests-header">
+            <button
+              onClick={() => {
+                handleTodaysBest();
+              }}
+              className={todaysBestClass}
+            >
+              All time best
+            </button>
+            <button
+              onClick={() => {
+                handleAllTimeBest();
+              }}
+              className={allTimeBestClass}
+            >
+              Today's Best
+            </button>
+          </div>
+          {todaysBest ? (
+            <BestCoins promotedCoin={bestCoin} />
+          ) : (
+            <BestCoins promotedCoin={bestTodayCoin[0]} />
+          )}
+          {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
+        </div>
       ) : (
-        <BestCoins promotedCoin={bestTodayCoin[0]} />
+        <p>loading...</p>
       )}
-      {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
     </>
   );
 }

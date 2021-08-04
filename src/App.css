@@ -37,9 +37,11 @@ body {
 }
 .header_item {
   padding-left: 2rem;
+}
+.header_link {
   color: gray;
 }
-.header_item:hover {
+.header_link:hover {
   color: white;
 }
 .header_navbar_right_outer > ul {

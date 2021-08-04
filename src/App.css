@@ -623,6 +623,12 @@ table th {
   margin-top: 20%;
   margin-bottom: 20%;
 }
+@media screen and (max-width: 768px) {
+  .load-wrapp {
+    margin-top: 50%;
+    margin-bottom: 50%;
+  }
+}
 
 .load-wrapp:last-child {
   margin-right: 0;

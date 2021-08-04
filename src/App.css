@@ -630,9 +630,9 @@ table th {
 
 .line {
   display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin: 3px;
-  border-radius: 15px;
+  width: 20px;
+  height: 20px;
+  margin: 4px;
+  border-radius: 20px;
   background-color: #4b9cdb;
 }

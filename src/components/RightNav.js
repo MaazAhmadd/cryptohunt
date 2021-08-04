@@ -22,8 +22,13 @@ const Ul = styled.ul`
     width: 300px;
     padding-top: 3.5rem;
     transition: transform 0.3s ease-in-out;
+    z-index: 1000000;
 
     li {
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      padding-top: 0.7rem;
       color: #fff;
     }
   }

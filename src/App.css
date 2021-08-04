@@ -185,7 +185,7 @@ td:last-child {
 }
 @media screen and (max-width: 768px) {
   table {
-    width: 200px;
+    width: 300px;
     white-space: nowrap;
     overflow: auto;
   }

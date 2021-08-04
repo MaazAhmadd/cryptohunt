@@ -693,6 +693,7 @@ nav {
 .newsletter-main {
   display: flex;
   flex-direction: row;
+  margin-bottom: 2%;
 }
 
 .newsletter_right {
@@ -725,6 +726,7 @@ nav {
   }
   .newsletter_right {
     margin-left: 13%;
+    margin-bottom: 10%;
   }
   .newsletter_left > img {
     width: 350px;

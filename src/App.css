@@ -700,3 +700,6 @@ nav {
   flex-direction: column;
   padding-top: 4%;
 }
+svg {
+  vertical-align: middle;
+}

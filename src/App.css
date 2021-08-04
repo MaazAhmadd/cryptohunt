@@ -39,10 +39,10 @@ body {
   padding-left: 2rem;
 }
 .header_link {
-  color: gray;
+  color: gray !important;
 }
 .header_link:hover {
-  color: white;
+  color: white !important;
 }
 .header_navbar_right_outer > ul {
   margin-top: -3%;

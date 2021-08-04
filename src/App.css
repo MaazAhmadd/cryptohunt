@@ -14,7 +14,6 @@
 body {
   background-color: #eaeaea !important;
   font-family: var(--font-family-monospace);
-  text-align: center;
 }
 a {
   text-decoration: none !important;

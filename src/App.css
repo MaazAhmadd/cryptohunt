@@ -184,8 +184,8 @@ td:last-child {
   width: 89%;
 }
 @media screen and (max-width: 768px) {
-  .promoted-table {
-    max-width: 90vw;
+  table {
+    width: 200px;
     white-space: nowrap;
     overflow: auto;
   }

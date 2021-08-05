@@ -270,19 +270,29 @@ app.post("/get/votes", async function (req, res) {
 //check votes
 
 //unapproved coins
-app.get("/coins/unapproved", async function (req, res) {
+app.post("/coins/unapproved", async function (req, res) {
+  const user = req.body.user;
   connection.query(
-    `Select * from coin where status!='approved'`,
+    `select role from users where email = '${user}';`,
     function (error, results, fields) {
-      if (results.length > 0) {
-        var coin_results = [];
-        // for each result
-        results.forEach((result) => {
-          api.updateCoin(result.name);
-          coin_results.push(result);
-        });
-        // for each result
-        res.send(JSON.stringify({ coin_results }));
+      if (results[0].role == "admin") {
+        connection.query(
+          `Select * from coin where status!='approved'`,
+          function (error, results, fields) {
+            if (results.length > 0) {
+              var coin_results = [];
+              // for each result
+              results.forEach((result) => {
+                api.updateCoin(result.name);
+                coin_results.push(result);
+              });
+              // for each result
+              res.send(JSON.stringify({ coin_results }));
+            }
+          }
+        );
+      } else {
+        res.status(400).send(createResponse("error", "user not admin"));
       }
     }
   );
@@ -305,7 +315,7 @@ app.post("/approve_coin", async function (req, res) {
           }
         );
       } else {
-        res.send(createResponse("error", "user not admin"));
+        res.status(400).send(createResponse("error", "user not admin"));
       }
     }
   );
@@ -334,7 +344,7 @@ app.post("/reject_coin", async function (req, res) {
           }
         );
       } else {
-        res.send(createResponse("error", "user not admin"));
+        res.status(400).send(createResponse("error", "user not admin"));
       }
     }
   );

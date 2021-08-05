@@ -6,12 +6,13 @@ import { Height } from "@material-ui/icons";
 import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
 import AdminCoins from "./AdminCoins";
+const qs = require("querystring");
 const moment = require("moment");
 
 function Home() {
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
-  const [bestTodayCoin, setBestTodayCoins] = useState([[], []]);
+  const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
@@ -40,9 +41,15 @@ function Home() {
   const getCoinUnapprovedData = async () => {
     //fetch
     await axios
-      .get("http://34.85.128.15:8080/coins/unapproved")
+      .post(
+        "http://34.85.128.15:8080/coins/unapproved",
+        qs.stringify({
+          user: localStorage.getItem("user_email"),
+        })
+      )
       .then(({ data }) => {
-        setUnapprovedCoins(data.coin_results);
+        console.log(data);
+        // setUnapprovedCoins(data.coin_results);
       });
   };
   useEffect(() => {

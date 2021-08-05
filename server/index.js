@@ -321,12 +321,16 @@ app.post("/reject_coin", async function (req, res) {
   connection.query(
     `select role from users where email = '${user}';`,
     function (error, results, fields) {
-      console.log(results);
       if (results[0].role == "admin") {
         connection.query(
           `DELETE from coin where id = ${coin_id}`,
           function (error, results, fields) {
-            res.send(createResponse("success", "coin approved"));
+            res.send(
+              createResponse(
+                "success",
+                "coin rejected and deleted from database"
+              )
+            );
           }
         );
       } else {

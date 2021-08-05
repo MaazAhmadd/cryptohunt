@@ -297,7 +297,6 @@ app.post("/approve_coin", async function (req, res) {
   connection.query(
     `select role from users where email = '${user}';`,
     function (error, results, fields) {
-      console.log(results);
       if (results.role == "admin") {
         connection.query(
           `UPDATE coin set status = 'approved' where id = ${coin_id}`,
@@ -317,10 +316,22 @@ app.post("/approve_coin", async function (req, res) {
 //delete rejected
 app.post("/reject_coin", async function (req, res) {
   let coin_id = req.body.coin_id;
+  let user = req.body.user;
+
   connection.query(
-    `DELETE from coin where id = ${coin_id}`,
+    `select role from users where email = '${user}';`,
     function (error, results, fields) {
-      res.send(createResponse("success", "coin approved"));
+      console.log(results);
+      if (results.role == "admin") {
+        connection.query(
+          `DELETE from coin where id = ${coin_id}`,
+          function (error, results, fields) {
+            res.send(createResponse("success", "coin approved"));
+          }
+        );
+      } else {
+        res.send(createResponse("error", "user not admin"));
+      }
     }
   );
 });

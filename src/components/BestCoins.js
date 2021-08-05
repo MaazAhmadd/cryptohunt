@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import config from "../config.json";
+const currentUrl = config.CURRENT_URL;
 
 // import manupilatingData from "./utils/manupilatingData";
 import {
@@ -32,7 +34,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       // console.log("vote clicked ", row, row.vote.props.className, cell);
       return null;
     } else {
-      return (window.location.href = `http://34.85.128.15/coins/${row.id}`);
+      return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   const manupilatingData = (coins) => {

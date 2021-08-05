@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const qs = require("querystring");
+import config from "../config.json";
+const apiUrl = config.API_URL;
 
 function Register() {
   const [user, setUser] = useState({
@@ -24,7 +26,7 @@ function Register() {
         // secure password :)
         await axios
           .post(
-            "http://34.85.128.15:8080/register",
+            apiUrl + "/register",
             qs.stringify({
               email: user.email,
               name: user.name,

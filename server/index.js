@@ -8,13 +8,6 @@ const api = require("./api_calls");
 
 app.use(cors());
 /** MYSQL DATAABASE **/
-// var connection = mysql.createConnection({
-//   host: "34.85.128.15",
-//   user: "cryptohunt",
-//   password: "cryptohunt",
-//   database: "cryptohunt",
-//   multipleStatements: true,
-// });
 var connection = mysql.createConnection({
   host: "localhost",
   user: "cryptohunt",

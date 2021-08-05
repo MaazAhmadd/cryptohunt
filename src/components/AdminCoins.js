@@ -8,19 +8,22 @@ import {
   BsArrowRight,
   BsArrowLeft,
 } from "react-icons/bs";
+import config from "../config.json";
+const apiUrl = config.API_URL;
+const currentUrl = config.CURRENT_URL;
 
 export default function AdminCoins({ promotedCoin: adminCoin }) {
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `http://34.85.128.15/coins/${row.id}`);
+      return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
 
   const approve = async (id) => {
     await axios.post(
-      "http://34.85.128.15:8080/approve_coin",
+      apiUrl + "/approve_coin",
       qs.stringify({
         coin_id: id,
         user: localStorage.getItem("user_email"),
@@ -29,7 +32,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
   };
   const reject = async (id) => {
     await axios.post(
-      "http://34.85.128.15:8080/reject_coin",
+      apiUrl + "/reject_coin",
       qs.stringify({
         coin_id: id,
         user: localStorage.getItem("user_email"),

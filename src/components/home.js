@@ -7,6 +7,8 @@ import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
 import AdminCoins from "./AdminCoins";
 const qs = require("querystring");
+import config from "../config.json";
+const apiUrl = config.API_URL;
 const moment = require("moment");
 //34.85.128.15
 function Home() {
@@ -16,26 +18,23 @@ function Home() {
   const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
-  console.log(process.env.API_URL);
 
   const getCoinPromotedData = async () => {
     //fetch
-    await axios
-      .get("http://34.85.128.15:8080/coins/promoted")
-      .then(({ data }) => {
-        setPromotedCoins(data.coin_results);
-        setStatus(true);
-      });
+    await axios.get(apiUrl + "/coins/promoted").then(({ data }) => {
+      setPromotedCoins(data.coin_results);
+      setStatus(true);
+    });
   };
   const getCoinBestData = async () => {
     //fetch
-    await axios.get("http://34.85.128.15:8080/coins").then(({ data }) => {
+    await axios.get(apiUrl + "/coins").then(({ data }) => {
       setBestCoins(data.coin_results);
     });
   };
   const getCoinTodayBestData = async () => {
     //fetch
-    await axios.get("http://34.85.128.15:8080/coins/today").then(({ data }) => {
+    await axios.get(apiUrl + "/coins/today").then(({ data }) => {
       setBestTodayCoins(data.coin_results);
     });
   };
@@ -43,7 +42,7 @@ function Home() {
     //fetch
     await axios
       .post(
-        "http://34.85.128.15:8080/coins/unapproved",
+        apiUrl + "/coins/unapproved",
         qs.stringify({
           user: localStorage.getItem("user_email"),
         })

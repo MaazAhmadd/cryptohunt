@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi/";
+import config from "../config.json";
+const apiUrl = config.API_URL;
 
 const qs = require("querystring");
 
@@ -46,7 +48,7 @@ function AddCoin() {
 
       await axios
         .post(
-          "http://34.85.128.15:8080/add_coin",
+          apiUrl + "/add_coin",
           qs.stringify({
             name: coin.name.split(" ").join(""),
             symbol: coin.symbol,

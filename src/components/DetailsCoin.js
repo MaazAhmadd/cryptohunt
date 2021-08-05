@@ -2,6 +2,9 @@ import React from "react";
 import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import config from "../config.json";
+const apiUrl = config.API_URL;
+const currentUrl = config.API_URL;
 
 export default function DetailsCoin() {
   const [detailsCoins, setDetailsCoins] = React.useState([]);
@@ -15,7 +18,7 @@ export default function DetailsCoin() {
 
   let splitted = window.location.href.split("/");
   let id = splitted[splitted.length - 1];
-  let linkk = `http://34.85.128.15:8080/coins/${id}`;
+  let linkk = `${apiUrl}/coins/${id}`;
   const getCoinDetailsData = async () => {
     //fetch
     await axios.get(linkk).then(({ data }) => {
@@ -24,58 +27,58 @@ export default function DetailsCoin() {
   };
   const getRandomCoins = async () => {
     //fetch
-    await axios.get("http://34.85.128.15:8080/random").then(({ data }) => {
+    await axios.get(apiUrl + "/random").then(({ data }) => {
       setRandomCoins(data);
     });
   };
 
   const moonHandler = async (moon, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setMoon(Number(moon) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/moon`);
+    await axios.get(`${apiUrl}/reacts/${id}/moon`);
   };
   const fireHandler = async (fire, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setFire(Number(fire) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/fire`);
+    await axios.get(`${apiUrl}/reacts/${id}/fire`);
   };
   const gemHandler = async (gem, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setGem(Number(gem) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/gem`);
+    await axios.get(`${apiUrl}/reacts/${id}/gem`);
   };
   const heartHandler = async (heart, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setHeart(Number(heart) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/heart`);
+    await axios.get(`${apiUrl}/reacts/${id}/heart`);
   };
   const joyHandler = async (joy, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setJoy(Number(joy) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/joy`);
+    await axios.get(`${apiUrl}/reacts/${id}/joy`);
   };
   const likedHandler = async (liked, id) => {
     if (localStorage.getItem("logged_in") != 1) {
-      window.location.href = "http://34.85.128.15/login";
+      window.location.href = currentUrl + "/login";
       return;
     }
     setLiked(Number(liked) + 1);
-    await axios.get(`http://34.85.128.15:8080/reacts/${id}/liked`);
+    await axios.get(`${apiUrl}/reacts/${id}/liked`);
   };
   // let detailsCoins = [];
   React.useEffect(() => {

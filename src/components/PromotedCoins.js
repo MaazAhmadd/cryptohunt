@@ -2,6 +2,8 @@ import React from "react";
 import manupilatingData from "./utils/manupilatingData";
 import { useTable } from "react-table";
 import doVote from "./utils/doVote";
+import config from "../config.json";
+const currentUrl = config.CURRENT_URL;
 
 export default function PromotedCoins({ promotedCoin }) {
   // const [voted, setVoted] = React.useState(false);
@@ -52,7 +54,7 @@ export default function PromotedCoins({ promotedCoin }) {
       // console.log("vote clicked ", row, row.vote.props.className, cell);
       return null;
     } else {
-      return (window.location.href = `http://34.85.128.15/coins/${row.id}`);
+      return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   return (

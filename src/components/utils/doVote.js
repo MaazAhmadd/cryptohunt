@@ -1,10 +1,12 @@
 import axios from "axios";
 import qs from "querystring";
+import config from "../../config.json";
+const apiUrl = config.API_URL;
 
 export default async (id) => {
   await axios
     .post(
-      "http://34.85.128.15:8080/vote",
+      apiUrl + "/vote",
       qs.stringify({
         coin: id,
         user: localStorage.getItem("user_email"),
@@ -14,7 +16,7 @@ export default async (id) => {
     .then(async (response) => {
       if (response.data.msg == "Already Upvoted!") {
         await axios.post(
-          "http://34.85.128.15:8080/vote",
+          apiUrl + "/vote",
           qs.stringify({
             coin: id,
             user: localStorage.getItem("user_email"),

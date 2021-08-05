@@ -6,6 +6,8 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const qs = require("querystring");
+import config from "../config.json";
+const apiUrl = config.API_URL;
 
 function Login() {
   const [user, setUser] = useState({
@@ -19,7 +21,7 @@ function Login() {
     if (user.email !== "" && user.password !== "") {
       await axios
         .post(
-          "http://34.85.128.15:8080/login",
+          apiUrl + "/login",
           qs.stringify({ email: user.email, password: user.password })
         )
         .then((resp) => {

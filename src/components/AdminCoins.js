@@ -23,6 +23,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
       "http://34.85.128.15:8080/approve_coin",
       qs.stringify({
         coin_id: id,
+        user: localStorage.getItem("user_email"),
       })
     );
   };
@@ -31,6 +32,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
       "http://34.85.128.15:8080/reject_coin",
       qs.stringify({
         coin_id: id,
+        user: localStorage.getItem("user_email"),
       })
     );
   };

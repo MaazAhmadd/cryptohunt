@@ -293,10 +293,17 @@ app.get("/coins/unapproved", async function (req, res) {
 //approve coin
 app.post("/approve_coin", async function (req, res) {
   let coin_id = req.body.coin_id;
+  let user = req.body.user;
   connection.query(
-    `UPDATE coin set status = 'approved' where id = ${coin_id}`,
+    `select role from users where email = '${user}'`,
     function (error, results, fields) {
-      res.send(createResponse("success", "coin approved"));
+      console.log(results);
+      connection.query(
+        `UPDATE coin set status = 'approved' where id = ${coin_id}`,
+        function (error, results, fields) {
+          res.send(createResponse("success", "coin approved"));
+        }
+      );
     }
   );
 });

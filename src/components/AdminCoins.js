@@ -135,7 +135,11 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
 
   return (
     <>
-      <h1 className="promoted-table_heading">Pending coins</h1>
+      {adminCoin.length >= 1 ? (
+        <h1 className="promoted-table_heading">Pending coins</h1>
+      ) : (
+        <h1></h1>
+      )}
       <div className="promoted-table_div">
         <table {...getTablePropsAdmin()} className="promoted-table">
           <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">

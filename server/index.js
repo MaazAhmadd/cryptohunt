@@ -85,9 +85,9 @@ app.post("/register", function (req, res) {
   var name = req.body.name;
 
   connection.query(
-    `Select * from users where email='${email}' AND password='${password}'`,
+    `Select * from users where email='${email}';`,
     function (error, results, fields) {
-      if (results.length == 1) {
+      if (results.length >= 1) {
         res.send(createResponse("error", "User Already Exists"));
       } else {
         connection.query(
@@ -295,15 +295,19 @@ app.post("/approve_coin", async function (req, res) {
   let coin_id = req.body.coin_id;
   let user = req.body.user;
   connection.query(
-    `select role from users where email = '${user}'`,
+    `select role from users where email = '${user}';`,
     function (error, results, fields) {
       console.log(results);
-      connection.query(
-        `UPDATE coin set status = 'approved' where id = ${coin_id}`,
-        function (error, results, fields) {
-          res.send(createResponse("success", "coin approved"));
-        }
-      );
+      if (results.role == "admin") {
+        connection.query(
+          `UPDATE coin set status = 'approved' where id = ${coin_id}`,
+          function (error, results, fields) {
+            res.send(createResponse("success", "coin approved"));
+          }
+        );
+      } else {
+        res.send(createResponse("error", "user not admin"));
+      }
     }
   );
 });

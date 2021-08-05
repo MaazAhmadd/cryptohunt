@@ -1,4 +1,4 @@
 {
- "API_URL" : "http://localhost:8080",
- "CURRENT_URL" : "http://localhost:80" 
+ "API_URL" : "http://34.85.128.15:8080",
+ "CURRENT_URL" : "http://34.85.128.15" 
 }

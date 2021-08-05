@@ -297,7 +297,7 @@ app.post("/approve_coin", async function (req, res) {
   connection.query(
     `select role from users where email = '${user}';`,
     function (error, results, fields) {
-      if (results.role == "admin") {
+      if (results[0].role == "admin") {
         connection.query(
           `UPDATE coin set status = 'approved' where id = ${coin_id}`,
           function (error, results, fields) {
@@ -322,7 +322,7 @@ app.post("/reject_coin", async function (req, res) {
     `select role from users where email = '${user}';`,
     function (error, results, fields) {
       console.log(results);
-      if (results.role == "admin") {
+      if (results[0].role == "admin") {
         connection.query(
           `DELETE from coin where id = ${coin_id}`,
           function (error, results, fields) {

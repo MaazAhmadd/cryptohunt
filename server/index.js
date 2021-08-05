@@ -6,6 +6,10 @@ const mysql = require("mysql");
 const axios = require("axios");
 const api = require("./api_calls");
 
+process.on("uncaughtException", function (err) {
+  console.log("Caught exception: ", err);
+});
+
 app.use(cors());
 /** MYSQL DATAABASE **/
 var connection = mysql.createConnection({

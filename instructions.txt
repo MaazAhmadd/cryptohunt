@@ -1,0 +1,27 @@
+// instructions for npm //
+1. open and extract the provided zip file
+2. open terminal in the main folder and type "npm i"
+3. for your ease you can install serve globally on your machine to serve react app. to do that type "npm i -g serve"
+4. run "npm run build"
+5. run "serve -s build"
+6. then open server folder in different terminal and type "npm i"
+7. then run "node index.js"
+*** Make sure to set your CURRENT_URL and API_URL in config.json file ***
+
+
+
+
+// instructions for mysql //
+ 
+1. install mysql on you machine
+2. open your terminal/cmd/bash and type "mysql -u root -p" and enter the password for root user
+3. run the following mysql queries: 
+   "
+    CREATE DATABASE cryptohunt;
+    CREATE USER 'cryptohunt'@'localhost' IDENTIFIED WITH mysql_native_password BY 'cryptohunt';
+    --user is cryptohunt as well as password is cryptohunt ***note that do not forget to use mysql_native_password because nodejs only supports it***;
+    GRANT ALL PRIVILEGES ON *.* TO 'cryptohunt'@'localhost'; 
+    USE cryptohunt;
+    --now you're in cryptohunt database now go to the app folder and open the file cryptohunt.sql and copy all the code into the mysql command line and run it.
+    
+    "

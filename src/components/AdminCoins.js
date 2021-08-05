@@ -150,7 +150,6 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
               prepareRowAdmin(row);
               return (
                 <tr
-                  onClick={() => console.log(row.original)}
                   {...row.getRowProps()}
                   className="promoted-table_row promoted-table_data_underline"
                 >

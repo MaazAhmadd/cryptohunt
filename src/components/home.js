@@ -64,15 +64,11 @@ function Home() {
     getCoinUnapprovedData();
   }, []);
 
-  // if (status == true) {
-  //   // console.log(promotedCoin);
-  // }
   const handleTodaysBest = () => {
     setTodaysBest(true);
   };
 
   const handleAllTimeBest = async () => {
-    console.log(bestTodayCoin);
     setTodaysBest(false);
   };
   let todaysBestClass = "bests ";

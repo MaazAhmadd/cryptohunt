@@ -229,7 +229,6 @@ app.post("/get/votes", async function (req, res) {
     `Select * from votes where coin_id='${coin_id}'`,
     // `Select votes_count from coin where id='${coin_id}'`,
     function (error, results, fields) {
-      console.log(results);
       total_rows_in = results.length;
       res.send(JSON.stringify({ votes: total_rows_in }));
       // res.send(JSON.stringify({ votes: results }));
@@ -327,7 +326,6 @@ app.get("/coins/:id", async function (req, res) {
   connection.query(
     `SELECT * FROM coin where id = ${coin_id}`,
     function (error, results, fields) {
-      console.log("rrrrrrrrrrrrrr", results, "rrrrrrrrrrrrrrrrrrrr");
       res.send(JSON.stringify(results));
     }
   );

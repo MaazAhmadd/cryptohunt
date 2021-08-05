@@ -6,8 +6,9 @@ import { Height } from "@material-ui/icons";
 import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
 import AdminCoins from "./AdminCoins";
-const qs = require("querystring");
 import config from "../config.json";
+
+const qs = require("querystring");
 const apiUrl = config.API_URL;
 const moment = require("moment");
 //34.85.128.15

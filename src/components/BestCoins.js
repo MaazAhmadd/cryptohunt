@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import config from "../config.json";
-const currentUrl = config.CURRENT_URL;
-
 // import manupilatingData from "./utils/manupilatingData";
 import {
   useTable,
@@ -17,6 +15,7 @@ import {
 } from "react-icons/bs";
 import { GlobalFilter } from "./GlobalFilter";
 import doVote from "./utils/doVote";
+const currentUrl = config.CURRENT_URL;
 
 export default function BestCoins({ promotedCoin: bestCoin }) {
   const [showSearch, setShowSearch] = React.useState(false);

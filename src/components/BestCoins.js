@@ -29,20 +29,12 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       }
       doVote(row.id);
       // voted
-      //   ? (row.vote.props.className = "promoted-table_votebtn_green")
-      //   : (row.vote.props.className = "promoted-table_votebtn");
-      // console.log("vote clicked ", row, row.vote.props.className, cell);
       return null;
     } else {
       return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   const manupilatingData = (coins) => {
-    // let [voted, setVoted] = useState(false);
-    // let [voteClass, setVoteClass] = useState("promoted-table_votebtn");
-
-    // console.log(voted);
-    // console.log(voteClass);
     let allCoins = [];
     coins.forEach((coin) => {
       let voted = false;

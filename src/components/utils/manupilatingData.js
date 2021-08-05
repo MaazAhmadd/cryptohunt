@@ -14,14 +14,7 @@ export default (coins) => {
   coins.forEach((coin) => {
     let voted = false;
     const handleVoteClick = (e) => {
-      // console.log("eventttttttt ", e);
-      // voted
-      //   ? (e.target.className = "promoted-table_votebtn_green")
-      //   : (e.target.className = "promoted-table_votebtn");
       voted = !voted;
-      // voted == true ? setVoted(false) : setVoted(true);
-
-      // window.location.reload(false);
     };
 
     let voteC = coin.votes_count;

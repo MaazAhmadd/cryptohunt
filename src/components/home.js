@@ -16,7 +16,6 @@ function Home() {
   const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
-  console.log(API_URL);
   console.log(process.env.API_URL);
 
   const getCoinPromotedData = async () => {

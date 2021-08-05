@@ -8,7 +8,7 @@ import BestCoins from "./BestCoins";
 import AdminCoins from "./AdminCoins";
 const qs = require("querystring");
 const moment = require("moment");
-
+//34.85.128.15
 function Home() {
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
@@ -16,6 +16,8 @@ function Home() {
   const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
+  console.log(API_URL);
+  console.log(process.env.API_URL);
 
   const getCoinPromotedData = async () => {
     //fetch

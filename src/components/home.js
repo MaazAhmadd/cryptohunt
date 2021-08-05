@@ -48,8 +48,11 @@ function Home() {
         })
       )
       .then(({ data }) => {
-        console.log(data);
-        // setUnapprovedCoins(data.coin_results);
+        if (data.code && data.code == "error") {
+          setUnapprovedCoins([]);
+        } else {
+          setUnapprovedCoins(data.coin_results);
+        }
       });
   };
   useEffect(() => {

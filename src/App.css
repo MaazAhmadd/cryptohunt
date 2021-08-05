@@ -630,6 +630,9 @@ table th:hover {
   .footer-main > p {
     font-size: 0.9rem;
   }
+  .footer-main {
+    margin-top: 20%;
+  }
 }
 
 /* loading_screen */

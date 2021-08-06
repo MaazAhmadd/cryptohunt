@@ -52,7 +52,7 @@ app.get("/", function (req, res) {
   return res.send({ Error: "Do Request To Specific Paths, CodingEagle" });
 });
 
-app.post("/login", auth, function (req, res) {
+app.post("/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 

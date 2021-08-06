@@ -1,14 +1,27 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
 var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
-const axios = require("axios");
 const api = require("./api_calls");
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: ", err);
 });
+
+function auth(req, res, next) {
+  const token = req.header("x-auth-token");
+  if (!token) return res.status(401).send("access denied, no token provided");
+
+  try {
+    const decded = jwt.verify(token, "cryptohuntprivateKeycc3");
+    req.user = decoded;
+    next();
+  } catch (ex) {
+    res.status(400).send("invalid token");
+  }
+}
 
 app.use(cors());
 /** MYSQL DATAABASE **/
@@ -39,7 +52,7 @@ app.get("/", function (req, res) {
   return res.send({ Error: "Do Request To Specific Paths, CodingEagle" });
 });
 
-app.post("/login", function (req, res) {
+app.post("/login", auth, function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
@@ -47,10 +60,23 @@ app.post("/login", function (req, res) {
     `Select * FROM users WHERE email='${email}' AND password='${password}'`,
     function (error, results, fields) {
       if (results.length == 1) {
-        res.send(createResponse("success", "User Logged In", results[0].role));
-      } else {
-        res.send(createResponse("error", "Invalid Username/Password"));
+        const token = jwt.sign(
+          {
+            name: results[0].name,
+            email: results[0].email,
+            role: results[0].role,
+          },
+          "cryptohuntprivateKeycc3"
+        );
+        res.header("x-auth-token", token).send("user logged in");
       }
+      // if (results.length == 1) {
+      //   res.send(createResponse("success", "User Logged In", results[0].role));
+      // } else {
+      //   res.send(createResponse("error", "Invalid Username/Password"));
+      // }else {
+      //   res.send(createResponse("error", "Invalid Username/Password"));
+      // }
     }
   );
 });
@@ -61,6 +87,12 @@ app.post("/register", function (req, res) {
   var password = req.body.password;
   var name = req.body.name;
 
+  const token = jwt.sign({
+    name: name,
+    email: email,
+    role: "user",
+  });
+
   connection.query(
     `Select * from users where email='${email}';`,
     function (error, results, fields) {
@@ -70,10 +102,12 @@ app.post("/register", function (req, res) {
         connection.query(
           `Insert into users(email,password,name,role) VALUES ('${email}','${password}','${name}','user')`,
           function (err, success) {
-            if (err)
+            if (err) {
               res.send(createResponse("error", "An Unknown Error Occured!"));
-
-            res.send(createResponse("success", "User Registered Succesfully!"));
+            }
+            res
+              .header("x-auth-token", token)
+              .send(createResponse("success", "User Registered Succesfully!"));
           }
         );
 

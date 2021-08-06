@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Newsletter() {
+  let [correct, setCorrect] = React.useState(false);
   return (
     <div className="newsletter-outer-outer">
       <div className="newsletter-outer">
@@ -35,7 +36,9 @@ export default function Newsletter() {
                     <div style={{ marginBlock: "1rem" }}>
                       <input
                         onChange={(e) => {
-                          console.log(e.target.value);
+                          /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)
+                            ? setCorrect(true)
+                            : setCorrect(false);
                         }}
                         type="email"
                         name="EMAIL"
@@ -71,6 +74,11 @@ export default function Newsletter() {
                     </div>
                     <div className="clear">
                       <input
+                        onClick={() => {
+                          if (!correct) {
+                            return null;
+                          }
+                        }}
                         type="submit"
                         defaultValue="Subscribe"
                         name="subscribe"

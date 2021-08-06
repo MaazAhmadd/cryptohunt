@@ -32,8 +32,9 @@ export default function Newsletter() {
                   target="_blank"
                   noValidate
                 >
-                  <div id="mc_embed_signup_scroll">
+                  <div className="newsletter_line" id="mc_embed_signup_scroll">
                     <div style={{ marginBlock: "1rem" }}>
+                      <div>Enter a valid email e.g name@gmail.com</div>
                       <input
                         onChange={(e) => {
                           /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value)
@@ -44,7 +45,7 @@ export default function Newsletter() {
                         name="EMAIL"
                         className="email"
                         id="mce-EMAIL"
-                        placeholder="enter a valid email e.g name@gmail.com"
+                        placeholder="email address"
                         required
                         style={{
                           fontFamily: "inherit",

@@ -28,7 +28,7 @@ a {
   cursor: pointer;
   color: #007bff;
 }
-input,
+input[type="text"],
 textarea {
   background-color: white !important;
 }

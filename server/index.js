@@ -87,11 +87,14 @@ app.post("/register", function (req, res) {
   var password = req.body.password;
   var name = req.body.name;
 
-  const token = jwt.sign({
-    name: name,
-    email: email,
-    role: "user",
-  });
+  const token = jwt.sign(
+    {
+      name: name,
+      email: email,
+      role: "user",
+    },
+    "cryptohuntprivateKeycc3"
+  );
 
   connection.query(
     `Select * from users where email='${email}';`,

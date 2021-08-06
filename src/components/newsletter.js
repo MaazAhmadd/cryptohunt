@@ -87,7 +87,7 @@ export default function Newsletter() {
                           verticalAlign: "middle",
                           display: "inline-block",
                           color: "#fff",
-                          backgroundColor: "#007bff",
+                          backgroundColor: "rgb(0, 123, 255) !important",
                           borderColor: "#007bff",
                           cursor: "pointer",
                           width: "100%",

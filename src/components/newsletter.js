@@ -74,15 +74,15 @@ export default function Newsletter() {
                     </div>
                     <div className="clear">
                       <input
-                        onClick={(e) => {
-                          e.preventDefault();
+                        onClick={() => {
                           if (!correct) {
                             return false;
-                          } else {
-                            e.target.submit();
                           }
+                          //   else {
+                          //   e.target.submit();
+                          // }
                         }}
-                        type="button"
+                        type="submit"
                         defaultValue="Subscribe"
                         name="subscribe"
                         id="mc-embedded-subscribe"

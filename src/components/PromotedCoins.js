@@ -10,6 +10,14 @@ export default function PromotedCoins({ promotedCoin }) {
   const promotedCoins = manupilatingData(promotedCoin);
   const dataPromoted = React.useMemo(() => promotedCoins, [promotedCoin]);
 
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+
   const columnsHPromoted = [
     {
       accessor: "logo",
@@ -43,7 +51,7 @@ export default function PromotedCoins({ promotedCoin }) {
   // <Link to="/register">Register Now</Link>
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
-      if (!localStorage.getItem("token")) {
+      if (!token) {
         window.location.href = "./login";
         return;
       }

@@ -11,8 +11,6 @@ import jwtDecode from "jwt-decode";
 const qs = require("querystring");
 const moment = require("moment");
 
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
 const apiUrl = config.API_URL;
 
 //34.85.128.15
@@ -25,8 +23,17 @@ function Home() {
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
 
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+
+  axios.defaults.headers.common["x-auth-token"] = token;
   try {
-    let dectoken = jwtDecode(localStorage.getItem("token"));
+    let dectoken = jwtDecode(token);
     setUser(dectoken);
   } catch (ex) {}
 

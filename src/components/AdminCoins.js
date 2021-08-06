@@ -12,12 +12,19 @@ import {
 import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 export default function AdminCoins({ promotedCoin: adminCoin }) {
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  axios.defaults.headers.common["x-auth-token"] = token;
   const [user, setUser] = React.useState({});
   try {
-    let dectoken = jwtDecode(localStorage.getItem("token"));
+    let dectoken = jwtDecode(token);
     setUser(dectoken);
   } catch (ex) {}
 

@@ -1,14 +1,13 @@
 import "../App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config.json";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function Register() {
   const [user, setUser] = useState({
@@ -18,6 +17,14 @@ function Register() {
   });
 
   const [resp, setResp] = useState("");
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  axios.defaults.headers.common["x-auth-token"] = token;
 
   async function doLogin(e) {
     if (user.email !== "" && user.password !== "" && user.name !== "") {

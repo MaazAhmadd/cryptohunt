@@ -33,7 +33,7 @@ function AddCoin() {
     twitter: "",
   });
   let token;
-  useEffect(() => {
+  React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
     };

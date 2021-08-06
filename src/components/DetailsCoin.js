@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.API_URL;
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
 
 export default function DetailsCoin() {
   const [detailsCoins, setDetailsCoins] = React.useState([]);
@@ -17,6 +15,16 @@ export default function DetailsCoin() {
   const [heartS, setHeart] = React.useState(0);
   const [joyS, setJoy] = React.useState(0);
   const [likedS, setLiked] = React.useState(0);
+
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+
+  axios.defaults.headers.common["x-auth-token"] = token;
 
   let splitted = window.location.href.split("/");
   let id = splitted[splitted.length - 1];
@@ -35,7 +43,7 @@ export default function DetailsCoin() {
   };
 
   const moonHandler = async (moon, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -43,7 +51,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/moon`);
   };
   const fireHandler = async (fire, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -51,7 +59,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/fire`);
   };
   const gemHandler = async (gem, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -59,7 +67,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/gem`);
   };
   const heartHandler = async (heart, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -67,7 +75,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/heart`);
   };
   const joyHandler = async (joy, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -75,7 +83,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/joy`);
   };
   const likedHandler = async (liked, id) => {
-    if (!localStorage.getItem("token")) {
+    if (!token) {
       window.location.href = currentUrl + "/login";
       return;
     }

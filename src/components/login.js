@@ -1,5 +1,4 @@
 import "../App.css";
-import jwt from "jwt-decode";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useState, useEffect } from "react";
@@ -9,9 +8,16 @@ import { Link } from "react-router-dom";
 import config from "../config.json";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function Login() {
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  axios.defaults.headers.common["x-auth-token"] = token;
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -30,7 +36,6 @@ function Login() {
           setResp(resp.data.msg);
 
           if (resp.data.code == "success") {
-            
             localStorage.setItem("token", resp.data.token);
             window.location.href = "./";
           }

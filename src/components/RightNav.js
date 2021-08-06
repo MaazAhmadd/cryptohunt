@@ -35,7 +35,14 @@ const Ul = styled.ul`
 `;
 
 const RightNav = ({ open }) => {
-  const is_user_logged_in = localStorage.getItem("token") ? false : true;
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  const is_user_logged_in = token ? false : true;
 
   return (
     <div className="header_navbar_right_outer">

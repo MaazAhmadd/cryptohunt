@@ -20,9 +20,17 @@ const currentUrl = config.CURRENT_URL;
 export default function BestCoins({ promotedCoin: bestCoin }) {
   const [showSearch, setShowSearch] = React.useState(false);
 
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
-      if (!localStorage.getItem("token")) {
+      if (!token) {
         window.location.href = "./login";
         return;
       }

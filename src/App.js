@@ -1,7 +1,4 @@
-import "./App.css";
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import React from "react";
 import Footer from "./components/footer";
 import Promote from "./components/promote";
 import Newsletter from "./components/newsletter";
@@ -12,15 +9,23 @@ import Navbar from "./components/navbar";
 import Register from "./components/register";
 import AddCoin from "./components/addcoin";
 import axios from "axios";
-
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
-function doLogout() {
-  localStorage.removeItem("token");
-  window.location.href = "/login";
-}
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "./App.css";
 
 function App() {
+  let token;
+  React.useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  axios.defaults.headers.common["x-auth-token"] = token;
+
+  function doLogout() {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
   return (
     <Router>
       <Navbar />

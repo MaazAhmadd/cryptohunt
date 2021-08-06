@@ -2,12 +2,21 @@ import axios from "axios";
 import qs from "querystring";
 import jwtDecode from "jwt-decode";
 import config from "../../config.json";
+import React from "react";
 const apiUrl = config.API_URL;
 
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
+let token;
+React.useEffect(() => {
+  let myF = async () => {
+    token = await localStorage.getItem("token");
+  };
+  myF();
+}, []);
+
+axios.defaults.headers.common["x-auth-token"] = token;
 let user;
 try {
-  let dectoken = jwtDecode(localStorage.getItem("token"));
+  let dectoken = jwtDecode(token);
   user = dectoken;
 } catch (ex) {}
 

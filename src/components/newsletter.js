@@ -79,7 +79,7 @@ export default function Newsletter() {
                           if (!correct) {
                             return false;
                           } else {
-                            e.submit();
+                            e.target.submit();
                           }
                         }}
                         type="button"

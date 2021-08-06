@@ -2,7 +2,7 @@ import "../App.css";
 import "../responsive.css";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -16,6 +16,7 @@ axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function AddCoin() {
   const [user, setUser] = useState({});
+  const [resp, setResp] = useState("");
   const [coin, addCoin] = useState({
     name: "",
     symbol: "",
@@ -31,16 +32,22 @@ function AddCoin() {
     telegram: "",
     twitter: "",
   });
-  const [resp, setResp] = useState("");
-
-  if (!localStorage.getItem("token")) {
+  let token;
+  useEffect(() => {
+    let myF = async () => {
+      token = await localStorage.getItem("token");
+    };
+    myF();
+  }, []);
+  if (!token) {
     window.location.href = "./login";
     return;
+  } else {
+    try {
+      let dectoken = jwtDecode(token);
+      setUser(dectoken);
+    } catch (ex) {}
   }
-  try {
-    let dectoken = jwtDecode(localStorage.getItem("token"));
-    setUser(dectoken);
-  } catch (ex) {}
 
   async function doLogin(e) {
     if (

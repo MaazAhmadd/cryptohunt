@@ -34,6 +34,9 @@ export default function Newsletter() {
                   <div id="mc_embed_signup_scroll">
                     <div style={{ marginBlock: "1rem" }}>
                       <input
+                        onChange={(e) => {
+                          console.log(e.target.value);
+                        }}
                         type="email"
                         name="EMAIL"
                         className="email"

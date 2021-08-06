@@ -44,7 +44,7 @@ export default function Newsletter() {
                         name="EMAIL"
                         className="email"
                         id="mce-EMAIL"
-                        placeholder="email address"
+                        placeholder="enter a valid email e.g name@gmail.com"
                         required
                         style={{
                           fontFamily: "inherit",
@@ -79,9 +79,6 @@ export default function Newsletter() {
                             e.preventDefault();
                             return false;
                           }
-                          //   else {
-                          //   e.target.submit();
-                          // }
                         }}
                         type="submit"
                         defaultValue="Subscribe"

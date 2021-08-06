@@ -15,6 +15,7 @@ const auth = function (req, res, next) {
   if (!token) return res.status(401).send("Access denied. No token provided.");
   try {
     const decoded = jwt.verify(token, "cryptohuntprivateKeycc3");
+    console.log(decoded);
     req.user = decoded;
     next();
   } catch (ex) {
@@ -22,6 +23,7 @@ const auth = function (req, res, next) {
   }
 };
 const admin = function (req, res, next) {
+  console.log(req.user);
   if (req.user.role !== "admin") {
     return res.status(403).send("access denied");
   }

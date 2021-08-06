@@ -10,7 +10,7 @@ process.on("uncaughtException", function (err) {
   console.log("Caught exception: ", err);
 });
 
-function auth(req, res, next) {
+const auth = function (req, res, next) {
   const token = req.header("x-auth-token");
   if (!token) return res.status(401).send("access denied, no token provided");
 
@@ -21,13 +21,13 @@ function auth(req, res, next) {
   } catch (ex) {
     res.status(400).send("invalid token");
   }
-}
-function admin(req, res, next) {
+};
+const admin = function (req, res, next) {
   if (req.user.role !== "admin") {
     return res.status(403).send("access denied");
   }
   next();
-}
+};
 
 app.use(cors());
 /** MYSQL DATAABASE **/

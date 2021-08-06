@@ -24,7 +24,7 @@ export default function Newsletter() {
                 style={{ width: "80%", float: "left", marginTop: "5%" }}
               >
                 <form
-                  action="https://con.us5.list-manage.com/subscribe/post?u=ecfebd4ed89f081787b30a7ea&id=afc6e39fd9"
+                  action="https://con.us5.list-manage.com/subscribe/post?u=ecfebd4ed89f081787b30a7ea&amp;id=afc6e39fd9"
                   method="post"
                   id="mc-embedded-subscribe-form"
                   name="mc-embedded-subscribe-form"

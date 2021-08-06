@@ -35,66 +35,74 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
   };
   const manupilatingData = (coins) => {
     let allCoins = [];
-    coins.forEach((coin) => {
-      let voted = false;
-      const handleVoteClick = (id) => {
-        doVote(id);
-        voted = !voted;
-      };
+    if (coins) {
+      coins.forEach((coin) => {
+        let voted = false;
+        const handleVoteClick = (id) => {
+          doVote(id);
+          voted = !voted;
+        };
 
-      let voteC = coin.votes_count;
-      let dateDiff = Math.ceil(
-        (new Date(coin.launch) -
-          new Date(new Date().toLocaleDateString("en-US"))) /
-          (1000 * 60 * 60 * 24)
-      );
-      let isDatePositive = Math.sign(dateDiff) == "1";
-      let isDateZero = Math.sign(dateDiff) == "0";
-      let change = parseFloat(coin.volume_change_24h).toFixed(2);
-      let isVolumePositive = Math.sign(change) == "1";
-      let link = `/coins/${coin.id}`;
+        let voteC = coin.votes_count;
+        let dateDiff = Math.ceil(
+          (new Date(coin.launch) -
+            new Date(new Date().toLocaleDateString("en-US"))) /
+            (1000 * 60 * 60 * 24)
+        );
+        let isDatePositive = Math.sign(dateDiff) == "1";
+        let isDateZero = Math.sign(dateDiff) == "0";
+        let change = parseFloat(coin.volume_change_24h).toFixed(2);
+        let isVolumePositive = Math.sign(change) == "1";
+        let link = `/coins/${coin.id}`;
 
-      allCoins.push({
-        id: coin.id,
-        logo: (
-          <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
-        ),
-        name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-        volumeChange: Number.isNaN(change) ? (
-          <span>-</span>
-        ) : (
-          <div
-            className={
-              isVolumePositive ? "volume_color_green" : "volume_color_red"
-            }
-          >
-            {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
-            <span>{Math.abs(change)}%</span>
-          </div>
-        ),
-        price: `$${coin.market_cap}`,
-        launch: !isDateZero
-          ? isDatePositive
-            ? `Launching in ${Math.abs(dateDiff)} days`
-            : `Launched ${Math.abs(dateDiff)} days ago`
-          : `Launching Today`,
-        vote: (
-          <button
-            onClick={() => {
-              handleVoteClick(coin.id);
-            }}
-            title="Vote?"
-            className={
-              voted ? "promoted-table_votebtn_green" : "promoted-table_votebtn"
-            }
-          >
-            <BsCapslockFill />
-            <span> </span>
-            {!coin.votes_count ? "0" : voteC}
-          </button>
-        ),
+        allCoins.push({
+          id: coin.id,
+          logo: (
+            <img
+              src={coin.logo}
+              style={{ width: "40px", height: "40px" }}
+            ></img>
+          ),
+          name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
+          volumeChange: Number.isNaN(change) ? (
+            <span>-</span>
+          ) : (
+            <div
+              className={
+                isVolumePositive ? "volume_color_green" : "volume_color_red"
+              }
+            >
+              {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+              <span>{Math.abs(change)}%</span>
+            </div>
+          ),
+          price: `$${coin.market_cap}`,
+          launch: !isDateZero
+            ? isDatePositive
+              ? `Launching in ${Math.abs(dateDiff)} days`
+              : `Launched ${Math.abs(dateDiff)} days ago`
+            : `Launching Today`,
+          vote: (
+            <button
+              onClick={() => {
+                handleVoteClick(coin.id);
+              }}
+              title="Vote?"
+              className={
+                voted
+                  ? "promoted-table_votebtn_green"
+                  : "promoted-table_votebtn"
+              }
+            >
+              <BsCapslockFill />
+              <span> </span>
+              {!coin.votes_count ? "0" : voteC}
+            </button>
+          ),
+        });
       });
-    });
+    }
+
     return allCoins;
   };
   const bestCoins = manupilatingData(bestCoin);

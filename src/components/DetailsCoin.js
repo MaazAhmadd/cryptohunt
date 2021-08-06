@@ -125,7 +125,9 @@ export default function DetailsCoin() {
             >
               <BsCapslockFill />
               <span> </span>
-              {!detailsCoins.votes_count ? "0" : detailsCoins.votes_count}
+              {!detailsCoins.votes_count
+                ? "0"
+                : Math.abs(detailsCoins.votes_count)}
             </button>
             <br />
             <p className="details-left-chain">

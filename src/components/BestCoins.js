@@ -96,7 +96,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             >
               <BsCapslockFill />
               <span> </span>
-              {!coin.votes_count ? "0" : voteC}
+              {!coin.votes_count ? "0" : Math.abs(voteC)}
             </button>
           ),
         });

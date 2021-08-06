@@ -537,7 +537,7 @@ tr:hover {
   align-items: end;
   justify-content: center;
   display: grid;
-  grid-template-rows: 180px 30px;
+  grid-template-rows: 60px 30px;
   grid-template-columns: repeat(6, 57px);
 }
 

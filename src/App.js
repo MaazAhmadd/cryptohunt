@@ -12,7 +12,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import config from "./config.json";
-const currentUrl = config.API_URL;
+const currentUrl = config.CURRENT_URL;
 
 function App() {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");

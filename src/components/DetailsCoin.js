@@ -3,7 +3,7 @@ import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config.json";
-const currentUrl = config.API_URL;
+const currentUrl = config.CURRENT_URL;
 const apiUrl = config.API_URL;
 
 export default function DetailsCoin() {

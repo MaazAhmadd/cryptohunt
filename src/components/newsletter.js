@@ -35,7 +35,6 @@ export default function Newsletter() {
                     <div style={{ marginBlock: "1rem" }}>
                       <input
                         type="email"
-                        defaultValue
                         name="EMAIL"
                         className="email"
                         id="mce-EMAIL"
@@ -88,7 +87,7 @@ export default function Newsletter() {
                           verticalAlign: "middle",
                           display: "inline-block",
                           color: "#fff",
-                          backgroundColor: "#007bff",
+                          backgroundColor: "#007bff !important",
                           borderColor: "#007bff",
                           cursor: "pointer",
                           width: "100%",

@@ -18,12 +18,18 @@ function Login() {
     myF();
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
+  const [resp, setResp] = useState("");
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  const [resp, setResp] = useState("");
+  function handleInput(e) {
+    setUser({
+      ...user,
+      [e.target.id]: e.target.value,
+    });
+  }
 
   async function doLogin(e) {
     if (user.email !== "" && user.password !== "") {
@@ -70,13 +76,6 @@ function Login() {
   //     setResp("Error: Please Fill All Fields");
   //   }
   // }
-
-  function handleInput(e) {
-    setUser({
-      ...user,
-      [e.target.id]: e.target.value,
-    });
-  }
 
   return (
     <>

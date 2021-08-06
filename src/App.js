@@ -15,14 +15,7 @@ import config from "./config.json";
 const currentUrl = config.API_URL;
 
 function App() {
-  let token;
-  React.useEffect(() => {
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-  }, []);
-  axios.defaults.headers.common["x-auth-token"] = token;
+  axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   function doLogout() {
     localStorage.removeItem("token");

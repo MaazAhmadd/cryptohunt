@@ -41,20 +41,13 @@ function Home() {
   };
   const getCoinUnapprovedData = async () => {
     //fetch
-    await axios
-      .post(
-        apiUrl + "/coins/unapproved",
-        qs.stringify({
-          user: localStorage.getItem("user_email"),
-        })
-      )
-      .then(({ data }) => {
-        if (data.code && data.code == "error") {
-          setUnapprovedCoins([]);
-        } else {
-          setUnapprovedCoins(data.coin_results);
-        }
-      });
+    await axios.get(apiUrl + "/coins/unapproved").then(({ data }) => {
+      if (data) {
+        setUnapprovedCoins([]);
+      } else {
+        setUnapprovedCoins(data.coin_results);
+      }
+    });
   };
   useEffect(() => {
     //fetch

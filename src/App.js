@@ -11,14 +11,12 @@ import Login from "./components/login";
 import Navbar from "./components/navbar";
 import Register from "./components/register";
 import AddCoin from "./components/addcoin";
+import axios from "axios";
+
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function doLogout() {
-  localStorage.setItem("logged_in", 0);
-  localStorage.setItem("user_email", "");
-  localStorage.setItem("is_admin", "");
-  localStorage.setItem("registered", "");
-  localStorage.setItem("name", "");
-
+  localStorage.removeItem("token");
   window.location.href = "/login";
 }
 

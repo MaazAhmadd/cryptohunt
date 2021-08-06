@@ -22,7 +22,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
 
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
-      if (localStorage.getItem("logged_in") != 1) {
+      if (!localStorage.getItem("token")) {
         window.location.href = "./login";
         return;
       }

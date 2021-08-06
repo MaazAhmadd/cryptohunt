@@ -1,4 +1,5 @@
 import "../App.css";
+import jwt from "jwt-decode";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import { useState, useEffect } from "react";
@@ -28,21 +29,40 @@ function Login() {
           setResp(resp.data.msg);
 
           if (resp.data.code == "success") {
-            localStorage.setItem("logged_in", 1);
-            localStorage.setItem("user_email", user.email);
-            if (resp.data.role == "admin") {
-              // its admin
-              localStorage.setItem("is_admin", 1);
-              window.location.href = "./";
-            } else {
-              window.location.href = "./";
-            }
+            localStorage.setItem("token", resp.data.token);
+            window.location.href = "./";
           }
         });
     } else {
       setResp("Error: Please Fill All Fields");
     }
   }
+  // async function doLogin(e) {
+  //   if (user.email !== "" && user.password !== "") {
+  //     await axios
+  //       .post(
+  //         apiUrl + "/login",
+  //         qs.stringify({ email: user.email, password: user.password })
+  //       )
+  //       .then((resp) => {
+  //         setResp(resp.data.msg);
+
+  //         if (resp.data.code == "success") {
+  //           localStorage.setItem("logged_in", 1);
+  //           localStorage.setItem("user_email", user.email);
+  //           if (resp.data.role == "admin") {
+  //             // its admin
+  //             localStorage.setItem("is_admin", 1);
+  //             window.location.href = "./";
+  //           } else {
+  //             window.location.href = "./";
+  //           }
+  //         }
+  //       });
+  //   } else {
+  //     setResp("Error: Please Fill All Fields");
+  //   }
+  // }
 
   function handleInput(e) {
     setUser({

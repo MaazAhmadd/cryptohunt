@@ -33,7 +33,7 @@ export default function DetailsCoin() {
   };
 
   const moonHandler = async (moon, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -41,7 +41,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/moon`);
   };
   const fireHandler = async (fire, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -49,7 +49,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/fire`);
   };
   const gemHandler = async (gem, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -57,7 +57,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/gem`);
   };
   const heartHandler = async (heart, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -65,7 +65,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/heart`);
   };
   const joyHandler = async (joy, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }
@@ -73,7 +73,7 @@ export default function DetailsCoin() {
     await axios.get(`${apiUrl}/reacts/${id}/joy`);
   };
   const likedHandler = async (liked, id) => {
-    if (localStorage.getItem("logged_in") != 1) {
+    if (!localStorage.getItem("token")) {
       window.location.href = currentUrl + "/login";
       return;
     }

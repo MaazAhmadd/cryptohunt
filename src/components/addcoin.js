@@ -8,11 +8,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi/";
 import config from "../config.json";
+import jwtDecode from "jwt-decode";
 const apiUrl = config.API_URL;
 
 const qs = require("querystring");
 
 function AddCoin() {
+  const [user, setUser] = useState({});
   const [coin, addCoin] = useState({
     name: "",
     symbol: "",
@@ -30,10 +32,13 @@ function AddCoin() {
   });
   const [resp, setResp] = useState("");
 
-  if (localStorage.getItem("logged_in") != 1) {
+  if (!localStorage.getItem("token")) {
     window.location.href = "./login";
     return;
   }
+  try {
+    setUser(jwtDecode(localStorage.getItem("token")));
+  } catch (ex) {}
 
   async function doLogin(e) {
     if (
@@ -42,9 +47,8 @@ function AddCoin() {
       coin.launch !== "" &&
       coin.website !== ""
     ) {
-      var curr_status =
-        localStorage.getItem("is_admin") == 1 ? "approved" : "pending";
-      var added_by = localStorage.getItem("user_email");
+      var curr_status = user.role === "admin" ? "approved" : "pending";
+      var added_by = user.email;
 
       await axios
         .post(

@@ -37,10 +37,7 @@ function Register() {
             setResp(resp.data.msg);
 
             if (resp.data.code == "success") {
-              localStorage.setItem("logged_in", 1);
-              localStorage.setItem("registered", 1);
-              localStorage.setItem("name", user.name);
-              localStorage.setItem("user_email", user.email);
+              localStorage.setItem("token", resp.data.token);
               window.location.href = "./";
             }
           });

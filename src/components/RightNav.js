@@ -35,8 +35,7 @@ const Ul = styled.ul`
 `;
 
 const RightNav = ({ open }) => {
-  const is_user_logged_in =
-    localStorage.getItem("logged_in") == 1 ? false : true;
+  const is_user_logged_in = localStorage.getItem("token") ? false : true;
 
   return (
     <div className="header_navbar_right_outer">

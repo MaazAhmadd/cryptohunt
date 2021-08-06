@@ -15,12 +15,18 @@ function auth(req, res, next) {
   if (!token) return res.status(401).send("access denied, no token provided");
 
   try {
-    const decded = jwt.verify(token, "cryptohuntprivateKeycc3");
+    const decoded = jwt.verify(token, "cryptohuntprivateKeycc3");
     req.user = decoded;
     next();
   } catch (ex) {
     res.status(400).send("invalid token");
   }
+}
+function admin(req, res, next) {
+  if (req.user.role !== "admin") {
+    return res.status(403).send("access denied");
+  }
+  next();
 }
 
 app.use(cors());
@@ -40,11 +46,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(8080, () => console.log("listening on port 8080"));
 
-function createResponse(type, response, role) {
+function createResponse(type, response, token, role) {
   if (role !== "" || role !== null) {
-    return JSON.stringify({ code: type, msg: response, role: role });
+    return JSON.stringify({ code: type, msg: response, role: role, token });
   } else {
-    return JSON.stringify({ code: type, msg: response });
+    return JSON.stringify({ code: type, msg: response, token: token });
   }
 }
 
@@ -68,7 +74,9 @@ app.post("/login", function (req, res) {
           },
           "cryptohuntprivateKeycc3"
         );
-        res.header("x-auth-token", token).send("user logged in");
+        res.send(
+          createResponse("success", "User Logged In", token, results[0].role)
+        );
       }
       // if (results.length == 1) {
       //   res.send(createResponse("success", "User Logged In", results[0].role));
@@ -108,9 +116,9 @@ app.post("/register", function (req, res) {
             if (err) {
               res.send(createResponse("error", "An Unknown Error Occured!"));
             }
-            res
-              .header("x-auth-token", token)
-              .send(createResponse("success", "User Registered Succesfully!"));
+            res.send(
+              createResponse("success", "User Registered Succesfully!", token)
+            );
           }
         );
 
@@ -122,7 +130,7 @@ app.post("/register", function (req, res) {
 /** User Registers **/
 
 /** Add Coin **/
-app.post("/add_coin", function (req, res) {
+app.post("/add_coin", auth, function (req, res) {
   var name = req.body.name;
   var symbol = req.body.symbol;
   var description = req.body.description;
@@ -220,7 +228,7 @@ app.get("/coins/today", function (req, res) {
 });
 /** Fetch Coins **/
 
-app.post("/vote", function (req, res) {
+app.post("/vote", auth, function (req, res) {
   var coin_id = req.body.coin;
   var user = req.body.user;
   var status = req.body.status;
@@ -276,29 +284,19 @@ app.post("/get/votes", async function (req, res) {
 //check votes
 
 //unapproved coins
-app.post("/coins/unapproved", async function (req, res) {
-  const user = req.body.user;
+app.get("/coins/unapproved", [auth, admin], async function (req, res) {
   connection.query(
-    `select role from users where email = '${user}';`,
+    `Select * from coin where status!='approved'`,
     function (error, results, fields) {
-      if (results[0] != undefined && results[0].role == "admin") {
-        connection.query(
-          `Select * from coin where status!='approved'`,
-          function (error, results, fields) {
-            if (results.length > 0) {
-              var coin_results = [];
-              // for each result
-              results.forEach((result) => {
-                api.updateCoin(result.name);
-                coin_results.push(result);
-              });
-              // for each result
-              res.send(JSON.stringify({ coin_results }));
-            }
-          }
-        );
-      } else {
-        res.status(400).send(createResponse("error", "user not admin"));
+      if (results.length > 0) {
+        var coin_results = [];
+        // for each result
+        results.forEach((result) => {
+          api.updateCoin(result.name);
+          coin_results.push(result);
+        });
+        // for each result
+        res.send(JSON.stringify({ coin_results }));
       }
     }
   );
@@ -307,7 +305,7 @@ app.post("/coins/unapproved", async function (req, res) {
 //unapproved coins
 
 //approve coin
-app.post("/approve_coin", async function (req, res) {
+app.post("/approve_coin", [auth, admin], async function (req, res) {
   let coin_id = req.body.coin_id;
   let user = req.body.user;
   connection.query(
@@ -330,7 +328,7 @@ app.post("/approve_coin", async function (req, res) {
 //approve coin
 
 //delete rejected
-app.post("/reject_coin", async function (req, res) {
+app.post("/reject_coin", [auth, admin], async function (req, res) {
   let coin_id = req.body.coin_id;
   let user = req.body.user;
 

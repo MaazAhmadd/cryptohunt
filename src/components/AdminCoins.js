@@ -2,6 +2,7 @@ import React from "react";
 import { useTable } from "react-table";
 import axios from "axios";
 import qs from "querystring";
+import jwtDecode from "jwt-decode";
 import {
   BsCaretUpFill,
   BsCaretDownFill,
@@ -13,6 +14,8 @@ const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 
 export default function AdminCoins({ promotedCoin: adminCoin }) {
+  const [user, setUser] = React.useState({});
+  setUser(jwtDecode(localStorage.getItem("token")));
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
@@ -26,7 +29,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
       apiUrl + "/approve_coin",
       qs.stringify({
         coin_id: id,
-        user: localStorage.getItem("user_email"),
+        user: user.email,
       })
     );
   };
@@ -35,7 +38,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
       apiUrl + "/reject_coin",
       qs.stringify({
         coin_id: id,
-        user: localStorage.getItem("user_email"),
+        user: user.email,
       })
     );
   };

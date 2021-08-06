@@ -7,10 +7,14 @@ import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
 import AdminCoins from "./AdminCoins";
 import config from "../config.json";
-
+import jwtDecode from "jwt-decode";
 const qs = require("querystring");
-const apiUrl = config.API_URL;
 const moment = require("moment");
+
+const apiUrl = config.API_URL;
+
+const user = jwtDecode(localStorage.getItem("token"));
+
 //34.85.128.15
 function Home() {
   const [promotedCoin, setPromotedCoins] = useState([]);
@@ -68,7 +72,6 @@ function Home() {
   todaysBestClass += todaysBest ? "selected" : "";
   let allTimeBestClass = "bests ";
   allTimeBestClass += !todaysBest ? "selected" : "";
-  let admin = localStorage.getItem("is_admin");
 
   return (
     <>
@@ -99,7 +102,11 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin[0]} />
           )}
-          {admin == 1 ? <AdminCoins promotedCoin={unapproveCoins} /> : <></>}
+          {user.role === "admin" ? (
+            <AdminCoins promotedCoin={unapproveCoins} />
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         <div class="load-wrapp">

@@ -1,7 +1,10 @@
 import axios from "axios";
 import qs from "querystring";
+import jwtDecode from "jwt-decode";
 import config from "../../config.json";
 const apiUrl = config.API_URL;
+
+const user = jwtDecode(localStorage.getItem("token"));
 
 export default async (id) => {
   await axios
@@ -9,7 +12,7 @@ export default async (id) => {
       apiUrl + "/vote",
       qs.stringify({
         coin: id,
-        user: localStorage.getItem("user_email"),
+        user: user.email,
         status: "add",
       })
     )
@@ -19,7 +22,7 @@ export default async (id) => {
           apiUrl + "/vote",
           qs.stringify({
             coin: id,
-            user: localStorage.getItem("user_email"),
+            user: user.email,
             status: "remove",
           })
         );

@@ -39,7 +39,7 @@ function AddCoin() {
     };
     myF();
   }, []);
-  if (!token) {
+  if (!localStorage.getItem("token")) {
     window.location.href = "./login";
     return;
   } else {

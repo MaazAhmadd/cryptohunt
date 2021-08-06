@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import config from "../config.json";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function Register() {
   const [user, setUser] = useState({

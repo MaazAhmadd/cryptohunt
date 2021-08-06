@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi/";
 import config from "../config.json";
 import jwtDecode from "jwt-decode";
+const qs = require("querystring");
 const apiUrl = config.API_URL;
 
-const qs = require("querystring");
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
 function AddCoin() {
   const [user, setUser] = useState({});

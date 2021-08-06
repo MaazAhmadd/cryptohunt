@@ -11,6 +11,9 @@ import jwtDecode from "jwt-decode";
 const qs = require("querystring");
 const moment = require("moment");
 
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
+
+
 const apiUrl = config.API_URL;
 
 const user = jwtDecode(localStorage.getItem("token"));

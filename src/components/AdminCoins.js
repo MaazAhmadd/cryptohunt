@@ -12,6 +12,8 @@ import {
 import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
+
 
 export default function AdminCoins({ promotedCoin: adminCoin }) {
   const [user, setUser] = React.useState({});

@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.API_URL;
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
+
 
 export default function DetailsCoin() {
   const [detailsCoins, setDetailsCoins] = React.useState([]);

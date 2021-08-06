@@ -30,6 +30,7 @@ function Login() {
           setResp(resp.data.msg);
 
           if (resp.data.code == "success") {
+            
             localStorage.setItem("token", resp.data.token);
             window.location.href = "./";
           }

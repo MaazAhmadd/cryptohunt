@@ -38,7 +38,8 @@ function AddCoin() {
     return;
   }
   try {
-    setUser(jwtDecode(localStorage.getItem("token")));
+    let dectoken = jwtDecode(localStorage.getItem("token"));
+    setUser(dectoken);
   } catch (ex) {}
 
   async function doLogin(e) {

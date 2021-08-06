@@ -5,8 +5,11 @@ import config from "../../config.json";
 const apiUrl = config.API_URL;
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
-const user = jwtDecode(localStorage.getItem("token"));
+let user;
+try {
+  let dectoken = jwtDecode(localStorage.getItem("token"));
+  user = dectoken;
+} catch (ex) {}
 
 export default async (id) => {
   await axios

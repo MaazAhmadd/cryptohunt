@@ -14,10 +14,13 @@ const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
-
 export default function AdminCoins({ promotedCoin: adminCoin }) {
   const [user, setUser] = React.useState({});
-  setUser(jwtDecode(localStorage.getItem("token")));
+  try {
+    let dectoken = jwtDecode(localStorage.getItem("token"));
+    setUser(dectoken);
+  } catch (ex) {}
+
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;

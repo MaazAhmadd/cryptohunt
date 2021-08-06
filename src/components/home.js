@@ -13,19 +13,22 @@ const moment = require("moment");
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
-
 const apiUrl = config.API_URL;
-
-const user = jwtDecode(localStorage.getItem("token"));
 
 //34.85.128.15
 function Home() {
+  const [user, setUser] = React.useState({});
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
+
+  try {
+    let dectoken = jwtDecode(localStorage.getItem("token"));
+    setUser(dectoken);
+  } catch (ex) {}
 
   const getCoinPromotedData = async () => {
     //fetch

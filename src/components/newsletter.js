@@ -74,8 +74,9 @@ export default function Newsletter() {
                     </div>
                     <div className="clear">
                       <input
-                        onClick={() => {
+                        onClick={(e) => {
                           if (!correct) {
+                            e.preventDefault();
                             return false;
                           }
                           //   else {

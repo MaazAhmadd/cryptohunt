@@ -11,6 +11,8 @@ import AddCoin from "./components/addcoin";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import config from "./config.json";
+const currentUrl = config.API_URL;
 
 function App() {
   let token;
@@ -24,7 +26,7 @@ function App() {
 
   function doLogout() {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = currentUrl + "/login";
   }
   return (
     <Router>

@@ -19,7 +19,6 @@ function Home() {
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
-  const [unapproveCoins, setUnapprovedCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
 
@@ -56,22 +55,12 @@ function Home() {
       setBestTodayCoins(data.coin_results);
     });
   };
-  const getCoinUnapprovedData = async () => {
-    //fetch
-    await axios.get(apiUrl + "/coins/unapproved").then(({ data }) => {
-      if (data) {
-        setUnapprovedCoins([]);
-      } else {
-        setUnapprovedCoins(data.coin_results);
-      }
-    });
-  };
+
   useEffect(() => {
     //fetch
     getCoinPromotedData();
     getCoinBestData();
     getCoinTodayBestData();
-    getCoinUnapprovedData();
   }, []);
 
   const handleTodaysBest = () => {
@@ -115,11 +104,7 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin[0]} />
           )}
-          {user.role === "admin" ? (
-            <AdminCoins promotedCoin={unapproveCoins} />
-          ) : (
-            <></>
-          )}
+          {user.role === "admin" ? <AdminCoins /> : <></>}
         </div>
       ) : (
         <div class="load-wrapp">

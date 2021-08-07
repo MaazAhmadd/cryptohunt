@@ -13,16 +13,30 @@ import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 
-export default function AdminCoins({ promotedCoin: adminCoin }) {
+export default function AdminCoins() {
+  const [user, setUser] = React.useState({});
+  const [unapprovedCoins, setUnapprovedCoins] = useState([]);
+
   let token;
+  const getCoinUnapprovedData = async () => {
+    //fetch
+    await axios.get(apiUrl + "/coins/unapproved").then(({ data }) => {
+      if (data) {
+        setUnapprovedCoins([]);
+      } else {
+        setUnapprovedCoins(data.coin_results);
+      }
+    });
+  };
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
     };
     myF();
+    getCoinUnapprovedData();
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
-  const [user, setUser] = React.useState({});
+
   try {
     let dectoken = jwtDecode(token);
     setUser(dectoken);
@@ -118,8 +132,8 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
     return allCoins;
   };
 
-  const adminCoins = manupilatingData(adminCoin);
-  const dataAdmin = React.useMemo(() => adminCoins, [adminCoin]);
+  const adminCoins = manupilatingData(unapprovedCoins);
+  const dataAdmin = React.useMemo(() => adminCoins, [unapprovedCoins]);
   const columnsHAdmin = [
     {
       accessor: "logo",
@@ -140,7 +154,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
       accessor: "vote",
     },
   ];
-  const columnsAdmin = React.useMemo(() => columnsHAdmin, [adminCoin]);
+  const columnsAdmin = React.useMemo(() => columnsHAdmin, [unapprovedCoins]);
   const {
     getTableProps: getTablePropsAdmin,
     getTableBodyProps: getTableBodyPropsAdmin,
@@ -153,7 +167,7 @@ export default function AdminCoins({ promotedCoin: adminCoin }) {
 
   return (
     <>
-      {adminCoin.length >= 1 ? (
+      {unapprovedCoins.length >= 1 ? (
         <h1 className="promoted-table_heading">Pending coins</h1>
       ) : (
         <h1></h1>

@@ -367,7 +367,7 @@ app.get("/coins/:id", async function (req, res) {
   );
 });
 
-app.get("/reacts/:id/:react", auth, async function (req, res) {
+app.get("/reacts/:id/:react", [auth, admin], async function (req, res) {
   let id = req.params.id;
   let react = req.params.react;
   connection.query(`UPDATE coin set ${react} = ${react} + 1 WHERE id = ${id}`);

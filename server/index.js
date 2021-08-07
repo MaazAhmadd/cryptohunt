@@ -286,7 +286,7 @@ app.post("/get/votes", function (req, res) {
 //check votes
 
 //unapproved coins
-app.get("/admin/unapproved", auth, function (req, res) {f
+app.get("/admin/unapproved", [auth, admin], function (req, res) {
   console.log("unapproved");
 
   connection.query(

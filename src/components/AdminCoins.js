@@ -20,7 +20,7 @@ export default function AdminCoins() {
   let token;
   const getCoinUnapprovedData = async () => {
     //fetch
-    await axios.get(apiUrl + "/coins/unapproved").then(({ data }) => {
+    await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
       setUnapprovedCoins(data.coin_results);
       // if (data) {
       //   setUnapprovedCoins([]);

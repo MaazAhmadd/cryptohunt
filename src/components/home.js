@@ -105,7 +105,7 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin[0]} />
           )}
-          {user.role === "admin" ? <AdminCoins /> : <></>}
+          {user.role === "admin" ? (<AdminCoins />)() : <></>}
         </div>
       ) : (
         <div class="load-wrapp">

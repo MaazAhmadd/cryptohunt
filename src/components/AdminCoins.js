@@ -21,11 +21,11 @@ export default function AdminCoins() {
   const getCoinUnapprovedData = async () => {
     //fetch
     await axios.get(apiUrl + "/coins/unapproved").then(({ data }) => {
-      if (data) {
-        setUnapprovedCoins([]);
-      } else {
-        setUnapprovedCoins(data.coin_results);
-      }
+      setUnapprovedCoins(data.coin_results);
+      // if (data) {
+      //   setUnapprovedCoins([]);
+      // } else {
+      // }
     });
   };
   React.useEffect(() => {

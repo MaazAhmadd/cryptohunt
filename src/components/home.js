@@ -23,17 +23,17 @@ function Home() {
   const [todaysBest, setTodaysBest] = useState(true);
   const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
-  let token;
+  let token = localStorage.getItem("token");
   useEffect(() => {
     //fetch
-    getCoinPromotedData();
-    getCoinBestData();
-    getCoinTodayBestData();
-    getCoinUnapprovedData();
     let myF = async () => {
       token = await localStorage.getItem("token");
     };
     myF();
+    getCoinPromotedData();
+    getCoinBestData();
+    getCoinTodayBestData();
+    getCoinUnapprovedData();
   }, []);
 
   axios.defaults.headers.common["x-auth-token"] = token;

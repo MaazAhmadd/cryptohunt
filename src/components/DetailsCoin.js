@@ -16,7 +16,7 @@ export default function DetailsCoin() {
   const [joyS, setJoy] = React.useState(0);
   const [likedS, setLiked] = React.useState(0);
 
-  let token;
+  let token = localStorage.getItem("token");
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");

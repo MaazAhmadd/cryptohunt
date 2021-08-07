@@ -15,16 +15,14 @@ const auth = function (req, res, next) {
   if (!token) return res.status(401).send("Access denied. No token provided.");
   try {
     const decoded = jwt.verify(token, "cryptohuntprivateKeycc3");
-    console.log("auth ", decoded);
     req.user = decoded;
     next();
   } catch (ex) {
-    console.log("token invalid");
     res.status(400).send("Invalid token.");
   }
 };
 const admin = function (req, res, next) {
-  console.log("admin ", req.user);
+  ("admin ", req.user);
   if (req.user.role !== "admin") {
     return res.status(403).send("access denied");
   }
@@ -287,7 +285,6 @@ app.post("/get/votes", function (req, res) {
 
 //unapproved coins
 app.get("/admin/unapproved", [auth, admin], function (req, res) {
-  console.log("unapproved");
 
   connection.query(
     `Select * from coin where status!='approved'`,

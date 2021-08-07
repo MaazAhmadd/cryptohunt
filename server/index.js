@@ -19,6 +19,7 @@ const auth = function (req, res, next) {
     req.user = decoded;
     next();
   } catch (ex) {
+    console.log("token invalid");
     res.status(400).send("Invalid token.");
   }
 };

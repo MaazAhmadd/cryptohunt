@@ -294,13 +294,11 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
     function (error, results, fields) {
       if (results.length > 0) {
         var coin_results = [];
-        console.log("unapproved");
         // for each result
         results.forEach((result) => {
           api.updateCoin(result.name);
           coin_results.push(result);
         });
-        console.log("unapproved");
         // for each result
         res.send(JSON.stringify({ coin_results }));
       }

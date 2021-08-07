@@ -12,8 +12,6 @@ import jwtDecode from "jwt-decode";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
 
-axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
 function AddCoin() {
   const [user, setUser] = useState({});
   const [resp, setResp] = useState("");
@@ -32,7 +30,7 @@ function AddCoin() {
     telegram: "",
     twitter: "",
   });
-  let token;
+  let token = localStorage.getItem("token");
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
@@ -48,6 +46,7 @@ function AddCoin() {
     };
     myF();
   }, []);
+  axios.defaults.headers.common["x-auth-token"] = token;
 
   async function doLogin(e) {
     if (

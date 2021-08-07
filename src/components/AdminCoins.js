@@ -15,7 +15,7 @@ const currentUrl = config.CURRENT_URL;
 
 export default function AdminCoins() {
   const [user, setUser] = React.useState({});
-  const [unapprovedCoins, setUnapprovedCoins] = useState([]);
+  const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token;
   const getCoinUnapprovedData = async () => {

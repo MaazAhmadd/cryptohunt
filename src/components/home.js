@@ -34,6 +34,7 @@ function Home() {
   try {
     let dectoken = jwtDecode(token);
     setUser(dectoken);
+    console.log(dectoken);
   } catch (ex) {}
 
   const getCoinPromotedData = async () => {

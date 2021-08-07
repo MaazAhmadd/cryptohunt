@@ -21,9 +21,15 @@ function Home() {
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
+  const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token;
-  React.useEffect(() => {
+  useEffect(() => {
+    //fetch
+    getCoinPromotedData();
+    getCoinBestData();
+    getCoinTodayBestData();
+    getCoinUnapprovedData();
     let myF = async () => {
       token = await localStorage.getItem("token");
     };
@@ -36,6 +42,18 @@ function Home() {
     setUser(dectoken);
     console.log(dectoken);
   } catch (ex) {}
+
+  const getCoinUnapprovedData = async () => {
+    //fetch
+    await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
+      console.log(data.coin_results);
+      setUnapprovedCoins(data.coin_results);
+      // if (data) {
+      //   setUnapprovedCoins([]);
+      // } else {
+      // }
+    });
+  };
 
   const getCoinPromotedData = async () => {
     //fetch
@@ -56,13 +74,6 @@ function Home() {
       setBestTodayCoins(data.coin_results);
     });
   };
-
-  useEffect(() => {
-    //fetch
-    getCoinPromotedData();
-    getCoinBestData();
-    getCoinTodayBestData();
-  }, []);
 
   const handleTodaysBest = () => {
     setTodaysBest(true);
@@ -105,7 +116,11 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin[0]} />
           )}
-          {user.role === "admin" ? (<AdminCoins />)() : <></>}
+          {user.role === "admin" ? (
+            <AdminCoins unapprovedCoins={unapprovedCoins} />
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         <div class="load-wrapp">

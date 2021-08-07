@@ -13,28 +13,28 @@ import config from "../config.json";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 
-export default function AdminCoins() {
+export default function AdminCoins({ unapprovedCoins }) {
   const [user, setUser] = React.useState({});
-  const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
+  // const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token;
-  const getCoinUnapprovedData = async () => {
-    //fetch
-    await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
-      console.log(data.coin_results);
-      setUnapprovedCoins(data.coin_results);
-      // if (data) {
-      //   setUnapprovedCoins([]);
-      // } else {
-      // }
-    });
-  };
+  // const getCoinUnapprovedData = async () => {
+  //   //fetch
+  //   await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
+  //     console.log(data.coin_results);
+  //     setUnapprovedCoins(data.coin_results);
+  //     // if (data) {
+  //     //   setUnapprovedCoins([]);
+  //     // } else {
+  //     // }
+  //   });
+  // };
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
     };
     myF();
-    getCoinUnapprovedData();
+    // getCoinUnapprovedData();
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
 

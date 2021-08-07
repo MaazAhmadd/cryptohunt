@@ -36,18 +36,18 @@ function AddCoin() {
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
+      if (!token) {
+        window.location.href = "./login";
+        return;
+      } else {
+        try {
+          let dectoken = jwtDecode(token);
+          setUser(dectoken);
+        } catch (ex) {}
+      }
     };
     myF();
   }, []);
-  if (!localStorage.getItem("token")) {
-    window.location.href = "./login";
-    return;
-  } else {
-    try {
-      let dectoken = jwtDecode(token);
-      setUser(dectoken);
-    } catch (ex) {}
-  }
 
   async function doLogin(e) {
     if (

@@ -116,11 +116,12 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin[0]} />
           )}
-          {user.role === "admin" ? (
+          <AdminCoins unapprovedCoins={unapprovedCoins} />
+          {/* {user.role === "admin" ? (
             <AdminCoins unapprovedCoins={unapprovedCoins} />
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       ) : (
         <div class="load-wrapp">

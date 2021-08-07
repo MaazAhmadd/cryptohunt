@@ -269,7 +269,7 @@ app.post("/vote", auth, function (req, res) {
 });
 
 // get votes
-app.post("/get/votes", async function (req, res) {
+app.post("/get/votes", function (req, res) {
   var coin_id = req.body.coin_id;
   var total_rows_in;
   connection.query(
@@ -286,12 +286,15 @@ app.post("/get/votes", async function (req, res) {
 //check votes
 
 //unapproved coins
-app.get("/coins/unapproved", [auth, admin], async function (req, res) {
+app.get("/coins/unapproved", [auth, admin], function (req, res) {
+  console.log("unapproved");
+
   connection.query(
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {
       if (results.length > 0) {
         var coin_results = [];
+        console.log("unapproved");
         // for each result
         results.forEach((result) => {
           api.updateCoin(result.name);
@@ -308,7 +311,7 @@ app.get("/coins/unapproved", [auth, admin], async function (req, res) {
 //unapproved coins
 
 //approve coin
-app.post("/approve_coin", [auth, admin], async function (req, res) {
+app.post("/approve_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
   let user = req.body.user;
   connection.query(
@@ -331,7 +334,7 @@ app.post("/approve_coin", [auth, admin], async function (req, res) {
 //approve coin
 
 //delete rejected
-app.post("/reject_coin", [auth, admin], async function (req, res) {
+app.post("/reject_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
   let user = req.body.user;
 
@@ -359,7 +362,7 @@ app.post("/reject_coin", [auth, admin], async function (req, res) {
 //delete rejected
 
 //sending details page of a coin
-app.get("/coins/:id", async function (req, res) {
+app.get("/coins/:id", function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `SELECT * FROM coin where id = ${coin_id}`,
@@ -369,7 +372,7 @@ app.get("/coins/:id", async function (req, res) {
   );
 });
 
-app.get("/reacts/:id/:react", auth, async function (req, res) {
+app.get("/reacts/:id/:react", auth, function (req, res) {
   let id = req.params.id;
   let react = req.params.react;
   connection.query(`UPDATE coin set ${react} = ${react} + 1 WHERE id = ${id}`);

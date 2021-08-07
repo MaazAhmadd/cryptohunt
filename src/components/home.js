@@ -15,7 +15,7 @@ const apiUrl = config.API_URL;
 
 //34.85.128.15
 function Home() {
-  const [user, setUser] = React.useState({});
+  // const [user, setUser] = React.useState({});
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
@@ -37,11 +37,11 @@ function Home() {
   }, []);
 
   axios.defaults.headers.common["x-auth-token"] = token;
-  try {
-    let dectoken = jwtDecode(token);
-    setUser(dectoken);
-    console.log(dectoken);
-  } catch (ex) {}
+  // try {
+  //   let dectoken = jwtDecode(token);
+  //   setUser(dectoken);
+  //   console.log(dectoken);
+  // } catch (ex) {}
 
   const getCoinUnapprovedData = async () => {
     //fetch

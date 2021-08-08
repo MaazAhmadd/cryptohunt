@@ -234,7 +234,7 @@ td:last-child {
   height: 70px;
 }
 .promoted-table_data:nth-child(3) {
-  padding-left: 4.5%;
+  padding-left: 3%;
 }
 @media screen and (max-width: 888px) {
   .promoted-table_data:nth-child(3) {

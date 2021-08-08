@@ -202,7 +202,7 @@ td:last-child {
 }
 
 .promoted-table_data_underline {
-  border-bottom: 2px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
 }
 .promoted-table {
   border-collapse: collapse;

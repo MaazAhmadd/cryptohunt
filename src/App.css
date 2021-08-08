@@ -386,15 +386,15 @@ tr:hover {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-/* .details-left > div > h2 {
+.details-left-top1 > h2 {
   font-size: xxx-large;
   font-weight: 600;
-  margin-top: 3%;
-  float: right;
-  margin-right: 43%;
+  margin-right: 38%;
 }
+/*
 @media screen and (max-width: 1220px) {
   .details-left > div > h2 {
     margin-right: 37%;
@@ -412,11 +412,9 @@ tr:hover {
     margin-right: 20%;
   }
 } */
-/* .details-left > div > button {
-  margin-top: -10%;
-  float: right;
-  margin-right: 6%;
-} */
+.details-left-top1 > button {
+  margin-right: 7%;
+}
 .details-left-chain {
   border-radius: 10px;
   background-color: #eaeaea;
@@ -434,6 +432,7 @@ tr:hover {
 .details-left-top1 > img {
   width: 100px;
   height: 100px;
+  margin: 2%;
 }
 
 /* Right */

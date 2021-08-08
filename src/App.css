@@ -382,7 +382,12 @@ tr:hover {
   height: 70vh;
   width: 70vw;
 }
-.details-left > div > h2 {
+.details-left-top1 {
+  width: 100%;
+  display: flex;
+}
+
+/* .details-left > div > h2 {
   font-size: xxx-large;
   font-weight: 600;
   margin-top: 3%;
@@ -405,12 +410,12 @@ tr:hover {
     font-size: x-large;
     margin-right: 20%;
   }
-}
-.details-left > div > button {
+} */
+/* .details-left > div > button {
   margin-top: -10%;
   float: right;
   margin-right: 6%;
-}
+} */
 .details-left-chain {
   border-radius: 10px;
   background-color: #eaeaea;

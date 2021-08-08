@@ -118,33 +118,38 @@ export default function DetailsCoin() {
       <div className="details-page">
         <div className="details-left">
           <div className="details-left-top">
-            <img
-              src={detailsCoins.logo}
-              alt="coin_logo"
-              style={{ marginRight: "2%" }}
-            />
-            <h2>
-              {detailsCoins.name} {"("}
-              {detailsCoins.symbol}
-              {")"}
-            </h2>
-            <button
-              // onClick={() => handleVoteClick(coin.id)}
-              title="Vote?"
-              className="promoted-table_votebtn"
-            >
-              <BsCapslockFill />
-              <span> </span>
-              {!detailsCoins.votes_count
-                ? "0"
-                : Math.abs(detailsCoins.votes_count)}
-            </button>
+            <div className="details-left-top1">
+              <img
+                src={detailsCoins.logo}
+                alt="coin_logo"
+                style={{ marginRight: "2%" }}
+              />
+              <h2>
+                {detailsCoins.name} {"("}
+                {detailsCoins.symbol}
+                {")"}
+              </h2>
+              <button
+                // onClick={() => handleVoteClick(coin.id)}
+                title="Vote?"
+                className="promoted-table_votebtn"
+              >
+                <BsCapslockFill />
+                <span> </span>
+                {!detailsCoins.votes_count
+                  ? "0"
+                  : Math.abs(detailsCoins.votes_count)}
+              </button>
+            </div>
             <br />
-            <p className="details-left-chain">
-              Binance Smart Chain: {detailsCoins.binancesmartchain}
-            </p>
-            <p className="details-left-desc">{detailsCoins.description}</p>
+            <div className="details-left-top2">
+              <p className="details-left-chain">
+                Binance Smart Chain: {detailsCoins.binancesmartchain}
+              </p>
+              <p className="details-left-desc">{detailsCoins.description}</p>
+            </div>
           </div>
+
           <div className="details-reacts">
             <span
               onClick={() => moonHandler(detailsCoins.moon, detailsCoins.id)}

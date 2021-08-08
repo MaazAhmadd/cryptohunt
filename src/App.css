@@ -385,6 +385,7 @@ tr:hover {
 .details-left-top1 {
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 /* .details-left > div > h2 {

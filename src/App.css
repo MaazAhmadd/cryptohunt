@@ -125,9 +125,9 @@ textarea {
   border: none !important;
 }
 
-.promoted_wrapper table tr:hover > * {
+/* .promoted_wrapper table tr:hover > * {
   background-color: #f2f5f7 !important;
-}
+} */
 
 .volume_changed {
   background-color: black;
@@ -253,7 +253,7 @@ tr {
 } */
 tr:hover {
   transition-delay: 0.02s;
-  background-color: lightgray;
+  background-color: #d6d6d6;
 }
 
 .promoted-table_data {

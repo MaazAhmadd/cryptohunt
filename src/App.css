@@ -425,6 +425,10 @@ tr:hover {
     font-weight: 600;
     margin-right: 6%;
   }
+  .details-left-top1 > img {
+    width: 70px;
+    height: 70px;
+  }
 }
 
 /* Right */

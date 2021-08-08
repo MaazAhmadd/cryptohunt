@@ -175,8 +175,7 @@ export default function DetailsCoin() {
             <span
               onClick={() => heartHandler(detailsCoins.heart, detailsCoins.id)}
               title="Love it"
-              className="details-reacts_icons"
-              style={{ color: "#f83a3a", fontSize: "28px" }}
+              className="details-reacts_icons details-reacts_icons_heart"
             >
               <BsHeartFill />
             </span>

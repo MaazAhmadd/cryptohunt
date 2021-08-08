@@ -541,6 +541,10 @@ tr:hover {
   width: 50px;
   height: 50px;
 }
+.details-reacts_icons_heart {
+  color: #f83a3a;
+  font-size: 28px !important;
+}
 
 @media screen and (max-width: 768px) {
   .details-reacts_icons {
@@ -549,6 +553,9 @@ tr:hover {
     background-color: #eaeaea;
     width: 40px;
     height: 40px;
+  }
+  .details-reacts_icons_heart {
+    font-size: 20px !important;
   }
 }
 

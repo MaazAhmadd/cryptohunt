@@ -494,12 +494,13 @@ tr:hover {
 .details-right-more_coin {
   cursor: pointer;
   border-radius: 10px;
-  margin: 2%;
+  display: flex;
+  justify-content: flex-start;
 }
 .details-right-more_coin:hover {
   background-color: lightcyan;
 }
-.details-right-more_coin_text {
+/*.details-right-more_coin_text {
   display: inline;
   float: right;
   margin-top: 5%;
@@ -510,7 +511,7 @@ tr:hover {
     margin-right: 20%;
     margin-top: 3%;
   }
-}
+} */
 @media screen and (max-width: 768px) {
   .details-page {
     grid-template-rows: 55%;

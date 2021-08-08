@@ -496,22 +496,15 @@ tr:hover {
   border-radius: 10px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 }
 .details-right-more_coin:hover {
   background-color: lightcyan;
 }
-/*.details-right-more_coin_text {
-  display: inline;
-  float: right;
-  margin-top: 5%;
-  margin-right: 30%;
+.details-right-more_coin_text {
+  margin-left: 10px;
 }
-@media screen and (max-width: 1050px) {
-  .details-right-more_coin_text {
-    margin-right: 20%;
-    margin-top: 3%;
-  }
-} */
+
 @media screen and (max-width: 768px) {
   .details-page {
     grid-template-rows: 55%;

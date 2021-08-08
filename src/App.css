@@ -557,6 +557,9 @@ tr:hover {
   .details-reacts_icons_heart {
     font-size: 20px !important;
   }
+  .details-reacts {
+    grid-template-columns: repeat(6, 45px);
+  }
 }
 
 .loading_screen {

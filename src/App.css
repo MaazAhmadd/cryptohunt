@@ -253,7 +253,7 @@ tr {
 } */
 tr:hover {
   transition-delay: 0.02s;
-  background-color: red;
+  background-color: #f6f6f6;
 }
 
 .promoted-table_data {

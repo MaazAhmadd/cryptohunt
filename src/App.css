@@ -434,6 +434,17 @@ tr:hover {
   height: 100px;
   margin: 2%;
 }
+@media screen and (max-width: 768px) {
+  .details-left-top1 > button {
+    margin-right: 5%;
+    margin-left: 0;
+  }
+  .details-left-top1 > h2 {
+    font-size: xx-large;
+    font-weight: 600;
+    margin-right: 6%;
+  }
+}
 
 /* Right */
 .details-right {

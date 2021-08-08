@@ -51,22 +51,30 @@ export default function AdminCoins({ unapprovedCoins }) {
   };
 
   const approve = async (id) => {
-    await axios.post(
-      apiUrl + "/approve_coin",
-      qs.stringify({
-        coin_id: id,
-        user: user.email,
-      })
-    );
+    await axios
+      .post(
+        apiUrl + "/approve_coin",
+        qs.stringify({
+          coin_id: id,
+          user: user.email,
+        })
+      )
+      .then(() => {
+        window.location = "/";
+      });
   };
   const reject = async (id) => {
-    await axios.post(
-      apiUrl + "/reject_coin",
-      qs.stringify({
-        coin_id: id,
-        user: user.email,
-      })
-    );
+    await axios
+      .post(
+        apiUrl + "/reject_coin",
+        qs.stringify({
+          coin_id: id,
+          user: user.email,
+        })
+      )
+      .then(() => {
+        window.location = "/";
+      });
   };
   const manupilatingData = (coins) => {
     let allCoins = [];

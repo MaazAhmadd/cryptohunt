@@ -333,6 +333,7 @@ tr:hover {
   background-color: white;
 }
 .admin-table_approve {
+  cursor: pointer;
   height: 40px;
   width: 80px;
   background: #fff;
@@ -347,6 +348,7 @@ tr:hover {
   color: #fff;
 }
 .admin-table_reject {
+  cursor: pointer;
   height: 40px;
   width: 80px;
   background: white;

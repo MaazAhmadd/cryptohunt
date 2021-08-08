@@ -17,7 +17,7 @@ export default function AdminCoins({ unapprovedCoins }) {
   const [user, setUser] = React.useState({});
   // const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
-  let token;
+  let token = localStorage.getItem("token");
   // const getCoinUnapprovedData = async () => {
   //   //fetch
   //   await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
@@ -34,14 +34,13 @@ export default function AdminCoins({ unapprovedCoins }) {
       token = await localStorage.getItem("token");
     };
     myF();
+    try {
+      let dectoken = jwtDecode(token);
+      setUser(dectoken);
+    } catch (ex) {}
     // getCoinUnapprovedData();
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
-
-  try {
-    let dectoken = jwtDecode(token);
-    setUser(dectoken);
-  } catch (ex) {}
 
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {

@@ -618,7 +618,7 @@ table th:hover {
 .footer-main {
   text-align: center;
 }
-.footer-main > ul > li {
+.footer-main > div > ul > li {
   cursor: pointer;
   color: gray;
   font-weight: 500;
@@ -626,7 +626,7 @@ table th:hover {
   padding: 0 9px;
   display: inline;
 }
-.footer-main > ul > li:hover {
+.footer-main > div > ul > li:hover {
   color: #202020;
 }
 .footer-main > p {
@@ -634,7 +634,7 @@ table th:hover {
   color: #202020;
 }
 @media screen and (max-width: 768px) {
-  .footer-main > ul > li {
+  .footer-main > div > ul > li {
     display: block;
   }
   .footer-main > p {

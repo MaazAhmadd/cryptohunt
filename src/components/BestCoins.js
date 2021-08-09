@@ -185,11 +185,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             ))}
           </thead>
           <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
-            <tr
-              role="row"
-              style={{ display: "flex", margin: "3% 2% -1% 6%" }}
-              className="promoted-table_row"
-            >
+            <tr role="row" className="promoted-table_row">
               <td className="promoted-table_data" role="cell">
                 <button
                   onClick={onSearchClick}

@@ -190,6 +190,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 <button
                   onClick={onSearchClick}
                   style={{
+                    cursor: "pointer",
                     border: "none",
                     backgroundColor: "#28a745",
                     color: "white",

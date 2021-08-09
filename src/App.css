@@ -255,6 +255,10 @@ tr:hover {
   transition-delay: 0.02s;
   background-color: #f4f4f4;
 }
+.table-search > div > input {
+  height: 25px;
+  outline-color: #28a745;
+}
 
 .promoted-table_data {
   border: none;

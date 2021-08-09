@@ -203,7 +203,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                   <i> </i>Search
                 </button>
               </td>
-              <td className="promoted-table_data" role="cell">
+              <td className="promoted-table_data table-search" role="cell">
                 {showSearch ? (
                   <GlobalFilter
                     filter={globalFilter}

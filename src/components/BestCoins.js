@@ -33,6 +33,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
+  // ko
   const manupilatingData = (coins) => {
     let allCoins = [];
     if (coins) {

@@ -6,16 +6,10 @@ import React from "react";
 const apiUrl = config.API_URL;
 
 export default async (id) => {
-  let token;
-  React.useEffect(() => {
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-  }, []);
+  let token = localStorage.getItem("token");
+  let user;
 
   axios.defaults.headers.common["x-auth-token"] = token;
-  let user;
   try {
     let dectoken = jwtDecode(token);
     user = dectoken;

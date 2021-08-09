@@ -194,8 +194,9 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                     border: "none",
                     backgroundColor: "#28a745",
                     color: "white",
-                    height: "25px",
-                    width: "70px",
+                    height: "30px",
+                    width: "75px",
+                    borderRadius: "6px",
                   }}
                 >
                   <BsSearch />

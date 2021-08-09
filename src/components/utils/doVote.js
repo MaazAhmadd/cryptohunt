@@ -2,7 +2,6 @@ import axios from "axios";
 import qs from "querystring";
 import jwtDecode from "jwt-decode";
 import config from "../../config.json";
-import React from "react";
 const apiUrl = config.API_URL;
 
 export default async (id) => {

@@ -162,29 +162,29 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     <>
       <div className="promoted-table_div">
         <table {...getTablePropsBest()} className="promoted-table">
-          <tr style={{ display: "flex", margin: "3% 2% -1% 6%" }}>
-            <button
-              onClick={onSearchClick}
-              style={{
-                border: "none",
-                backgroundColor: "#28a745",
-                color: "white",
-                height: "25px",
-                width: "70px",
-              }}
-            >
-              <BsSearch />
-              <i> </i>Search
-            </button>
-            <br />
-            {showSearch ? (
-              <GlobalFilter
-                filter={globalFilter}
-                setFilter={setGlobalFilterBest}
-              />
-            ) : null}
-          </tr>
           <thead>
+            <tr style={{ display: "flex", margin: "3% 2% -1% 6%" }}>
+              <button
+                onClick={onSearchClick}
+                style={{
+                  border: "none",
+                  backgroundColor: "#28a745",
+                  color: "white",
+                  height: "25px",
+                  width: "70px",
+                }}
+              >
+                <BsSearch />
+                <i> </i>Search
+              </button>
+              <br />
+              {showSearch ? (
+                <GlobalFilter
+                  filter={globalFilter}
+                  setFilter={setGlobalFilterBest}
+                />
+              ) : null}
+            </tr>
             {headerGroupsBest.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (

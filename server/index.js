@@ -22,7 +22,7 @@ const auth = function (req, res, next) {
   }
 };
 const admin = function (req, res, next) {
-  ("admin ", req.user);
+  "admin ", req.user;
   if (req.user.role !== "admin") {
     return res.status(403).send("access denied");
   }
@@ -198,7 +198,7 @@ app.get("/coins", function (req, res) {
   connection.query(
     `Select * from coin where status='approved'`,
     function (error, results, fields) {
-      if (results.length > 0) {
+      if (results !== undefined && results.length > 0) {
         var coin_results = [];
         // for each result
         results.forEach((result) => {
@@ -217,7 +217,7 @@ app.get("/coins/today", function (req, res) {
   connection.query(
     `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;`,
     function (error, results, fields) {
-      if (results.length > 0) {
+      if (results !== undefined && results.length > 0) {
         let coin_results = [];
         coin_results.push(results);
         res.send(JSON.stringify({ coin_results }));
@@ -285,7 +285,6 @@ app.post("/get/votes", function (req, res) {
 
 //unapproved coins
 app.get("/admin/unapproved", [auth, admin], function (req, res) {
-
   connection.query(
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {

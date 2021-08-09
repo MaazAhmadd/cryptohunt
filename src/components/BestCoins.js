@@ -162,9 +162,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     <>
       <div className="promoted-table_div">
         <table {...getTablePropsBest()} className="promoted-table">
-          <div
-          // style={{ display: "inline-block" }}
-          >
+          <div style={{ display: "flex" }}>
             <button
               onClick={onSearchClick}
               style={{

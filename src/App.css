@@ -231,7 +231,7 @@ td:last-child {
 .promoted-table_row {
   cursor: pointer;
   width: 100%;
-  height: 70px;
+  height: 65px;
 }
 .promoted-table_data:nth-child(3) {
   padding-left: 3%;

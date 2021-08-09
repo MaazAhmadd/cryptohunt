@@ -190,7 +190,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               style={{ display: "flex", margin: "3% 2% -1% 6%" }}
               className="promoted-table_row"
             >
-              <td>
+              <td className="promoted-table_data" role="cell">
                 <button
                   onClick={onSearchClick}
                   style={{
@@ -205,7 +205,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                   <i> </i>Search
                 </button>
               </td>
-              <td>
+              <td className="promoted-table_data" role="cell">
                 {showSearch ? (
                   <GlobalFilter
                     filter={globalFilter}
@@ -213,10 +213,10 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                   />
                 ) : null}
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td className="promoted-table_data" role="cell"></td>
+              <td className="promoted-table_data" role="cell"></td>
+              <td className="promoted-table_data" role="cell"></td>
+              <td className="promoted-table_data" role="cell"></td>
             </tr>
             {pageBest.map((row) => {
               prepareRowBest(row);

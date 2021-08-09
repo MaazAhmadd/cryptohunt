@@ -163,6 +163,28 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       <div className="promoted-table_div">
         <table {...getTablePropsBest()} className="promoted-table">
           <thead>
+            {headerGroupsBest.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                    {column.render("Header")}
+                    <span>
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <BsCaretUpFill />
+                        ) : (
+                          <BsCaretDownFill />
+                        )
+                      ) : (
+                        ""
+                      )}
+                    </span>
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
             <tr style={{ display: "flex", margin: "3% 2% -1% 6%" }}>
               <td>
                 <button
@@ -192,28 +214,6 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               <td></td>
               <td></td>
             </tr>
-            {headerGroupsBest.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render("Header")}
-                    <span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <BsCaretUpFill />
-                        ) : (
-                          <BsCaretDownFill />
-                        )
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
             {pageBest.map((row) => {
               prepareRowBest(row);
               return (

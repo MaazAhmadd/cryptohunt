@@ -162,7 +162,9 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     <>
       <div className="promoted-table_div">
         <table {...getTablePropsBest()} className="promoted-table">
-          <p style={{ display: "inline-block" }}>
+          <div
+          // style={{ display: "inline-block" }}
+          >
             <button
               onClick={onSearchClick}
               style={{
@@ -183,7 +185,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 setFilter={setGlobalFilterBest}
               />
             ) : null}
-          </p>
+          </div>
           <thead>
             {headerGroupsBest.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>

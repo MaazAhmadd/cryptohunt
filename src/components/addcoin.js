@@ -103,14 +103,29 @@ function AddCoin() {
               <BiLeftArrowAlt /> Back To Home
             </Link>
           </div>
-          <p style={{ textAlign: "left", fontSize: "2rem" }}>Submit Coin</p>
-          <p style={{ marginTop: "0.5rem", color: "gray" }}>
-            Submit a Coin For Approval
+          <p
+            style={{
+              textAlign: "left",
+              fontSize: "2.2rem",
+              fontWeight: "600",
+              marginTop: "2%",
+              marginBottom: "-2%",
+            }}
+          >
+            Coin listing request
           </p>
+          {/* <p style={{ marginTop: "0.5rem", color: "gray" }}>
+            Submit a Coin For Approval
+          </p> */}
 
           <div className="add_coin_inner">
             <div className="add_coin_left">
-              <h3 className="section_title_in">Coin Information</h3>
+              <p
+                className="section_title_in"
+                style={{ color: "grey", fontSize: "1.5rem" }}
+              >
+                Coin Information
+              </p>
               <div className="input_wrapper">
                 <TextField
                   variant="outlined"
@@ -143,7 +158,6 @@ function AddCoin() {
                   type="text"
                   label="Description"
                   placeholder="Ex Bitcoin is a Decentralized Cryptocurrency"
-                  required
                   multiline
                   rows={5}
                 />
@@ -157,7 +171,6 @@ function AddCoin() {
                   type="text"
                   label="Logo"
                   placeholder="Ex http://url.com/logo.png"
-                  required
                 />
               </div>
 
@@ -181,7 +194,6 @@ function AddCoin() {
                   type="text"
                   label="Additional Information"
                   placeholder="Other Things You Like To Add In Your Coin Request"
-                  required
                   multiline
                   rows={5}
                 />
@@ -189,7 +201,12 @@ function AddCoin() {
             </div>
             <div className="add_coin_right">
               <div className="first_div">
-                <h3 className="section_title_in">Coin Contracts</h3>
+                <p
+                  className="section_title_in"
+                  style={{ color: "grey", fontSize: "1.5rem" }}
+                >
+                  Coin Contracts
+                </p>
                 <div className="input_wrapper">
                   <TextField
                     variant="outlined"
@@ -236,7 +253,12 @@ function AddCoin() {
               </div>
 
               <div>
-                <h3 className="section_title_in">Coin Links</h3>
+                <p
+                  className="section_title_in"
+                  style={{ color: "grey", fontSize: "1.5rem" }}
+                >
+                  Coin Links
+                </p>
                 <div className="input_wrapper">
                   <TextField
                     variant="outlined"
@@ -264,7 +286,7 @@ function AddCoin() {
                     variant="outlined"
                     onChange={(e) => handleInput(e)}
                     id="twitter"
-                    type="twitter"
+                    type="text"
                     label="Twitter"
                     placeholder="Ex https://twitter.com/youracc"
                   />

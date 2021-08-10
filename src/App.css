@@ -32,6 +32,10 @@ input[type="text"],
 textarea {
   background-color: white !important;
 }
+.input_wrapper > div.MuiTextField-root {
+  background-color: white;
+}
+
 /** 
 	Navbar o
 **/

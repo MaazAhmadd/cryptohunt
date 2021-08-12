@@ -1,5 +1,6 @@
 import React from "react";
 import manupilatingData from "./utils/manupilatingData";
+import manupilatingSmallData from "./utils/manupilatingSmallData";
 import { useTable } from "react-table";
 import doVote from "./utils/doVote";
 import config from "../config.json";
@@ -7,7 +8,12 @@ const currentUrl = config.CURRENT_URL;
 
 export default function PromotedCoins({ promotedCoin }) {
   // const [voted, setVoted] = React.useState(false);
-  const promotedCoins = manupilatingData(promotedCoin);
+  let promotedCoins;
+  if (window.innerWidth < 769) {
+    promotedCoins = manupilatingSmallData(promotedCoin);
+  } else {
+    promotedCoins = manupilatingData(promotedCoin);
+  }
   const dataPromoted = React.useMemo(() => promotedCoins, [promotedCoin]);
 
   // let token;

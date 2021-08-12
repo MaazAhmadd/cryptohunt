@@ -25,7 +25,7 @@
     "styled-components": "^5.3.0",
     "web-vitals": "^1.1.2"
   },
-  "scripts": { 
+  "scripts": {
     "start": "export PORT=80 || set PORT=80 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

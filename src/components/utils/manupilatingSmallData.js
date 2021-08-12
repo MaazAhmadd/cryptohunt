@@ -21,7 +21,7 @@ export default (coins) => {
       let change = parseFloat(coin.volume_change_24h).toFixed(2);
       let isVolumePositive = Math.sign(change) == "1";
       let link = `/coins/${coin.id}`;
-      let marketCap = coin.market_cap.toString().split(".")[0];
+      let marketCap = coin.market_cap.split(".")[0];
       if (marketCap.length > 3 && marketCap.length < 7) {
         marketCap =
           marketCap.substring(0, 1) + "." + marketCap.substring(1, 3) + "k";

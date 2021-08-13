@@ -85,7 +85,8 @@ INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `ad
 CREATE TABLE `reactions` (
   `id` int(11) NOT NULL,
   `reaction_type` text DEFAULT NULL,
-  `coin_id` int(11) DEFAULT NULL
+  `coin_id` int(11) DEFAULT NULL,
+  `user` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

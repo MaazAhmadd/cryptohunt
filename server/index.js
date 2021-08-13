@@ -81,11 +81,11 @@ app.post("/login", function (req, res) {
       }
       // if (results.length == 1) {
       //   res.send(createResponse("success", "User Logged In", results[0].role));
-      // } else {
-      //   res.send(createResponse("error", "Invalid Username/Password"));
-      // }else {
-      //   res.send(createResponse("error", "Invalid Username/Password"));
-      // }
+      else {
+        res.send(createResponse("error", "Invalid Username/Password"));
+        // }else {
+        //   res.send(createResponse("error", "Invalid Username/Password"));
+      }
     }
   );
 });

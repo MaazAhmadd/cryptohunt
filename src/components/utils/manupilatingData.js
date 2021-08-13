@@ -17,7 +17,7 @@ export default (coins) => {
       }
     });
 
-    const handleVoteClick = (v) => {
+    const handleVoteClick = (v) => {if (localStorage.getItem("token")) {
       if (!v) {
         axios
           .post(
@@ -43,6 +43,9 @@ export default (coins) => {
             window.location = "/";
           });
       }
+    } else {
+      window.location = "/login";
+    }
     };
 
     let dateDiff = Math.ceil(

@@ -113,7 +113,7 @@ function Home() {
           {todaysBest ? (
             <BestCoins promotedCoin={bestCoin} />
           ) : (
-            <BestCoins promotedCoin={bestTodayCoin[0]} />
+            <BestCoins promotedCoin={bestTodayCoin} />
           )}
           <AdminCoins unapprovedCoins={unapprovedCoins} />
           {/* {user.role === "admin" ? (

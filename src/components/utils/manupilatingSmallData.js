@@ -10,7 +10,14 @@ export default (coins) => {
   let allCoins = [];
   if (coins) {
     coins.forEach((coin) => {
-      let voteC = coin.votes_count;
+      let votesByUser = coins[coins.length - 1];
+      let isvoted = false;
+      votesByUser.forEach((c) => {
+        if (c.coin_id === coin.id) {
+          isvoted = true;
+        }
+      });
+
       let dateDiff = Math.ceil(
         (new Date(coin.launch) -
           new Date(new Date().toLocaleDateString("en-US"))) /
@@ -32,51 +39,57 @@ export default (coins) => {
         marketCap =
           marketCap.substring(0, 1) + "." + marketCap.substring(1, 3) + "b";
       }
-
-      allCoins.push({
-        id: coin.id,
-        logo: (
-          <img src={coin.logo} style={{ width: "30px", height: "30px" }}></img>
-        ),
-        name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,
-        volumeChange: Number.isNaN(change) ? (
-          <span>-</span>
-        ) : (
-          <div
-            style={{ fontSize: "0.7rem" }}
-            className={
-              isVolumePositive ? "volume_color_green" : "volume_color_red"
-            }
-          >
-            {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
-            <span>{Math.abs(change)}%</span>
-          </div>
-        ),
-        price: <div style={{ fontSize: "0.7rem" }}>${marketCap}</div>,
-        launch: (
-          <div style={{ fontSize: "0.7rem" }}>
-            {!isDateZero
-              ? isDatePositive
-                ? `in ${Math.abs(dateDiff)}d`
-                : `${Math.abs(dateDiff)}d ago`
-              : `Today`}
-          </div>
-        ),
-        vote: (
-          <button
-            style={{ fontSize: "0.6rem" }}
-            onClick={() => setVoted(true)}
-            title="Vote?"
-            className={
-              voted ? "promoted-table_votebtn_green" : "promoted-table_votebtn"
-            }
-          >
-            <BsCapslockFill />
-            <span> </span>
-            {!coin.votes_count ? 0 : Math.abs(voteC)}
-          </button>
-        ),
-      });
+      if (coin.name) {
+        allCoins.push({
+          id: coin.id,
+          logo: (
+            <img
+              src={coin.logo}
+              style={{ width: "30px", height: "30px" }}
+            ></img>
+          ),
+          name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,
+          volumeChange: Number.isNaN(change) ? (
+            <span>-</span>
+          ) : (
+            <div
+              style={{ fontSize: "0.7rem" }}
+              className={
+                isVolumePositive ? "volume_color_green" : "volume_color_red"
+              }
+            >
+              {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+              <span>{Math.abs(change)}%</span>
+            </div>
+          ),
+          price: <div style={{ fontSize: "0.7rem" }}>${marketCap}</div>,
+          launch: (
+            <div style={{ fontSize: "0.7rem" }}>
+              {!isDateZero
+                ? isDatePositive
+                  ? `in ${Math.abs(dateDiff)}d`
+                  : `${Math.abs(dateDiff)}d ago`
+                : `Today`}
+            </div>
+          ),
+          vote: (
+            <button
+              style={{ fontSize: "0.6rem" }}
+              onClick={() => setVoted(true)}
+              title="Vote?"
+              className={
+                isvoted
+                  ? "promoted-table_votebtn_green"
+                  : "promoted-table_votebtn"
+              }
+            >
+              <BsCapslockFill />
+              <span> </span>
+              {!coin.votes_count ? 0 : Math.abs(coin.votes_count)}
+            </button>
+          ),
+        });
+      }
     });
   }
 

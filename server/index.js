@@ -181,16 +181,24 @@ app.post("/add_coin", auth, function (req, res) {
 
 /** Fetch Coins **/
 app.get("/coins/promoted", function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
+
   connection.query(
-    `Select * from coin where status='approved' and featured=1`,
+    `Select * from coin where status='approved' and featured=1;SELECT coin_id FROM votes WHERE user = '${
+      dectoken && dectoken.email
+    }';`,
     function (error, results, fields) {
-      if (results.length > 0) {
+      if (results !== undefined && results[0].length > 0) {
         var coin_results = [];
         // for each result
-        results.forEach((result) => {
-          // api.updateCoin(result.name);
+        results[0].forEach((result) => {
+          api.updateCoin(result.name);
           coin_results.push(result);
         });
+        coin_results.push(results[1]);
         // for each result
         res.send(JSON.stringify({ coin_results }));
       }
@@ -200,10 +208,15 @@ app.get("/coins/promoted", function (req, res) {
   //end fetching
 });
 app.get("/coins", function (req, res) {
-  let dectoken = jwtDecode(req.header("x-auth-token"));
-  console.log(dectoken);
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
+
   connection.query(
-    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${dectoken.email}';`,
+    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
+      dectoken && dectoken.email
+    }';`,
     function (error, results, fields) {
       console.log(results);
       if (results !== undefined && results[0].length > 0) {
@@ -223,23 +236,38 @@ app.get("/coins", function (req, res) {
   //end fetching
 });
 app.get("/coins/today", function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
+
   connection.query(
-    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;`,
+    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;SELECT coin_id FROM votes WHERE user = '${
+      dectoken && dectoken.email
+    }';`,
     function (error, results, fields) {
+      let coin_results = results;
       if (results !== undefined && results.length > 0) {
         let coin_results = [];
-        coin_results.push(results);
+        results[0].forEach((result) => {
+          coin_results.push(result);
+        });
+        coin_results.push(results[1]);
         res.send(JSON.stringify({ coin_results }));
       }
-      // })
     }
   );
+  // res.send(JSON.stringify({ coin_results }));
 });
 /** Fetch Coins **/
 
 app.post("/vote", auth, function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
   var coin_id = req.body.coin;
-  var user = req.body.user;
+  var user = dectoken.email;
 
   // do vote
   connection.query(
@@ -262,8 +290,13 @@ app.post("/vote", auth, function (req, res) {
 });
 
 app.post("/unvote", auth, function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
   var coin_id = req.body.coin;
-  var user = req.body.user;
+  var user = dectoken.email;
+
   connection.query(
     `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}';UPDATE coin SET votes_count = votes_count-1 WHERE id = ${coin_id}`,
     // `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
@@ -278,11 +311,12 @@ app.post("/get/votes", function (req, res) {
   var coin_id = req.body.coin_id;
   var total_rows_in;
   connection.query(
-    `Select * from votes where coin_id='${coin_id}'`,
+    `SELECT count(user) AS totalVotes FROM votes WHERE coin_id=${coin_id};`,
     // `Select votes_count from coin where id='${coin_id}'`,
     function (error, results, fields) {
-      total_rows_in = results.length;
-      res.send(JSON.stringify({ votes: total_rows_in }));
+      console.log(results);
+      res.send(JSON.stringify(results[0]));
+      // res.send(results[0]);
       // res.send(JSON.stringify({ votes: results }));
     }
   );

@@ -352,22 +352,6 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
           Next
         </button>
       </div>
-      <button
-        onClick={() => {
-          return setVoted(() => {
-            console.log("vote clicked ", voted);
-            return !voted;
-          });
-        }}
-        title="Vote?"
-        className={
-          voted ? "promoted-table_votebtn_green" : "promoted-table_votebtn"
-        }
-      >
-        <BsCapslockFill />
-        <span> </span>
-        {0}
-      </button>
     </>
   );
 }

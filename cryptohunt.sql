@@ -42,19 +42,19 @@ CREATE TABLE `coin` (
   `website` text DEFAULT NULL,
   `telegram` text DEFAULT NULL,
   `twitter` text DEFAULT NULL,
-  `status` text DEFAULT NULL,
+  `status` text DEFAULT 'pending', 
   `added_by` text DEFAULT NULL,
-  `featured` int(11) DEFAULT NULL,
-  `price` text DEFAULT NULL,
-  `market_cap` text DEFAULT NULL,
-  `volume_change_24h` text DEFAULT NULL,
-  `votes_count` text DEFAULT NULL,
-  `moon` text DEFAULT NULL,
-  `fire` text DEFAULT NULL,
-  `gem` text DEFAULT NULL,
-  `heart` text DEFAULT NULL,
-  `joy` text DEFAULT NULL,
-  `liked` text DEFAULT NULL 
+  `featured` int(11) DEFAULT 0,
+  `price` text DEFAULT '-',
+  `market_cap` text DEFAULT '-',
+  `volume_change_24h` text DEFAULT '-',
+  `votes_count` INT DEFAULT 0,
+  `moon` INT DEFAULT 0,
+  `fire` INT DEFAULT 0,
+  `gem` INT DEFAULT 0, 
+  `heart` INT DEFAULT 0,
+  `joy` INT DEFAULT 0,
+  `liked` INT DEFAULT 0  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

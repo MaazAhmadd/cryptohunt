@@ -211,11 +211,11 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               ></img>
             ),
             name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,
-            volumeChange: Number.isNaN(change) ? (
+            volumeChange: !change ? (
               <span>-</span>
             ) : (
               <div
-                style={{ fontSize: "0.7rem" }}
+                style={{ fontSize: "60%" }}
                 className={
                   isVolumePositive ? "volume_color_green" : "volume_color_red"
                 }

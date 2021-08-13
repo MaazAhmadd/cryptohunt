@@ -1,12 +1,12 @@
 import { BsCaretUpFill, BsCaretDownFill, BsCapslockFill } from "react-icons/bs";
-import doVote from "./doVote";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
+import qs from "querystring";
+import config from "../../config.json";
+
+const apiUrl = config.API_URL;
 
 export default (coins) => {
-  const [voted, setVoted] = useState(false);
-
   let allCoins = [];
   if (coins) {
     coins.forEach((coin) => {
@@ -17,6 +17,33 @@ export default (coins) => {
           isvoted = true;
         }
       });
+      const handleVoteClick = (v) => {
+        if (!v) {
+          axios
+            .post(
+              apiUrl + "/vote",
+              qs.stringify({
+                coin: coin.id,
+              })
+            )
+            .then(() => {
+              console.log("upvoted");
+              window.location = "/";
+            });
+        } else {
+          axios
+            .post(
+              apiUrl + "/unvote",
+              qs.stringify({
+                coin: coin.id,
+              })
+            )
+            .then(() => {
+              console.log("downvoted");
+              window.location = "/";
+            });
+        }
+      };
 
       let dateDiff = Math.ceil(
         (new Date(coin.launch) -
@@ -75,7 +102,7 @@ export default (coins) => {
           vote: (
             <button
               style={{ fontSize: "0.6rem" }}
-              onClick={() => setVoted(true)}
+              onClick={() => handleVoteClick(isvoted)}
               title="Vote?"
               className={
                 isvoted

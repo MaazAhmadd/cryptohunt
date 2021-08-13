@@ -1,8 +1,7 @@
 import React from "react";
-import config from "../config.json";
 import axios from "axios";
 import qs from "querystring";
-// import manupilatingData from "./utils/manupilatingData";
+import config from "../config.json";
 import {
   useTable,
   useSortBy,
@@ -16,36 +15,13 @@ import {
   BsCapslockFill,
 } from "react-icons/bs";
 import { GlobalFilter } from "./GlobalFilter";
-import doVote from "./utils/doVote";
 const apiUrl = config.API_URL;
-const currentUrl = config.CURRENT_URL;
 
 export default function BestCoins({ promotedCoin: bestCoin }) {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   const [showSearch, setShowSearch] = React.useState(false);
-  const [voted, setVoted] = React.useState(false);
 
-  // const handleClickRow = (row, cell) => {
-  //   console.log("row click");
-  //   if (cell.key.includes("vote")) {
-  //     console.log("vote row click");
-  //     if (!localStorage.getItem("token")) {
-  //       window.location.href = "./login";
-  //       return;
-  //     }
-  //     setVoted(() => {
-  //       console.log("vote clicked ", voted);
-  //       return !voted;
-  //     });
-  //     doVote(row.id);
-  //     // voted
-  //     return null;
-  //   } else {
-  //     return (window.location.href = `${currentUrl}/coins/${row.id}`);
-  //   }
-  // };
-  // ko
   const manupilatingData = (coins) => {
     let allCoins = [];
     if (coins) {
@@ -84,17 +60,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               });
           }
         };
-        // let voteClick = false;
-        // let buttonClass = isvoted
-        //   ? "promoted-table_votebtn_green"
-        //   : "promoted-table_votebtn";
-        // if (voteClick) {
-        //   buttonClass = "promoted-table_votebtn_green";
-        // } else {
-        //   buttonClass = isvoted
-        //     ? "promoted-table_votebtn_green"
-        //     : "promoted-table_votebtn";
-        // }
+
         let dateDiff = Math.ceil(
           (new Date(coin.launch) -
             new Date(new Date().toLocaleDateString("en-US"))) /
@@ -167,6 +133,33 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             isvoted = true;
           }
         });
+        const handleVoteClick = (v) => {
+          if (!v) {
+            axios
+              .post(
+                apiUrl + "/vote",
+                qs.stringify({
+                  coin: coin.id,
+                })
+              )
+              .then(() => {
+                console.log("upvoted");
+                window.location = "/";
+              });
+          } else {
+            axios
+              .post(
+                apiUrl + "/unvote",
+                qs.stringify({
+                  coin: coin.id,
+                })
+              )
+              .then(() => {
+                console.log("downvoted");
+                window.location = "/";
+              });
+          }
+        };
         let dateDiff = Math.ceil(
           (new Date(coin.launch) -
             new Date(new Date().toLocaleDateString("en-US"))) /
@@ -227,7 +220,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             vote: (
               <button
                 style={{ fontSize: "0.6rem" }}
-                onClick={() => {}}
+                onClick={() => handleVoteClick(isvoted)}
                 title="Vote?"
                 className={
                   isvoted

@@ -1,15 +1,12 @@
 import { BsCaretUpFill, BsCaretDownFill, BsCapslockFill } from "react-icons/bs";
-import doVote from "./doVote";
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import axios from "axios";
+import qs from "querystring";
+import config from "../../config.json";
+
+const apiUrl = config.API_URL;
 
 export default (coins) => {
-  // let [voted, setVoted] = useState(false);
-  let [voteClass, setVoteClass] = useState("promoted-table_votebtn");
-
-  // console.log(voted);
-  // console.log(voteClass);
   let allCoins = [];
   coins.forEach((coin) => {
     let votesByUser = coins[coins.length - 1];
@@ -19,6 +16,34 @@ export default (coins) => {
         isvoted = true;
       }
     });
+
+    const handleVoteClick = (v) => {
+      if (!v) {
+        axios
+          .post(
+            apiUrl + "/vote",
+            qs.stringify({
+              coin: coin.id,
+            })
+          )
+          .then(() => {
+            console.log("upvoted");
+            window.location = "/";
+          });
+      } else {
+        axios
+          .post(
+            apiUrl + "/unvote",
+            qs.stringify({
+              coin: coin.id,
+            })
+          )
+          .then(() => {
+            console.log("downvoted");
+            window.location = "/";
+          });
+      }
+    };
 
     let dateDiff = Math.ceil(
       (new Date(coin.launch) -
@@ -58,6 +83,7 @@ export default (coins) => {
         vote: (
           <button
             title="Vote?"
+            onClick={() => handleVoteClick(isvoted)}
             className={
               isvoted
                 ? "promoted-table_votebtn_green"

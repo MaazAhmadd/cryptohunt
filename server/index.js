@@ -90,7 +90,7 @@ app.post("/login", function (req, res) {
       }
     );
   } else {
-    res.status(400).send(createResponse("error", "Enter a valid email"));
+    res.send(createResponse("error", "Enter a valid email"));
   }
 });
 

@@ -63,31 +63,35 @@ app.post("/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
-  connection.query(
-    `Select * FROM users WHERE email='${email}' AND password='${password}'`,
-    function (error, results, fields) {
-      if (results.length >= 1) {
-        const token = jwt.sign(
-          {
-            name: results[0].name,
-            email: results[0].email,
-            role: results[0].role,
-          },
-          "cryptohuntprivateKeycc3"
-        );
-        res.send(
-          createResponse("success", "User Logged In", token, results[0].role)
-        );
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    connection.query(
+      `Select * FROM users WHERE email='${email}' AND password='${password}'`,
+      function (error, results, fields) {
+        if (results.length >= 1) {
+          const token = jwt.sign(
+            {
+              name: results[0].name,
+              email: results[0].email,
+              role: results[0].role,
+            },
+            "cryptohuntprivateKeycc3"
+          );
+          res.send(
+            createResponse("success", "User Logged In", token, results[0].role)
+          );
+        }
+        // if (results.length == 1) {
+        //   res.send(createResponse("success", "User Logged In", results[0].role));
+        else {
+          res.send(createResponse("error", "Invalid Username/Password"));
+          // }else {
+          //   res.send(createResponse("error", "Invalid Username/Password"));
+        }
       }
-      // if (results.length == 1) {
-      //   res.send(createResponse("success", "User Logged In", results[0].role));
-      else {
-        res.send(createResponse("error", "Invalid Username/Password"));
-        // }else {
-        //   res.send(createResponse("error", "Invalid Username/Password"));
-      }
-    }
-  );
+    );
+  } else {
+    res.status(400).send(createResponse("bad", "Enter a valid email"));
+  }
 });
 
 /** User Registers **/

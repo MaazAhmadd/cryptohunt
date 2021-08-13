@@ -219,6 +219,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                   fontSize: "60%",
                   display: "inline-flex",
                   marginBottom: "5px",
+                  marginRight: "5px",
                 }}
                 className={
                   isVolumePositive ? "volume_color_green" : "volume_color_red"

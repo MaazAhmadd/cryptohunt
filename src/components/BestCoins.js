@@ -225,9 +225,9 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 }
               >
                 {isVolumePositive ? (
-                  <BsCaretUpFill style={{ marginTop: "1px" }} />
+                  <BsCaretUpFill style={{ marginTop: "2px" }} />
                 ) : (
-                  <BsCaretDownFill style={{ marginTop: "1px" }} />
+                  <BsCaretDownFill style={{ marginTop: "2px" }} />
                 )}
                 <span>{Math.abs(change)}%</span>
               </div>

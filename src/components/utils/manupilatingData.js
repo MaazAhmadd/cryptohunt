@@ -7,6 +7,7 @@ import config from "../../config.json";
 const apiUrl = config.API_URL;
 
 export default (coins) => {
+  let presale = true;
   let allCoins = [];
   coins.forEach((coin) => {
     let votesByUser = coins[coins.length - 1];
@@ -17,35 +18,36 @@ export default (coins) => {
       }
     });
 
-    const handleVoteClick = (v) => {if (localStorage.getItem("token")) {
-      if (!v) {
-        axios
-          .post(
-            apiUrl + "/vote",
-            qs.stringify({
-              coin: coin.id,
-            })
-          )
-          .then(() => {
-            console.log("upvoted");
-            window.location = "/";
-          });
+    const handleVoteClick = (v) => {
+      if (localStorage.getItem("token")) {
+        if (!v) {
+          axios
+            .post(
+              apiUrl + "/vote",
+              qs.stringify({
+                coin: coin.id,
+              })
+            )
+            .then(() => {
+              console.log("upvoted");
+              window.location = "/";
+            });
+        } else {
+          axios
+            .post(
+              apiUrl + "/unvote",
+              qs.stringify({
+                coin: coin.id,
+              })
+            )
+            .then(() => {
+              console.log("downvoted");
+              window.location = "/";
+            });
+        }
       } else {
-        axios
-          .post(
-            apiUrl + "/unvote",
-            qs.stringify({
-              coin: coin.id,
-            })
-          )
-          .then(() => {
-            console.log("downvoted");
-            window.location = "/";
-          });
+        window.location = "/login";
       }
-    } else {
-      window.location = "/login";
-    }
     };
 
     let dateDiff = Math.ceil(
@@ -65,7 +67,24 @@ export default (coins) => {
           <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
         ),
         name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-        volumeChange: Number.isNaN(change) ? (
+        volumeChange: presale ? (
+          <span
+            style={{
+              backgroundColor: "#909",
+              padding: "5px 15px",
+              color: "white",
+              borderRadius: "10rem",
+              display: "inline-block",
+              fontSize: "75%",
+              fontWeight: "700",
+              lineHeight: "1",
+              transition:
+                "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out",
+            }}
+          >
+            Presale
+          </span>
+        ) : !change ? (
           <span>-</span>
         ) : (
           <div
@@ -77,7 +96,7 @@ export default (coins) => {
             <span>{Math.abs(change)}%</span>
           </div>
         ),
-        price: `$${coin.market_cap}`,
+        price: presale ? <></> : `$${coin.market_cap}`,
         launch: !isDateZero
           ? isDatePositive
             ? `Launching in ${Math.abs(dateDiff)} days`

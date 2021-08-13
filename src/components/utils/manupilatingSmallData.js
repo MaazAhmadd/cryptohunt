@@ -7,6 +7,7 @@ import config from "../../config.json";
 const apiUrl = config.API_URL;
 
 export default (coins) => {
+  let presale = true;
   let allCoins = [];
   if (coins) {
     coins.forEach((coin) => {
@@ -83,7 +84,25 @@ export default (coins) => {
             ></img>
           ),
           name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,
-          volumeChange: !change ? (
+          volumeChange: presale ? (
+            <span
+              style={{
+                backgroundColor: "#909",
+                padding: "5px 10px",
+                color: "white",
+                borderRadius: "10rem",
+                display: "inline-block",
+                fontSize: "50%",
+                fontWeight: "600",
+                lineHeight: "1",
+                marginRight: "10px",
+                transition:
+                  "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out",
+              }}
+            >
+              Presale
+            </span>
+          ) : !change ? (
             <span>-</span>
           ) : (
             <div

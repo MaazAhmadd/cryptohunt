@@ -147,30 +147,34 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
           }
         });
         const handleVoteClick = (v) => {
-          if (!v) {
-            axios
-              .post(
-                apiUrl + "/vote",
-                qs.stringify({
-                  coin: coin.id,
-                })
-              )
-              .then(() => {
-                console.log("upvoted");
-                window.location = "/";
-              });
+          if (localStorage.getItem("token")) {
+            if (!v) {
+              axios
+                .post(
+                  apiUrl + "/vote",
+                  qs.stringify({
+                    coin: coin.id,
+                  })
+                )
+                .then(() => {
+                  console.log("upvoted");
+                  window.location = "/";
+                });
+            } else {
+              axios
+                .post(
+                  apiUrl + "/unvote",
+                  qs.stringify({
+                    coin: coin.id,
+                  })
+                )
+                .then(() => {
+                  console.log("downvoted");
+                  window.location = "/";
+                });
+            }
           } else {
-            axios
-              .post(
-                apiUrl + "/unvote",
-                qs.stringify({
-                  coin: coin.id,
-                })
-              )
-              .then(() => {
-                console.log("downvoted");
-                window.location = "/";
-              });
+            window.location = "/login";
           }
         };
         let dateDiff = Math.ceil(

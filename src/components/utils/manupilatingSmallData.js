@@ -87,7 +87,11 @@ export default (coins) => {
             <span>-</span>
           ) : (
             <div
-              style={{ fontSize: "60%", display: "inline-flex" }}
+              style={{
+                fontSize: "60%",
+                display: "inline-flex",
+                marginBottom: "5px",
+              }}
               className={
                 isVolumePositive ? "volume_color_green" : "volume_color_red"
               }

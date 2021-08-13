@@ -207,7 +207,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             logo: (
               <img
                 src={coin.logo}
-                style={{ width: "30px", height: "30px" }}
+                style={{ width: "30px", height: "30px", marginTop: "8px" }}
               ></img>
             ),
             name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,

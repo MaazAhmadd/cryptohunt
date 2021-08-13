@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const jwtDecode = require("jwt-decode");
 var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
@@ -65,7 +66,7 @@ app.post("/login", function (req, res) {
   connection.query(
     `Select * FROM users WHERE email='${email}' AND password='${password}'`,
     function (error, results, fields) {
-      if (results.length == 1) {
+      if (results.length >= 1) {
         const token = jwt.sign(
           {
             name: results[0].name,
@@ -195,16 +196,20 @@ app.get("/coins/promoted", function (req, res) {
   //end fetching
 });
 app.get("/coins", function (req, res) {
+  let dectoken = jwtDecode(req.header("x-auth-token"));
+  console.log(dectoken);
   connection.query(
-    `Select * from coin where status='approved'`,
+    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${dectoken.email}';`,
     function (error, results, fields) {
-      if (results !== undefined && results.length > 0) {
+      console.log(results);
+      if (results !== undefined && results[0].length > 0) {
         var coin_results = [];
         // for each result
-        results.forEach((result) => {
+        results[0].forEach((result) => {
           api.updateCoin(result.name);
           coin_results.push(result);
         });
+        coin_results.push(results[1]);
         // for each result
         res.send(JSON.stringify({ coin_results }));
       }
@@ -231,39 +236,37 @@ app.get("/coins/today", function (req, res) {
 app.post("/vote", auth, function (req, res) {
   var coin_id = req.body.coin;
   var user = req.body.user;
-  var status = req.body.status;
 
-  if (status == "add") {
-    // do vote
-    connection.query(
-      `SELECT * FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
-      function (error, results, fields) {
-        if (results.length >= 1) {
-          res.send(createResponse("error", "Already Upvoted!"));
-        } else {
-          connection.query(
-            `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW());UPDATE coin SET votes_count = votes_count+1 WHERE id = ${coin_id}`,
-            // `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW())`,
-            function (err, success) {
-              if (err) throw err;
-            }
-          );
-          res.send(createResponse("success", "Upvoted!"));
-        }
+  // do vote
+  connection.query(
+    `SELECT * FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
+    function (error, results, fields) {
+      if (results.length >= 1) {
+        res.send(createResponse("error", "Already Upvoted!"));
+      } else {
+        connection.query(
+          `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW());UPDATE coin SET votes_count = votes_count+1 WHERE id = ${coin_id}`,
+          // `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW())`,
+          function (err, success) {
+            if (err) throw err;
+          }
+        );
+        res.send(createResponse("success", "Upvoted!"));
       }
-    );
-    // do vote
-  } else if (status == "remove") {
-    //remove vote
-    connection.query(
-      `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}';UPDATE coin SET votes_count = votes_count-1 WHERE id = ${coin_id}`,
-      // `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
-      function (error, results, fields) {
-        res.send(createResponse("success", "Vote Removed!"));
-      }
-    );
-    //end remove vote
-  }
+    }
+  );
+});
+
+app.post("/unvote", auth, function (req, res) {
+  var coin_id = req.body.coin;
+  var user = req.body.user;
+  connection.query(
+    `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}';UPDATE coin SET votes_count = votes_count-1 WHERE id = ${coin_id}`,
+    // `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
+    function (error, results, fields) {
+      res.send(createResponse("success", "Vote Removed!"));
+    }
+  );
 });
 
 // get votes

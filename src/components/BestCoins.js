@@ -195,7 +195,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     return allCoins;
   };
   let bestCoins;
-  if (window.innerWidth < 769) {
+  if (window.innerWidth < 551) {
     bestCoins = manupilatingSmallData(bestCoin);
   } else {
     bestCoins = manupilatingData(bestCoin);

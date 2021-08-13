@@ -213,12 +213,9 @@ td:last-child {
   margin: 2% 5%;
   width: 89%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
   .promoted-table_div {
     width: 100%;
-    /* white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden; */
   }
   .promoted-table {
     margin: 0;
@@ -247,7 +244,7 @@ td:last-child {
 .promoted-table_data:nth-child(3) {
   padding-left: 3%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
   .promoted-table_row {
     height: 55px;
     max-height: 60px;
@@ -313,7 +310,7 @@ tr:hover {
   background-color: #28a745;
   color: #fff;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
   .promoted-table_votebtn {
     width: 60px;
     border: 1px solid #28a745;
@@ -354,7 +351,7 @@ tr:hover {
 .bests:last-child {
   border-top-right-radius: 5px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
   .bests {
     font-size: 100%;
     font-weight: 600;
@@ -373,7 +370,7 @@ tr:hover {
   margin-bottom: -2%;
   margin-top: 45px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 550px) {
   .bests-header {
     margin-left: 0;
     margin-bottom: 0;

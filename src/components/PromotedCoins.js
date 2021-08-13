@@ -9,7 +9,7 @@ const currentUrl = config.CURRENT_URL;
 export default function PromotedCoins({ promotedCoin }) {
   // const [voted, setVoted] = React.useState(false);
   let promotedCoins;
-  if (window.innerWidth < 769) {
+  if (window.innerWidth < 551) {
     promotedCoins = manupilatingSmallData(promotedCoin);
   } else {
     promotedCoins = manupilatingData(promotedCoin);

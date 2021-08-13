@@ -22,6 +22,14 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
 
   const [showSearch, setShowSearch] = React.useState(false);
 
+  const handleClickRow = (row, cell) => {
+    if (cell.key.includes("vote")) {
+      return null;
+    } else {
+      return (window.location.href = `${currentUrl}/coins/${row.id}`);
+    }
+  };
+
   const manupilatingData = (coins) => {
     let allCoins = [];
     if (coins) {
@@ -373,9 +381,9 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                     return (
                       <td
                         {...cell.getCellProps()}
-                        // onClick={() =>
-                        //   handleClickRow(row.original, cell.getCellProps())
-                        // }
+                        onClick={() =>
+                          handleClickRow(row.original, cell.getCellProps())
+                        }
                         className="promoted-table_data"
                       >
                         {cell.render("Cell")}

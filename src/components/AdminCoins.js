@@ -189,6 +189,20 @@ export default function AdminCoins({ unapprovedCoins }) {
       toast(data);
     });
   }
+  async function doRemPromote(e) {
+    axios
+      .get(`${apiUrl}/admin/rempromote/${promo.promote}`)
+      .then(({ data }) => {
+        toast(data);
+      });
+  }
+  async function doRemPresale(e) {
+    axios
+      .get(`${apiUrl}/admin/rempresale/${promo.presale}`)
+      .then(({ data }) => {
+        toast(data);
+      });
+  }
 
   return (
     <>
@@ -226,10 +240,10 @@ export default function AdminCoins({ unapprovedCoins }) {
           </tbody>
         </table>
         <p style={{ padding: "2% 5%" }}>
-          You can Promote a coin or put it to Presale. Just enter the id of the
-          coin in the given fields below. Inorder to know what is the id of coin
-          please click on the coin to open details page and on the right side
-          you will see the coin id.
+          You can Promote a coin or put it to Presale or remove from these. Just
+          enter the id of the coin in the given fields below. Inorder to know
+          what is the id of coin please click on the coin to open details page
+          and on the right side you will see the coin id.
         </p>
 
         <div
@@ -244,10 +258,17 @@ export default function AdminCoins({ unapprovedCoins }) {
           />
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={(e) => doPromote(e)}
           >
             Promote
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doRemPromote(e)}
+          >
+            Remove
           </Button>
         </div>
         <div
@@ -262,10 +283,17 @@ export default function AdminCoins({ unapprovedCoins }) {
           />
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={(e) => doPresale(e)}
           >
             Presale
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doRemPresale(e)}
+          >
+            Remove
           </Button>
         </div>
       </div>

@@ -347,10 +347,25 @@ app.get("/admin/promote/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set featured='1' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error) {
-        res.send("something not right with the id");
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin promoted");
       } else {
+        console.log(results);
         res.send("coin promoted please reload page");
+      }
+    }
+  );
+});
+app.get("/admin/rempromote/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  connection.query(
+    `Update coin Set featured='0' where id = '${coin_id}'`,
+    function (error, results, fields) {
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin unpromoted");
+      } else {
+        console.log(results);
+        res.send("coin unpromoted please reload page");
       }
     }
   );
@@ -360,10 +375,23 @@ app.get("/admin/presale/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set presale='1' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error) {
-        res.send("something not right with the id");
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin presaled");
       } else {
         res.send("coin presaled please reload page");
+      }
+    }
+  );
+});
+app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  connection.query(
+    `Update coin Set presale='0' where id = '${coin_id}'`,
+    function (error, results, fields) {
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin unpresaled");
+      } else {
+        res.send("coin unpresaled please reload page");
       }
     }
   );

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import qs from "querystring";
 import config from "../config.json";
+import { toast } from "react-toastify";
 import {
   useTable,
   useSortBy,
@@ -18,7 +19,7 @@ import { GlobalFilter } from "./GlobalFilter";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 
-export default function BestCoins({ promotedCoin: bestCoin }) {
+export default function BestCoins({ promotedCoin: bestCoin, today }) {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   const [showSearch, setShowSearch] = React.useState(false);
@@ -32,6 +33,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
   };
 
   const manupilatingData = (coins) => {
+    let isPromoted = coins.featured == "1";
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
@@ -70,7 +72,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 });
             }
           } else {
-            window.location = "/login";
+            toast.warn("Please Login First");
           }
         };
 
@@ -96,19 +98,25 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             ),
             name: coin.name,
             // name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-            volumeChange: Number.isNaN(change) ? (
-              <span>-</span>
-            ) : (
-              <div
-                className={
-                  isVolumePositive ? "volume_color_green" : "volume_color_red"
-                }
-              >
-                {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
-                <span>{Math.abs(change)}%</span>
-              </div>
-            ),
-            price: `$${coin.market_cap}`,
+            volumeChange:
+              change == "NULL" ? (
+                <span>-</span>
+              ) : (
+                <div
+                  className={
+                    isVolumePositive ? "volume_color_green" : "volume_color_red"
+                  }
+                >
+                  {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+                  <span>{Math.abs(change)}%</span>
+                </div>
+              ),
+            price:
+              coin.market_cap == "NULL" ? (
+                <span>-</span>
+              ) : (
+                `$${coin.market_cap}`
+              ),
             launch: !isDateZero
               ? isDatePositive
                 ? `Launching in ${Math.abs(dateDiff)} days`
@@ -175,7 +183,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 });
             }
           } else {
-            window.location = "/login";
+            toast.warn("Please Login First");
           }
         };
         let dateDiff = Math.ceil(

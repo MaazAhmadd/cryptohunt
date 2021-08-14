@@ -34,7 +34,7 @@ const Ul = styled.ul`
   }
 `;
 
-const RightNav = ({ open }) => {
+const RightNav = ({ open, setOpen }) => {
   // let token;
   // React.useEffect(() => {
   //   let myF = async () => {
@@ -48,27 +48,47 @@ const RightNav = ({ open }) => {
     <div className="header_navbar_right_outer">
       <Ul open={open} className="header_navbar_right_inner">
         <li className="header_item">
-          <Link to="/add_coin" className="header_link">
+          <Link
+            to="/add_coin"
+            className="header_link"
+            onClick={() => setOpen(!open)}
+          >
             Add Coin
           </Link>
         </li>
         <li className="header_item">
-          <Link to="/promote" className="header_link">
+          <Link
+            to="/promote"
+            className="header_link"
+            onClick={() => setOpen(!open)}
+          >
             Promote
           </Link>
         </li>
         <li className="header_item">
-          <Link to="/newsletter" className="header_link">
+          <Link
+            to="/newsletter"
+            className="header_link"
+            onClick={() => setOpen(!open)}
+          >
             Newsletter
           </Link>
         </li>
         <li className="header_item">
           {is_user_logged_in ? (
-            <Link to="/login" className="header_link">
+            <Link
+              to="/login"
+              className="header_link"
+              onClick={() => setOpen(!open)}
+            >
               Sign In
             </Link>
           ) : (
-            <Link to="/logout" className="header_link">
+            <Link
+              to="/logout"
+              className="header_link"
+              onClick={() => setOpen(!open)}
+            >
               Sign Out
             </Link>
           )}

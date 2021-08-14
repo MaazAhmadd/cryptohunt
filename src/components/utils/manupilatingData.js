@@ -3,13 +3,14 @@ import React from "react";
 import axios from "axios";
 import qs from "querystring";
 import config from "../../config.json";
+import { toast } from "react-toastify";
 
 const apiUrl = config.API_URL;
 
 export default (coins) => {
-  let presale = true;
   let allCoins = [];
   coins.forEach((coin) => {
+    let isPromoted = coin.featured == "1";
     let votesByUser = coins[coins.length - 1];
     let isvoted = false;
     votesByUser.forEach((c) => {
@@ -46,7 +47,7 @@ export default (coins) => {
             });
         }
       } else {
-        window.location = "/login";
+        toast.warn("Please Login First");
       }
     };
 
@@ -67,7 +68,7 @@ export default (coins) => {
           <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
         ),
         name: coin.name,
-        volumeChange: presale ? (
+        volumeChange: isPromoted ? (
           <span
             style={{
               backgroundColor: "#909",
@@ -84,7 +85,7 @@ export default (coins) => {
           >
             Presale
           </span>
-        ) : !change ? (
+        ) : change == "NULL" ? (
           <span>-</span>
         ) : (
           <div
@@ -96,7 +97,7 @@ export default (coins) => {
             <span>{Math.abs(change)}%</span>
           </div>
         ),
-        price: presale ? <></> : `$${coin.market_cap}`,
+        price: isPromoted ? <></> : `$${coin.market_cap}`,
         launch: !isDateZero
           ? isDatePositive
             ? `Launching in ${Math.abs(dateDiff)} days`

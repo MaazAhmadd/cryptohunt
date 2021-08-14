@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import Footer from "./components/footer";
 import Promote from "./components/promote";
 import Newsletter from "./components/newsletter";
@@ -11,6 +12,7 @@ import AddCoin from "./components/addcoin";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import config from "./config.json";
 const currentUrl = config.CURRENT_URL;
 
@@ -23,6 +25,7 @@ function App() {
   }
   return (
     <Router>
+      <ToastContainer autoClose={2500} />
       <Navbar />
 
       <Switch>

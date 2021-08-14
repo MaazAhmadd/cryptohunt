@@ -37,6 +37,12 @@ function Home() {
   }, []);
 
   axios.defaults.headers.common["x-auth-token"] = token;
+  let dectoken = { role: "notAdmin" };
+
+  try {
+    dectoken = jwtDecode(token);
+  } catch (ex) {}
+
   // try {
   //   let dectoken = jwtDecode(token);
   //   setUser(dectoken);
@@ -115,7 +121,12 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin} today={true} />
           )}
-          <AdminCoins unapprovedCoins={unapprovedCoins} />
+          {dectoken.role === "admin" ? (
+            <AdminCoins unapprovedCoins={unapprovedCoins} />
+          ) : (
+            ""
+          )}
+
           {/* {user.role === "admin" ? (
             <AdminCoins unapprovedCoins={unapprovedCoins} />
           ) : (

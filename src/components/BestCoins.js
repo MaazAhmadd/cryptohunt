@@ -216,19 +216,14 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             ) : (
               <div
                 style={{
-                  fontSize: "60%",
+                  fontSize: "0.8rem",
                   display: "inline-flex",
-                  marginBottom: "5px",
                 }}
                 className={
                   isVolumePositive ? "volume_color_green" : "volume_color_red"
                 }
               >
-                {isVolumePositive ? (
-                  <BsCaretUpFill style={{ marginTop: "2px" }} />
-                ) : (
-                  <BsCaretDownFill style={{ marginTop: "2px" }} />
-                )}
+                {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
                 <span>{Math.abs(change)}%</span>
               </div>
             ),
@@ -393,6 +388,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                   {row.cells.map((cell) => {
                     return (
                       <td
+                        style={{ minWidth: "50px" }}
                         {...cell.getCellProps()}
                         onClick={() =>
                           handleClickRow(row.original, cell.getCellProps())

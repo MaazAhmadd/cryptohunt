@@ -3,6 +3,8 @@ import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config.json";
+import { toast } from "react-toastify";
+import jwtDecode from "jwt-decode";
 const currentUrl = config.CURRENT_URL;
 const apiUrl = config.API_URL;
 
@@ -23,6 +25,11 @@ export default function DetailsCoin() {
     };
     myF();
   }, []);
+  let dectoken = { role: "notAdmin" };
+
+  try {
+    dectoken = jwtDecode(token);
+  } catch (ex) {}
 
   axios.defaults.headers.common["x-auth-token"] = token;
 
@@ -44,7 +51,7 @@ export default function DetailsCoin() {
 
   const moonHandler = async (moon, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setMoon(Number(moon) + 1);
@@ -52,7 +59,7 @@ export default function DetailsCoin() {
   };
   const fireHandler = async (fire, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setFire(Number(fire) + 1);
@@ -60,7 +67,7 @@ export default function DetailsCoin() {
   };
   const gemHandler = async (gem, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setGem(Number(gem) + 1);
@@ -68,7 +75,7 @@ export default function DetailsCoin() {
   };
   const heartHandler = async (heart, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setHeart(Number(heart) + 1);
@@ -76,7 +83,7 @@ export default function DetailsCoin() {
   };
   const joyHandler = async (joy, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setJoy(Number(joy) + 1);
@@ -84,7 +91,7 @@ export default function DetailsCoin() {
   };
   const likedHandler = async (liked, id) => {
     if (!token) {
-      window.location.href = currentUrl + "/login";
+      toast.warn("Please Login First");
       return;
     }
     setLiked(Number(liked) + 1);
@@ -215,6 +222,15 @@ export default function DetailsCoin() {
 
             <p className="details-right-price-b">{detailsCoins.launch}</p>
             <br />
+            {dectoken.role === "admin" ? (
+              <div>
+                <p className="details-right-price-h">Coin ID</p>
+                <p className="details-right-price-b">{detailsCoins.id}</p>
+                <br />
+              </div>
+            ) : (
+              ""
+            )}
           </div>
           <div className="details-right-socials">
             <a href={detailsCoins.telegram}>

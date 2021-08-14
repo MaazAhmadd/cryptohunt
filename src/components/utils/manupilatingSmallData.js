@@ -11,7 +11,7 @@ export default (coins) => {
   let allCoins = [];
   if (coins) {
     coins.forEach((coin) => {
-      let isPromoted = coin.featured == "1";
+      let presale = coin.presale == "1";
       let votesByUser = coins[coins.length - 1];
       let isvoted = false;
       votesByUser.forEach((c) => {
@@ -87,7 +87,7 @@ export default (coins) => {
             ></img>
           ),
           name: <span style={{ fontSize: "1rem" }}>{coin.name}</span>,
-          volumeChange: isPromoted ? (
+          volumeChange: presale ? (
             <span
               style={{
                 backgroundColor: "#909",
@@ -127,7 +127,7 @@ export default (coins) => {
               <span>{Math.abs(change)}%</span>
             </div>
           ),
-          price: isPromoted ? (
+          price: presale ? (
             <></>
           ) : (
             <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>

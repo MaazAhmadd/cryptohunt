@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config.json";
+import { toast } from "react-toastify";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
 
@@ -18,7 +19,6 @@ function Login() {
     myF();
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
-  const [resp, setResp] = useState("");
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -39,7 +39,7 @@ function Login() {
           qs.stringify({ email: user.email, password: user.password })
         )
         .then((resp) => {
-          setResp(resp.data.msg);
+          toast(resp.data.msg);
 
           if (resp.data.code == "success") {
             localStorage.setItem("token", resp.data.token);
@@ -47,7 +47,7 @@ function Login() {
           }
         });
     } else {
-      setResp("Error: Please Fill All Fields");
+      toast("Error: Please Fill All Fields");
     }
   }
   // async function doLogin(e) {
@@ -116,8 +116,6 @@ function Login() {
           >
             Login
           </Button>
-
-          {resp ? <div className="resp">{resp}</div> : ""}
 
           <p style={{ marginTop: "0.5rem" }}>
             Don't Have An Account? <Link to="/register">Register Now</Link>

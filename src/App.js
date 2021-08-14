@@ -25,7 +25,7 @@ function App() {
   }
   return (
     <Router>
-      <ToastContainer autoClose={2500} />
+      <ToastContainer autoClose={3000} />
       <Navbar />
 
       <Switch>

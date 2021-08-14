@@ -9,26 +9,26 @@ import {
   BsArrowRight,
   BsArrowLeft,
 } from "react-icons/bs";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 import config from "../config.json";
+import { toast } from "react-toastify";
 const apiUrl = config.API_URL;
 const currentUrl = config.CURRENT_URL;
 
 export default function AdminCoins({ unapprovedCoins }) {
   const [user, setUser] = React.useState({});
+  const [promo, setPromo] = React.useState({ promote: 0, presale: 0 });
   // const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token = localStorage.getItem("token");
-  // const getCoinUnapprovedData = async () => {
-  //   //fetch
-  //   await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
-  //     console.log(data.coin_results);
-  //     setUnapprovedCoins(data.coin_results);
-  //     // if (data) {
-  //     //   setUnapprovedCoins([]);
-  //     // } else {
-  //     // }
-  //   });
-  // };
+  const handleClickRow = (row, cell) => {
+    if (cell.key.includes("vote")) {
+      return null;
+    } else {
+      return (window.location.href = `${currentUrl}/coins/${row.id}`);
+    }
+  };
   React.useEffect(() => {
     let myF = async () => {
       token = await localStorage.getItem("token");
@@ -42,13 +42,13 @@ export default function AdminCoins({ unapprovedCoins }) {
   }, []);
   axios.defaults.headers.common["x-auth-token"] = token;
 
-  const handleClickRow = (row, cell) => {
-    if (cell.key.includes("vote")) {
-      return null;
-    } else {
-      return (window.location.href = `${currentUrl}/coins/${row.id}`);
-    }
-  };
+  // const handleClickRow = (row, cell) => {
+  //   if (cell.key.includes("vote")) {
+  //     return null;
+  //   } else {
+  //     return (window.location.href = `${currentUrl}/coins/${row.id}`);
+  //   }
+  // };
 
   const approve = async (id) => {
     await axios
@@ -79,7 +79,6 @@ export default function AdminCoins({ unapprovedCoins }) {
   const manupilatingData = (coins) => {
     let allCoins = [];
     coins.forEach((coin) => {
-      let voteC = coin.votes_count;
       let dateDiff = Math.ceil(
         (new Date(coin.launch) -
           new Date(new Date().toLocaleDateString("en-US"))) /
@@ -90,6 +89,7 @@ export default function AdminCoins({ unapprovedCoins }) {
       let change = parseFloat(coin.volume_change_24h).toFixed(2);
       let isVolumePositive = Math.sign(change) == "1";
       allCoins.push({
+        id: coin.id,
         logo: (
           <img src={coin.logo} style={{ width: "40px", height: "40px" }}></img>
         ),
@@ -106,7 +106,7 @@ export default function AdminCoins({ unapprovedCoins }) {
             <span>{Math.abs(change)}%</span>
           </div>
         ),
-        price: `$${coin.price}`,
+        price: `$${coin.market_cap}`,
         launch: !isDateZero
           ? isDatePositive
             ? `Launching in ${Math.abs(dateDiff)} days`
@@ -173,6 +173,23 @@ export default function AdminCoins({ unapprovedCoins }) {
     data: dataAdmin,
   });
 
+  function handleInput(e) {
+    setPromo({
+      ...promo,
+      [e.target.id]: e.target.value,
+    });
+  }
+  async function doPromote(e) {
+    axios.get(`${apiUrl}/admin/promote/${promo.promote}`).then(({ data }) => {
+      toast(data);
+    });
+  }
+  async function doPresale(e) {
+    axios.get(`${apiUrl}/admin/presale/${promo.presale}`).then(({ data }) => {
+      toast(data);
+    });
+  }
+
   return (
     <>
       {unapprovedCoins.length >= 1 ? (
@@ -208,6 +225,49 @@ export default function AdminCoins({ unapprovedCoins }) {
             })}
           </tbody>
         </table>
+        <p style={{ padding: "2% 5%" }}>
+          You can Promote a coin or put it to Presale. Just enter the id of the
+          coin in the given fields below. Inorder to know what is the id of coin
+          please click on the coin to open details page and on the right side
+          you will see the coin id.
+        </p>
+
+        <div
+          style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}
+        >
+          <p>Promote A Coin: </p>
+          <TextField
+            style={{ margin: "0 3%", backgroundColor: "white" }}
+            id="promote"
+            onChange={(e) => handleInput(e)}
+            type="number"
+          />
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doPromote(e)}
+          >
+            Promote
+          </Button>
+        </div>
+        <div
+          style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}
+        >
+          <p>Presale A Coin...: </p>
+          <TextField
+            style={{ margin: "0 3%", backgroundColor: "white" }}
+            id="presale"
+            onChange={(e) => handleInput(e)}
+            type="number"
+          />
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doPresale(e)}
+          >
+            Presale
+          </Button>
+        </div>
       </div>
     </>
   );

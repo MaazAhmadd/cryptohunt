@@ -342,6 +342,32 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
     }
   );
 });
+app.get("/admin/promote/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  connection.query(
+    `Update coin Set featured='1' where id = '${coin_id}'`,
+    function (error, results, fields) {
+      if (error) {
+        res.send("something not right with the id");
+      } else {
+        res.send("coin promoted please reload page");
+      }
+    }
+  );
+});
+app.get("/admin/presale/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  connection.query(
+    `Update coin Set presale='1' where id = '${coin_id}'`,
+    function (error, results, fields) {
+      if (error) {
+        res.send("something not right with the id");
+      } else {
+        res.send("coin presaled please reload page");
+      }
+    }
+  );
+});
 
 //unapproved coins
 

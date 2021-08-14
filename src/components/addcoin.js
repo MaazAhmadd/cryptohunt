@@ -46,6 +46,11 @@ function AddCoin() {
     };
     myF();
   }, []);
+
+  if (!token) {
+    window.location.href = "./login";
+    return;
+  }
   axios.defaults.headers.common["x-auth-token"] = token;
 
   async function doLogin(e) {

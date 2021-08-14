@@ -83,7 +83,7 @@ export default (coins) => {
               style={{ width: "30px", height: "30px", marginTop: "8px" }}
             ></img>
           ),
-          name: <span style={{ fontSize: "0.7rem" }}>{coin.name}</span>,
+          name: <span style={{ fontSize: "0.8rem" }}>{coin.name}</span>,
           volumeChange: presale ? (
             <span
               style={{
@@ -124,9 +124,13 @@ export default (coins) => {
               <span>{Math.abs(change)}%</span>
             </div>
           ),
-          price: <div style={{ fontSize: "0.7rem" }}>${marketCap}</div>,
+          price: presale ? (
+            <></>
+          ) : (
+            <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>
+          ),
           launch: (
-            <div style={{ fontSize: "0.7rem" }}>
+            <div style={{ fontSize: "0.8rem" }}>
               {!isDateZero
                 ? isDatePositive
                   ? `in ${Math.abs(dateDiff)}d`

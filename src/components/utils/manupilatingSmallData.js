@@ -47,7 +47,9 @@ export default (coins) => {
               });
           }
         } else {
-          toast.warn("Please Login First");
+          toast.warn("Please Login First", {
+            position: toast.POSITION.BOTTOM_LEFT,
+          });
         }
       };
 

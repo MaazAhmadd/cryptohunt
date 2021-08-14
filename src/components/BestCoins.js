@@ -183,7 +183,9 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                 });
             }
           } else {
-            toast.warn("Please Login First");
+            toast.warn("Please Login First", {
+              position: toast.POSITION.BOTTOM_LEFT,
+            });
           }
         };
         let dateDiff = Math.ceil(

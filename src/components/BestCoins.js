@@ -210,7 +210,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 style={{ width: "30px", height: "30px", marginTop: "8px" }}
               ></img>
             ),
-            name: <span style={{ fontSize: "0.8rem" }}>{coin.name}</span>,
+            name: <span style={{ fontSize: "1rem" }}>{coin.name}</span>,
             volumeChange: !change ? (
               <span>-</span>
             ) : (

@@ -312,12 +312,14 @@ tr:hover {
 }
 @media screen and (max-width: 550px) {
   .promoted-table_votebtn {
-    width: 60px;
+    width: 55px;
+    height: 35px;
     border: 1px solid #28a745;
     border-radius: 5px;
   }
   .promoted-table_votebtn_green {
-    width: 60px;
+    width: 55px;
+    height: 35px;
     border: 1px solid #28a745;
     border-radius: 5px;
   }
@@ -628,6 +630,15 @@ table th {
 }
 table th:hover {
   color: gray;
+}
+
+tr > td:nth-child(2) {
+  font-size: larger;
+}
+@media screen and (max-width: 550px) {
+  tr > td:nth-child(2) {
+    font-size: 1rem;
+  }
 }
 
 .dosearch,

@@ -94,7 +94,8 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 style={{ width: "40px", height: "40px" }}
               ></img>
             ),
-            name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
+            name: coin.name,
+            // name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
             volumeChange: Number.isNaN(change) ? (
               <span>-</span>
             ) : (
@@ -210,7 +211,8 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 style={{ width: "30px", height: "30px", marginTop: "8px" }}
               ></img>
             ),
-            name: <span style={{ fontSize: "1rem" }}>{coin.name}</span>,
+            name: coin.name,
+            // name: <span style={{ fontSize: "1rem" }}>{coin.name}</span>,
             volumeChange: !change ? (
               <span>-</span>
             ) : (
@@ -266,7 +268,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
   } else {
     bestCoins = manupilatingData(bestCoin);
   }
-  const dataBest = React.useMemo(() => bestCoins, [bestCoin]);
+  const data = React.useMemo(() => bestCoins, [bestCoin]);
 
   const columnsHBest = [
     {
@@ -292,38 +294,37 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       accessor: "vote",
     },
   ];
-  const columnsBest = React.useMemo(() => columnsHBest, [bestCoin]);
+  const columns = React.useMemo(() => columnsHBest, [bestCoin]);
   const {
-    getTableProps: getTablePropsBest,
-    getTableBodyProps: getTableBodyPropsBest,
-    page: pageBest,
+    getTableProps,
+    getTableBodyProps,
+    page,
     nextPage,
     previousPage,
     canNextPage,
     canPreviousPage,
     pageOptions,
-    prepareRow: prepareRowBest,
-    headerGroups: headerGroupsBest,
-    state: stateBest,
-    setGlobalFilter: setGlobalFilterBest,
+    prepareRow,
+    headerGroups,
+    state,
+    setGlobalFilter,
   } = useTable(
     {
-      columns: columnsBest,
-      data: dataBest,
+      columns,
+      data,
     },
     useGlobalFilter,
     useSortBy,
     usePagination
   );
-  const { globalFilter, pageIndex } = stateBest;
+  const { globalFilter, pageIndex } = state;
   const onSearchClick = () => setShowSearch(true);
-
   return (
     <>
       <div className="promoted-table_div">
-        <table {...getTablePropsBest()} className="promoted-table">
+        <table {...getTableProps()} className="promoted-table">
           <thead>
-            {headerGroupsBest.map((headerGroup) => (
+            {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th {...column.getHeaderProps(column.getSortByToggleProps())}>
@@ -344,7 +345,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               </tr>
             ))}
           </thead>
-          <tbody {...getTableBodyPropsBest()} className="promoted-table_body">
+          <tbody {...getTableBodyProps()} className="promoted-table_body">
             <tr role="row" className="promoted-table_row">
               <td className="promoted-table_data" role="cell">
                 <button
@@ -369,7 +370,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
                 {showSearch ? (
                   <GlobalFilter
                     filter={globalFilter}
-                    setFilter={setGlobalFilterBest}
+                    setFilter={setGlobalFilter}
                   />
                 ) : null}
               </td>
@@ -378,8 +379,8 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
               <td className="promoted-table_data" role="cell"></td>
               <td className="promoted-table_data" role="cell"></td>
             </tr>
-            {pageBest.map((row) => {
-              prepareRowBest(row);
+            {page.map((row) => {
+              prepareRow(row);
               return (
                 <tr
                   {...row.getRowProps()}

@@ -88,6 +88,7 @@ export default (coins) => {
               backgroundColor: "#909",
               padding: "5px 15px",
               color: "white",
+              marginRight: "40%",
               borderRadius: "10rem",
               display: "inline-block",
               fontSize: "75%",

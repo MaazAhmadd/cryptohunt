@@ -98,7 +98,7 @@ export default (coins) => {
                 fontSize: "50%",
                 fontWeight: "600",
                 lineHeight: "1",
-                marginRight: "10px",
+                marginRight: "-60%",
                 transition:
                   "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out",
               }}

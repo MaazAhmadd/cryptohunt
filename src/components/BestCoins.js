@@ -44,7 +44,8 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             isvoted = true;
           }
         });
-        const handleVoteClick = (v) => {
+        const handleVoteClick = (v, e) => {
+          e.preventDefault();
           if (localStorage.getItem("token")) {
             if (!v) {
               axios
@@ -55,8 +56,11 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                   })
                 )
                 .then(() => {
-                  console.log("upvoted");
-                  window.location = "/";
+                  e.target.className = "promoted-table_votebtn_green";
+                  e.target.innerHTML =
+                    `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
+                    ++coin.votes_count;
+                  isvoted = true;
                 });
             } else {
               axios
@@ -67,8 +71,11 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                   })
                 )
                 .then(() => {
-                  console.log("downvoted");
-                  window.location = "/";
+                  e.target.className = "promoted-table_votebtn";
+                  e.target.innerHTML =
+                    `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
+                    --coin.votes_count;
+                  isvoted = false;
                 });
             }
           } else {
@@ -124,7 +131,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
               : `Launching Today`,
             vote: (
               <button
-                onClick={() => handleVoteClick(isvoted)}
+                onClick={(e) => handleVoteClick(isvoted, e)}
                 title="Vote?"
                 className={
                   isvoted
@@ -132,8 +139,9 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                     : "promoted-table_votebtn"
                 }
               >
-                <BsCapslockFill />
-                <span> </span>
+                <BsCapslockFill
+                  style={{ pointerEvents: "none", margin: "0 3px 3px 0" }}
+                />
                 {!coin.votes_count ? "0" : Math.abs(coin.votes_count)}
               </button>
             ),
@@ -155,7 +163,8 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             isvoted = true;
           }
         });
-        const handleVoteClick = (v) => {
+        const handleVoteClick = (v, e) => {
+          e.preventDefault();
           if (localStorage.getItem("token")) {
             if (!v) {
               axios
@@ -166,8 +175,11 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                   })
                 )
                 .then(() => {
-                  console.log("upvoted");
-                  window.location = "/";
+                  e.target.className = "promoted-table_votebtn_green";
+                  e.target.innerHTML =
+                    `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
+                    ++coin.votes_count;
+                  isvoted = true;
                 });
             } else {
               axios
@@ -178,14 +190,15 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                   })
                 )
                 .then(() => {
-                  console.log("downvoted");
-                  window.location = "/";
+                  e.target.className = "promoted-table_votebtn";
+                  e.target.innerHTML =
+                    `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
+                    --coin.votes_count;
+                  isvoted = false;
                 });
             }
           } else {
-            toast.warn("Please Login First", {
-              position: toast.POSITION.BOTTOM_LEFT,
-            });
+            toast.warn("Please Login First");
           }
         };
         let dateDiff = Math.ceil(
@@ -252,7 +265,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             vote: (
               <button
                 style={{ fontSize: "0.6rem" }}
-                onClick={() => handleVoteClick(isvoted)}
+                onClick={(e) => handleVoteClick(isvoted, e)}
                 title="Vote?"
                 className={
                   isvoted
@@ -260,8 +273,9 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                     : "promoted-table_votebtn"
                 }
               >
-                <BsCapslockFill />
-                <span> </span>
+                <BsCapslockFill
+                  style={{ pointerEvents: "none", margin: "0 3px 3px 0" }}
+                />
                 {!coin.votes_count ? "0" : Math.abs(coin.votes_count)}
               </button>
             ),

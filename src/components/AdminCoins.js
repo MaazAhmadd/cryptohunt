@@ -211,11 +211,8 @@ export default function AdminCoins({ unapprovedCoins }) {
       ) : (
         <h1></h1>
       )}
-      <div className="promoted-table_div">
-        <table
-          {...getTablePropsAdmin()}
-          className="promoted-table promoted-table-admin"
-        >
+      <div className="promoted-table_div promoted-table-admin">
+        <table {...getTablePropsAdmin()} className="promoted-table">
           <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
             {rowsAdmin.map((row) => {
               prepareRowAdmin(row);
@@ -227,6 +224,7 @@ export default function AdminCoins({ unapprovedCoins }) {
                   {row.cells.map((cell) => {
                     return (
                       <td
+                        style={{ paddingRight: "15px" }}
                         onClick={() =>
                           handleClickRow(row.original, cell.getCellProps())
                         }
@@ -242,63 +240,59 @@ export default function AdminCoins({ unapprovedCoins }) {
             })}
           </tbody>
         </table>
-        <p style={{ padding: "2% 5%" }}>
-          You can Promote a coin or put it to Presale or remove from these. Just
-          enter the id of the coin in the given fields below. Inorder to know
-          what is the id of coin please click on the coin to open details page
-          and on the right side you will see the coin id.
-        </p>
+      </div>
+      <p style={{ padding: "2% 5%" }}>
+        You can Promote a coin or put it to Presale or remove from these. Just
+        enter the id of the coin in the given fields below. Inorder to know what
+        is the id of coin please click on the coin to open details page and on
+        the right side you will see the coin id.
+      </p>
 
-        <div
-          style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}
+      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
+        <p>Promote A Coin: </p>
+        <TextField
+          style={{ margin: "0 3%", backgroundColor: "white" }}
+          id="promote"
+          onChange={(e) => handleInput(e)}
+          type="number"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => doPromote(e)}
         >
-          <p>Promote A Coin: </p>
-          <TextField
-            style={{ margin: "0 3%", backgroundColor: "white" }}
-            id="promote"
-            onChange={(e) => handleInput(e)}
-            type="number"
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => doPromote(e)}
-          >
-            Promote
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={(e) => doRemPromote(e)}
-          >
-            Remove
-          </Button>
-        </div>
-        <div
-          style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}
+          Promote
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={(e) => doRemPromote(e)}
         >
-          <p>Presale A Coin...: </p>
-          <TextField
-            style={{ margin: "0 3%", backgroundColor: "white" }}
-            id="presale"
-            onChange={(e) => handleInput(e)}
-            type="number"
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => doPresale(e)}
-          >
-            Presale
-          </Button>
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={(e) => doRemPresale(e)}
-          >
-            Remove
-          </Button>
-        </div>
+          Remove
+        </Button>
+      </div>
+      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
+        <p>Presale A Coin...: </p>
+        <TextField
+          style={{ margin: "0 3%", backgroundColor: "white" }}
+          id="presale"
+          onChange={(e) => handleInput(e)}
+          type="number"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => doPresale(e)}
+        >
+          Presale
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={(e) => doRemPresale(e)}
+        >
+          Remove
+        </Button>
       </div>
     </>
   );

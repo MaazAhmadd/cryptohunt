@@ -214,8 +214,7 @@ export default function AdminCoins({ unapprovedCoins }) {
       <div className="promoted-table_div">
         <table
           {...getTablePropsAdmin()}
-          className="promoted-table"
-          style={{ fontSize: "0.7rem" }}
+          className="promoted-table promoted-table-admin"
         >
           <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
             {rowsAdmin.map((row) => {

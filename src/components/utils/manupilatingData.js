@@ -69,6 +69,20 @@ export default (coins) => {
         ),
         name: coin.name,
         volumeChange: presale ? (
+          <></>
+        ) : change == "NULL" ? (
+          <span>-</span>
+        ) : (
+          <div
+            className={
+              isVolumePositive ? "volume_color_green" : "volume_color_red"
+            }
+          >
+            {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+            <span>{Math.abs(change)}%</span>
+          </div>
+        ),
+        price: presale ? (
           <span
             style={{
               backgroundColor: "#909",
@@ -85,19 +99,9 @@ export default (coins) => {
           >
             Presale
           </span>
-        ) : change == "NULL" ? (
-          <span>-</span>
         ) : (
-          <div
-            className={
-              isVolumePositive ? "volume_color_green" : "volume_color_red"
-            }
-          >
-            {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
-            <span>{Math.abs(change)}%</span>
-          </div>
+          `$${coin.market_cap}`
         ),
-        price: presale ? <></> : `$${coin.market_cap}`,
         launch: !isDateZero
           ? isDatePositive
             ? `Launching in ${Math.abs(dateDiff)} days`

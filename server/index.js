@@ -191,7 +191,7 @@ app.get("/coins/promoted", function (req, res) {
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {
-      if (results !== undefined && results[0].length > 0) {
+      if (results && results[0].length > 0) {
         var coin_results = [];
         // for each result
         results[0].forEach((result) => {

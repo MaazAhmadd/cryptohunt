@@ -202,7 +202,7 @@ app.get("/coins/promoted", function (req, res) {
         // for each result
         res.send(JSON.stringify({ coin_results }));
       } else {
-        res.send("nothing to send");
+        res.send([]);
       }
     }
   );

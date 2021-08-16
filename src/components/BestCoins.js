@@ -90,7 +90,10 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
         );
         let isDatePositive = Math.sign(dateDiff) == "1";
         let isDateZero = Math.sign(dateDiff) == "0";
-        let change = parseFloat(coin.volume_change_24h).toFixed(2);
+        let change = coin.volume_change_24h
+          ? parseFloat(coin.volume_change_24h).toFixed(2)
+          : false;
+        console.log(coin.volume_change_24h, coin.name);
         let isVolumePositive = Math.sign(change) == "1";
         let link = `/coins/${coin.id}`;
 
@@ -105,25 +108,19 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             ),
             name: coin.name,
             // name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-            volumeChange:
-              change == "NULL" ? (
-                <span>-</span>
-              ) : (
-                <div
-                  className={
-                    isVolumePositive ? "volume_color_green" : "volume_color_red"
-                  }
-                >
-                  {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
-                  <span>{Math.abs(change)}%</span>
-                </div>
-              ),
-            price:
-              coin.market_cap == "NULL" ? (
-                <span>-</span>
-              ) : (
-                `$${coin.market_cap}`
-              ),
+            volumeChange: !change ? (
+              <div>-</div>
+            ) : (
+              <div
+                className={
+                  isVolumePositive ? "volume_color_green" : "volume_color_red"
+                }
+              >
+                {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+                <span>{Math.abs(change)}%</span>
+              </div>
+            ),
+            price: !coin.market_cap ? <span>-</span> : `$${coin.market_cap}`,
             launch: !isDateZero
               ? isDatePositive
                 ? `Launching in ${Math.abs(dateDiff)} days`
@@ -208,7 +205,9 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
         );
         let isDatePositive = Math.sign(dateDiff) == "1";
         let isDateZero = Math.sign(dateDiff) == "0";
-        let change = parseFloat(coin.volume_change_24h).toFixed(2);
+        let change = coin.volume_change_24h
+          ? parseFloat(coin.volume_change_24h).toFixed(2)
+          : false;
         let isVolumePositive = Math.sign(change) == "1";
         let link = `/coins/${coin.id}`;
         let marketCap = [];
@@ -252,7 +251,11 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                 <span>{Math.abs(change)}%</span>
               </div>
             ),
-            price: <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>,
+            price: !coin.market_cap ? (
+              <span>-</span>
+            ) : (
+              <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>
+            ),
             launch: (
               <div style={{ fontSize: "0.8rem" }}>
                 {!isDateZero

@@ -9,12 +9,12 @@ import { Link } from "react-router-dom";
 import { BiLeftArrowAlt } from "react-icons/bi/";
 import config from "../config.json";
 import jwtDecode from "jwt-decode";
+import { toast } from "react-toastify";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
 
 function AddCoin() {
   const [user, setUser] = useState({});
-  const [resp, setResp] = useState("");
   const [coin, addCoin] = useState({
     name: "",
     symbol: "",
@@ -85,10 +85,10 @@ function AddCoin() {
           })
         )
         .then((resp) => {
-          setResp(resp.data.msg);
+          toast.info(resp.data.msg);
         });
     } else {
-      setResp("Error: Please Fill All Required Fields");
+      toast.error("Please Fill All Required Fields");
     }
   }
 
@@ -309,8 +309,6 @@ function AddCoin() {
               </Button>
             </div>
           </div>
-
-          {resp ? <div className="resp">{resp}</div> : ""}
         </div>
       </div>
     </>

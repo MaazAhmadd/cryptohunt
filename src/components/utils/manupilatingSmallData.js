@@ -65,7 +65,9 @@ export default (coins) => {
       );
       let isDatePositive = Math.sign(dateDiff) == "1";
       let isDateZero = Math.sign(dateDiff) == "0";
-      let change = parseFloat(coin.volume_change_24h).toFixed(2);
+      let change = coin.volume_change_24h
+        ? parseFloat(coin.volume_change_24h).toFixed(2)
+        : false;
       let isVolumePositive = Math.sign(change) == "1";
       let link = `/coins/${coin.id}`;
       let marketCap = [];
@@ -110,7 +112,7 @@ export default (coins) => {
             >
               Presale
             </span>
-          ) : change == "NULL" ? (
+          ) : !change ? (
             <span>-</span>
           ) : (
             <div
@@ -134,6 +136,8 @@ export default (coins) => {
           ),
           price: presale ? (
             <></>
+          ) : !coin.market_cap ? (
+            <span>-</span>
           ) : (
             <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>
           ),

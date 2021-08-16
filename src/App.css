@@ -300,10 +300,16 @@ tr:hover {
   border-radius: 7px;
   transition: 0.02s background-color;
 }
+.promoted-table_votebtn:focus {
+  box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 50%);
+}
 .promoted-table_votebtn:hover {
   transition-delay: 0.02s;
   background-color: #28a745;
   color: #fff;
+}
+.promoted-table_votebtn_green:focus {
+  box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 50%);
 }
 .promoted-table_votebtn_green:hover {
   transition-delay: 0.02s;

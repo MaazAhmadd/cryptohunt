@@ -201,6 +201,8 @@ app.get("/coins/promoted", function (req, res) {
         coin_results.push(results[1]);
         // for each result
         res.send(JSON.stringify({ coin_results }));
+      } else {
+        res.send("nothing to send");
       }
     }
   );

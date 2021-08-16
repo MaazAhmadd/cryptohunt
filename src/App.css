@@ -307,7 +307,8 @@ tr:hover {
 }
 .promoted-table_votebtn_green:hover {
   transition-delay: 0.02s;
-  background-color: #28a745;
+  background-color: #1e8336;
+  border-radius: 7px;
   color: #fff;
 }
 @media screen and (max-width: 550px) {

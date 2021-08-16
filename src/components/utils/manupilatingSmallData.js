@@ -22,7 +22,11 @@ export default (coins) => {
       const handleVoteClick = (v, e) => {
         e.preventDefault();
         if (localStorage.getItem("token")) {
+          let upArrow = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>`;
           if (!v) {
+            e.target.className = "promoted-table_votebtn_green";
+            e.target.innerHTML = upArrow + ++coin.votes_count;
+            isvoted = true;
             axios
               .post(
                 apiUrl + "/vote",
@@ -30,14 +34,15 @@ export default (coins) => {
                   coin: coin.id,
                 })
               )
-              .then(() => {
-                e.target.className = "promoted-table_votebtn_green";
-                e.target.innerHTML =
-                  `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
-                  ++coin.votes_count;
-                isvoted = true;
+              .catch(() => {
+                e.target.className = "promoted-table_votebtn";
+                e.target.innerHTML = upArrow + --coin.votes_count;
+                isvoted = false;
               });
           } else {
+            e.target.className = "promoted-table_votebtn";
+            e.target.innerHTML = upArrow + --coin.votes_count;
+            isvoted = false;
             axios
               .post(
                 apiUrl + "/unvote",
@@ -45,12 +50,10 @@ export default (coins) => {
                   coin: coin.id,
                 })
               )
-              .then(() => {
-                e.target.className = "promoted-table_votebtn";
-                e.target.innerHTML =
-                  `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>` +
-                  --coin.votes_count;
-                isvoted = false;
+              .catch(() => {
+                e.target.className = "promoted-table_votebtn_green";
+                e.target.innerHTML = upArrow + ++coin.votes_count;
+                isvoted = true;
               });
           }
         } else {

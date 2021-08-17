@@ -33,7 +33,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
   };
 
   const manupilatingData = (coins) => {
-    let isPromoted = coins.featured == "1";
+    let presale = coin.presale == "1";
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
@@ -111,8 +111,10 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             ),
             name: coin.name,
             // name: <span style={{ fontSize: "larger" }}>{coin.name}</span>,
-            volumeChange: !change ? (
-              <div>-</div>
+            volumeChange: presale ? (
+              <></>
+            ) : !change ? (
+              <span>-</span>
             ) : (
               <div
                 className={
@@ -123,7 +125,29 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
                 <span>{Math.abs(change)}%</span>
               </div>
             ),
-            price: !coin.market_cap ? <span>-</span> : `$${coin.market_cap}`,
+            price: presale ? (
+              <span
+                style={{
+                  backgroundColor: "#909",
+                  padding: "5px 15px",
+                  color: "white",
+                  marginRight: "40%",
+                  borderRadius: "10rem",
+                  display: "inline-block",
+                  fontSize: "75%",
+                  fontWeight: "700",
+                  lineHeight: "1",
+                  transition:
+                    "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out",
+                }}
+              >
+                Presale
+              </span>
+            ) : !coin.market_cap ? (
+              <span>-</span>
+            ) : (
+              `$${coin.market_cap}`
+            ),
             launch: !isDateZero
               ? isDatePositive
                 ? `Launching in ${Math.abs(dateDiff)} days`
@@ -241,23 +265,49 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             ),
             name: coin.name,
             // name: <span style={{ fontSize: "1rem" }}>{coin.name}</span>,
-            volumeChange: !change ? (
+            volumeChange: presale ? (
+              <span
+                style={{
+                  backgroundColor: "#909",
+                  padding: "5px 10px",
+                  color: "white",
+                  borderRadius: "10rem",
+                  display: "inline-block",
+                  fontSize: "50%",
+                  fontWeight: "600",
+                  lineHeight: "1",
+                  marginRight: "-60%",
+                  transition:
+                    "color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out",
+                }}
+              >
+                Presale
+              </span>
+            ) : !change ? (
               <span>-</span>
             ) : (
               <div
                 style={{
-                  fontSize: "0.8rem",
+                  fontSize: "60%",
                   display: "inline-flex",
+                  marginBottom: "5px",
+                  marginRight: "5px",
                 }}
                 className={
                   isVolumePositive ? "volume_color_green" : "volume_color_red"
                 }
               >
-                {isVolumePositive ? <BsCaretUpFill /> : <BsCaretDownFill />}
+                {isVolumePositive ? (
+                  <BsCaretUpFill style={{ marginTop: "2px" }} />
+                ) : (
+                  <BsCaretDownFill style={{ marginTop: "2px" }} />
+                )}
                 <span>{Math.abs(change)}%</span>
               </div>
             ),
-            price: !coin.market_cap ? (
+            price: presale ? (
+              <></>
+            ) : !coin.market_cap ? (
               <span>-</span>
             ) : (
               <div style={{ fontSize: "0.8rem" }}>${marketCap}</div>

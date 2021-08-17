@@ -450,18 +450,15 @@ tr:hover {
   align-items: center;
 }
 
-.details-left-top1 > h2 {
-  font-size: xxx-large;
-  font-weight: 600;
-  margin-right: 20%;
-}
 .details-left-top1 > button {
   margin: 0 5%;
 }
 .details-left-chain {
+  margin-left: 18%;
+  font-size: 90%;
+  width: 100%;
   border-radius: 10px;
   background-color: #eaeaea;
-  margin-left: 10%;
   display: inline;
   padding: 1%;
 }
@@ -472,8 +469,8 @@ tr:hover {
   padding: 2%;
 }
 .details-left-top1 > img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: 2%;
 }
 @media screen and (max-width: 768px) {
@@ -481,11 +478,7 @@ tr:hover {
     margin-right: 5%;
     margin-left: 0;
   }
-  .details-left-top1 > h2 {
-    font-size: xx-large;
-    font-weight: 600;
-    margin-right: 6%;
-  }
+
   .details-left-top1 > img {
     width: 70px;
     height: 70px;
@@ -553,6 +546,7 @@ tr:hover {
   color: white;
 }
 .details-right-more_coin {
+  margin-top: 5px;
   cursor: pointer;
   border-radius: 10px;
   display: flex;
@@ -568,12 +562,12 @@ tr:hover {
 
 @media screen and (max-width: 768px) {
   .details-page {
-    grid-template-rows: 55%;
+    grid-template-rows: 30%;
   }
   .details-left {
+    height: 55%;
     grid-column: 1/12;
     width: 90%;
-    height: 90%;
   }
   .details-right {
     grid-column: 1/12;
@@ -581,6 +575,11 @@ tr:hover {
     width: 90%;
     height: 100%;
   }
+}
+.details-left-desc-reacts {
+  min-height: 30%;
+  border-radius: 10px;
+  background-color: white;
 }
 /* reacts */
 .details-reacts {
@@ -681,10 +680,6 @@ tr > td:nth-child(2) {
   width: 100% !important;
 }
 
-.details-left-chain {
-  width: 100vw !important;
-}
-
 .footer-main {
   text-align: center;
 }
@@ -711,7 +706,7 @@ tr > td:nth-child(2) {
     font-size: 0.9rem;
   }
   .footer-main {
-    margin-top: 50%;
+    margin-top: 40%;
   }
 }
 

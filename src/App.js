@@ -5,6 +5,7 @@ import Promote from "./components/promote";
 import Newsletter from "./components/newsletter";
 import Home from "./components/home";
 import DetailsCoin from "./components/DetailsCoin";
+import DetailsCoinSmall from "./components/DetailsCoinSmall";
 import Login from "./components/login";
 import Navbar from "./components/navbar";
 import Register from "./components/register";
@@ -33,7 +34,11 @@ function App() {
       </Switch>
 
       <Switch>
-        <Route path="/coins/:id" exact component={DetailsCoin} />
+        <Route
+          path="/coins/:id"
+          exact
+          component={window.innerWidth < 551 ? DetailsCoinSmall : DetailsCoin}
+        />
       </Switch>
 
       <Switch>

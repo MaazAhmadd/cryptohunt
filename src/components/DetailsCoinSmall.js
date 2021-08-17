@@ -133,23 +133,23 @@ export default function DetailsCoin() {
               />
               <p
                 style={{
-                  fontSize: "215%",
+                  fontSize: "100%",
                   fontWeight: "600",
-                  marginLeft: "-34%",
+                  marginLeft: "-15%",
                 }}
               >
                 {detailsCoins.name}
               </p>
               <p
                 style={{
-                  fontSize: "150%",
+                  fontSize: "80%",
                   backgroundColor: "lightgray",
-                  width: "8%",
-                  height: "40px",
+                  width: "12%",
+                  height: "20px",
                   textAlign: "center",
-                  paddingTop: "0.3%",
-                  marginLeft: "-32%",
-                  borderRadius: "7px",
+                  paddingTop: "0.6%",
+                  marginLeft: "-10%",
+                  borderRadius: "6px",
                 }}
               >
                 {detailsCoins.symbol}
@@ -167,6 +167,7 @@ export default function DetailsCoin() {
                   : Math.abs(detailsCoins.votes_count)}
               </button>
             </div>
+
             <div className="details-left-top2">
               <p className="details-left-chain">
                 Binance Smart Chain: {detailsCoins.binancesmartchain}
@@ -174,56 +175,19 @@ export default function DetailsCoin() {
             </div>
           </div>
 
-          <p className="details-left-desc">{detailsCoins.description}</p>
-          <div className="details-reacts">
-            <span
-              onClick={() => moonHandler(detailsCoins.moon, detailsCoins.id)}
-              title="To the moon"
-              className="details-reacts_icons"
-            >
-              🚀
-            </span>
-            <span
-              onClick={() => fireHandler(detailsCoins.fire, detailsCoins.id)}
-              title="On fire"
-              className="details-reacts_icons"
-            >
-              🔥
-            </span>
-            <span
-              onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
-              title="Gem"
-              className="details-reacts_icons"
-            >
-              💎
-            </span>
-            <span
-              onClick={() => heartHandler(detailsCoins.heart, detailsCoins.id)}
-              title="Love it"
-              className="details-reacts_icons details-reacts_icons_heart"
-            >
-              <BsHeartFill />
-            </span>
-            <span
-              onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
-              title="Joy"
-              className="details-reacts_icons"
-            >
-              😀
-            </span>
-            <span
-              onClick={() => likedHandler(detailsCoins.like, detailsCoins.id)}
-              title="Like it"
-              className="details-reacts_icons"
-            >
-              👍
-            </span>
-            <span>{moonS || detailsCoins.moon}</span>
-            <span>{fireS || detailsCoins.fire}</span>
-            <span>{gemS || detailsCoins.gem}</span>
-            <span>{heartS || detailsCoins.heart}</span>
-            <span>{joyS || detailsCoins.joy}</span>
-            <span>{likedS || detailsCoins.liked}</span>
+          <div className="details-right-socials">
+            <a href={detailsCoins.telegram}>
+              <button>Telegram</button>
+            </a>
+            <br />
+            <a href={detailsCoins.twitter}>
+              <button>Twitter</button>
+            </a>
+            <br />
+            <a href={detailsCoins.website}>
+              <button>Website</button>
+            </a>
+            <br />
           </div>
         </div>
         <div className="details-right">
@@ -250,19 +214,62 @@ export default function DetailsCoin() {
               ""
             )}
           </div>
-          <div className="details-right-socials">
-            <a href={detailsCoins.telegram}>
-              <button>Telegram</button>
-            </a>
-            <br />
-            <a href={detailsCoins.twitter}>
-              <button>Twitter</button>
-            </a>
-            <br />
-            <a href={detailsCoins.website}>
-              <button>Website</button>
-            </a>
-            <br />
+          <div className="details-left-desc-reacts">
+            <p style={{ paddingTop: "20px" }} className="details-left-desc">
+              {detailsCoins.description}
+            </p>
+            <div className="details-reacts">
+              <span
+                onClick={() => moonHandler(detailsCoins.moon, detailsCoins.id)}
+                title="To the moon"
+                className="details-reacts_icons"
+              >
+                🚀
+              </span>
+              <span
+                onClick={() => fireHandler(detailsCoins.fire, detailsCoins.id)}
+                title="On fire"
+                className="details-reacts_icons"
+              >
+                🔥
+              </span>
+              <span
+                onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
+                title="Gem"
+                className="details-reacts_icons"
+              >
+                💎
+              </span>
+              <span
+                onClick={() =>
+                  heartHandler(detailsCoins.heart, detailsCoins.id)
+                }
+                title="Love it"
+                className="details-reacts_icons details-reacts_icons_heart"
+              >
+                <BsHeartFill />
+              </span>
+              <span
+                onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
+                title="Joy"
+                className="details-reacts_icons"
+              >
+                😀
+              </span>
+              <span
+                onClick={() => likedHandler(detailsCoins.like, detailsCoins.id)}
+                title="Like it"
+                className="details-reacts_icons"
+              >
+                👍
+              </span>
+              <span>{moonS || detailsCoins.moon}</span>
+              <span>{fireS || detailsCoins.fire}</span>
+              <span>{gemS || detailsCoins.gem}</span>
+              <span>{heartS || detailsCoins.heart}</span>
+              <span>{joyS || detailsCoins.joy}</span>
+              <span>{likedS || detailsCoins.liked}</span>
+            </div>
           </div>
           <div className="details-right-more">
             <p onClick={() => getRandomCoins()}>Discover</p>

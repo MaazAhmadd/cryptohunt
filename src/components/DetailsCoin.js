@@ -243,11 +243,11 @@ export default function DetailsCoin() {
                 <br />
                 <p className="details-right-price-h">Market Cap</p>
                 <p className="details-right-price-b">
-                  {detailsCoins.market_cap}
+                  {`$${detailsCoins.market_cap}`}
                 </p>
                 <br />
                 <p className="details-right-price-h">Launch date</p>
-                <p className="details-right-price-b">{`$${detailsCoins.launch}`}</p>
+                <p className="details-right-price-b">{detailsCoins.launch}</p>
                 <br />
                 {dectoken.role === "admin" ? (
                   <div>

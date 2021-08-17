@@ -130,11 +130,19 @@ export default function DetailsCoin() {
             <div className="details-left">
               <div className="details-left-top">
                 <div className="details-left-top1">
-                  <img
-                    src={detailsCoins.logo}
-                    alt="coin_logo"
-                    style={{ marginRight: "2%" }}
-                  />
+                  {detailsCoins.logo ? (
+                    <img
+                      src={detailsCoins.logo}
+                      alt="logo"
+                      style={{ marginRight: "2%" }}
+                    />
+                  ) : (
+                    <img
+                      src="../defaultLogo"
+                      alt="logo"
+                      style={{ marginRight: "2%" }}
+                    />
+                  )}
                   <p
                     style={{
                       fontSize: "215%",

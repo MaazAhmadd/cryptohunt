@@ -186,7 +186,13 @@ function AddCoin() {
                   id="launch"
                   type="text"
                   label="Launch Date"
-                  placeholder="Ex DD/MM/YYYY"
+                  onFocus={(e) => {
+                    e.target.type = "date";
+                  }}
+                  onBlur={(e) => {
+                    e.target.type = "text";
+                  }}
+                  // placeholder="Ex DD/MM/YYYY"
                   required
                 />
               </div>

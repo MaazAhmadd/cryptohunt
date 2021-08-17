@@ -474,6 +474,9 @@ tr:hover {
   margin: 2%;
 }
 @media screen and (max-width: 768px) {
+  .details-left-chain {
+    margin-left: 0;
+  }
   .details-left-top1 > button {
     margin-right: 5%;
     margin-left: 0;

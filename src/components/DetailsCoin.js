@@ -293,7 +293,7 @@ export default function DetailsCoin() {
                           ></img>
                         ) : (
                           <img
-                            src="defaultLogo.jpg"
+                            src="../defaultLogo.jpg"
                             alt="logo"
                             style={{ height: "35px", width: "35px" }}
                           ></img>

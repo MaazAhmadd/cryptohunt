@@ -135,7 +135,7 @@ export default function DetailsCoin() {
                 style={{
                   fontSize: "100%",
                   fontWeight: "600",
-                  marginLeft: "-15%",
+                  marginLeft: "-10%",
                 }}
               >
                 {detailsCoins.name}
@@ -148,7 +148,7 @@ export default function DetailsCoin() {
                   height: "20px",
                   textAlign: "center",
                   paddingTop: "0.6%",
-                  marginLeft: "-10%",
+                  marginLeft: "-5%",
                   borderRadius: "6px",
                 }}
               >

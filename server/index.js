@@ -331,7 +331,7 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
   connection.query(
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {
-      if (results.length > 0) {
+      if (results && results.length > 0) {
         var coin_results = [];
         // for each result
         results.forEach((result) => {
@@ -340,6 +340,8 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
         });
         // for each result
         res.send(JSON.stringify({ coin_results }));
+      } else {
+        res.send("nothing");
       }
     }
   );

@@ -24,24 +24,25 @@ function Home() {
   const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token = localStorage.getItem("token");
-  useEffect(() => {
-    //fetch
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-    getCoinPromotedData();
-    getCoinBestData();
-    getCoinTodayBestData();
-    getCoinUnapprovedData();
-  }, []);
-
   axios.defaults.headers.common["x-auth-token"] = token;
   let dectoken = { role: "notAdmin" };
 
   try {
     dectoken = jwtDecode(token);
   } catch (ex) {}
+  useEffect(() => {
+    //fetch
+    // let myF = async () => {
+    //   token = await localStorage.getItem("token");
+    // };
+    // myF();
+    if (dectoken.role === "admin") {
+      getCoinUnapprovedData();
+    }
+    getCoinPromotedData();
+    getCoinBestData();
+    getCoinTodayBestData();
+  }, []);
 
   // try {
   //   let dectoken = jwtDecode(token);

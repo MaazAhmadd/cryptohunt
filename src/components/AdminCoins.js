@@ -91,9 +91,16 @@ export default function AdminCoins({ unapprovedCoins }) {
         let isVolumePositive = Math.sign(change) == "1";
         allCoins.push({
           id: coin.id,
-          logo: (
+          logo: coin.logo ? (
             <img
               src={coin.logo}
+              alt="logo"
+              style={{ width: "40px", height: "40px" }}
+            ></img>
+          ) : (
+            <img
+              src="defaultLogo.jpg"
+              alt="logo"
               style={{ width: "40px", height: "40px" }}
             ></img>
           ),

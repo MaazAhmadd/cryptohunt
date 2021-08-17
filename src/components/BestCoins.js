@@ -103,9 +103,16 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
         if (coin.name) {
           allCoins.push({
             id: coin.id,
-            logo: (
+            logo: coin.logo ? (
               <img
                 src={coin.logo}
+                alt="logo"
+                style={{ width: "40px", height: "40px" }}
+              ></img>
+            ) : (
+              <img
+                src="defaultLogo.jpg"
+                alt="logo"
                 style={{ width: "40px", height: "40px" }}
               ></img>
             ),
@@ -258,10 +265,17 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
         if (coin.name) {
           allCoins.push({
             id: coin.id,
-            logo: (
+            logo: coin.logo ? (
               <img
                 src={coin.logo}
+                alt="logo"
                 style={{ width: "30px", height: "30px", marginTop: "8px" }}
+              ></img>
+            ) : (
+              <img
+                src="defaultLogo.jpg"
+                alt="logo"
+                style={{ width: "30px", height: "30px" }}
               ></img>
             ),
             name: coin.name,

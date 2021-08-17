@@ -77,9 +77,16 @@ export default (coins) => {
       if (coin.name) {
         allCoins.push({
           id: coin.id,
-          logo: (
+          logo: coin.logo ? (
             <img
               src={coin.logo}
+              alt="logo"
+              style={{ width: "40px", height: "40px" }}
+            ></img>
+          ) : (
+            <img
+              src="defaultLogo.jpg"
+              alt="logo"
               style={{ width: "40px", height: "40px" }}
             ></img>
           ),

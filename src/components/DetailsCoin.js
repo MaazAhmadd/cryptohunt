@@ -11,6 +11,7 @@ const apiUrl = config.API_URL;
 export default function DetailsCoin() {
   const [detailsCoins, setDetailsCoins] = React.useState([]);
   const [randomCoins, setRandomCoins] = React.useState([]);
+  const [status, setStatus] = useState(false);
   const [moonS, setMoon] = React.useState(0);
   const [fireS, setFire] = React.useState(0);
   const [gemS, setGem] = React.useState(0);
@@ -40,6 +41,7 @@ export default function DetailsCoin() {
     //fetch
     await axios.get(linkk).then(({ data }) => {
       setDetailsCoins(data[0]);
+      setStatus(true);
     });
   };
   const getRandomCoins = async () => {
@@ -106,189 +108,208 @@ export default function DetailsCoin() {
 
   return (
     <>
-      <a
-        onClick={() => {
-          window.location.href = "/";
-        }}
-        // to="/"
-        style={{
-          cursor: "pointer",
-          textDecoration: "none",
-          marginLeft: "5%",
-          marginTop: "5%",
-          fontSize: "x-large",
-          color: "black",
-        }}
-      >
-        <i>{<BsArrowLeft />}</i> Back to Home
-      </a>
-      <div className="details-page">
-        <div className="details-left">
-          <div className="details-left-top">
-            <div className="details-left-top1">
-              <img
-                src={detailsCoins.logo}
-                alt="coin_logo"
-                style={{ marginRight: "2%" }}
-              />
-              <p
-                style={{
-                  fontSize: "215%",
-                  fontWeight: "600",
-                  marginLeft: "-34%",
-                }}
-              >
-                {detailsCoins.name}
-              </p>
-              <p
-                style={{
-                  fontSize: "150%",
-                  backgroundColor: "lightgray",
-                  width: "8%",
-                  height: "40px",
-                  textAlign: "center",
-                  paddingTop: "0.3%",
-                  marginLeft: "-32%",
-                  borderRadius: "7px",
-                }}
-              >
-                {detailsCoins.symbol}
-              </p>
-
-              <button
-                // onClick={() => handleVoteClick(coin.id)}
-                title="Vote?"
-                className="promoted-table_votebtn"
-              >
-                <BsCapslockFill />
-                <span> </span>
-                {!detailsCoins.votes_count
-                  ? "0"
-                  : Math.abs(detailsCoins.votes_count)}
-              </button>
-            </div>
-            <div className="details-left-top2">
-              <p className="details-left-chain">
-                Binance Smart Chain: {detailsCoins.binancesmartchain}
-              </p>
-            </div>
-          </div>
-
-          <p className="details-left-desc">{detailsCoins.description}</p>
-          <div className="details-reacts">
-            <span
-              onClick={() => moonHandler(detailsCoins.moon, detailsCoins.id)}
-              title="To the moon"
-              className="details-reacts_icons"
-            >
-              🚀
-            </span>
-            <span
-              onClick={() => fireHandler(detailsCoins.fire, detailsCoins.id)}
-              title="On fire"
-              className="details-reacts_icons"
-            >
-              🔥
-            </span>
-            <span
-              onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
-              title="Gem"
-              className="details-reacts_icons"
-            >
-              💎
-            </span>
-            <span
-              onClick={() => heartHandler(detailsCoins.heart, detailsCoins.id)}
-              title="Love it"
-              className="details-reacts_icons details-reacts_icons_heart"
-            >
-              <BsHeartFill />
-            </span>
-            <span
-              onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
-              title="Joy"
-              className="details-reacts_icons"
-            >
-              😀
-            </span>
-            <span
-              onClick={() => likedHandler(detailsCoins.like, detailsCoins.id)}
-              title="Like it"
-              className="details-reacts_icons"
-            >
-              👍
-            </span>
-            <span>{moonS || detailsCoins.moon}</span>
-            <span>{fireS || detailsCoins.fire}</span>
-            <span>{gemS || detailsCoins.gem}</span>
-            <span>{heartS || detailsCoins.heart}</span>
-            <span>{joyS || detailsCoins.joy}</span>
-            <span>{likedS || detailsCoins.liked}</span>
-          </div>
-        </div>
-        <div className="details-right">
-          <div className="details-right-price">
-            <p className="details-right-price-h">Price</p>
-
-            <p className="details-right-price-b">{detailsCoins.price}</p>
-            <br />
-            <p className="details-right-price-h">Market Cap</p>
-
-            <p className="details-right-price-b">{detailsCoins.market_cap}</p>
-            <br />
-            <p className="details-right-price-h">Launch date</p>
-
-            <p className="details-right-price-b">{detailsCoins.launch}</p>
-            <br />
-            {dectoken.role === "admin" ? (
-              <div>
-                <p className="details-right-price-h">Coin ID</p>
-                <p className="details-right-price-b">{detailsCoins.id}</p>
-                <br />
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="details-right-socials">
-            <a href={detailsCoins.telegram}>
-              <button>Telegram</button>
-            </a>
-            <br />
-            <a href={detailsCoins.twitter}>
-              <button>Twitter</button>
-            </a>
-            <br />
-            <a href={detailsCoins.website}>
-              <button>Website</button>
-            </a>
-            <br />
-          </div>
-          <div className="details-right-more">
-            <p onClick={() => getRandomCoins()}>Discover</p>
-            <span>
-              {randomCoins.map((rcoin) => {
-                return (
-                  <div
-                    onClick={() => {
-                      let location = `/coins/${rcoin.id}`;
-                      window.location.href = location;
+      {status ? (
+        <div>
+          <a
+            onClick={() => {
+              window.location.href = "/";
+            }}
+            // to="/"
+            style={{
+              cursor: "pointer",
+              textDecoration: "none",
+              marginLeft: "5%",
+              marginTop: "5%",
+              fontSize: "x-large",
+              color: "black",
+            }}
+          >
+            <i>{<BsArrowLeft />}</i> Back to Home
+          </a>
+          <div className="details-page">
+            <div className="details-left">
+              <div className="details-left-top">
+                <div className="details-left-top1">
+                  <img
+                    src={detailsCoins.logo}
+                    alt="coin_logo"
+                    style={{ marginRight: "2%" }}
+                  />
+                  <p
+                    style={{
+                      fontSize: "215%",
+                      fontWeight: "600",
+                      marginLeft: "-34%",
                     }}
-                    className="details-right-more_coin"
                   >
-                    <img
-                      src={rcoin.logo}
-                      style={{ height: "40px", width: "40px" }}
-                    ></img>
-                    <p className="details-right-more_coin_text">{rcoin.name}</p>
+                    {detailsCoins.name}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "150%",
+                      backgroundColor: "lightgray",
+                      width: "8%",
+                      height: "40px",
+                      textAlign: "center",
+                      paddingTop: "0.3%",
+                      marginLeft: "-32%",
+                      borderRadius: "7px",
+                    }}
+                  >
+                    {detailsCoins.symbol}
+                  </p>
+                  <button
+                    // onClick={() => handleVoteClick(coin.id)}
+                    title="Vote?"
+                    className="promoted-table_votebtn"
+                  >
+                    <BsCapslockFill />
+                    <span> </span>
+                    {!detailsCoins.votes_count
+                      ? "0"
+                      : Math.abs(detailsCoins.votes_count)}
+                  </button>
+                </div>
+                <div className="details-left-top2">
+                  <p className="details-left-chain">
+                    Binance Smart Chain: {detailsCoins.binancesmartchain}
+                  </p>
+                </div>
+              </div>
+              <p className="details-left-desc">{detailsCoins.description}</p>
+              <div className="details-reacts">
+                <span
+                  onClick={() =>
+                    moonHandler(detailsCoins.moon, detailsCoins.id)
+                  }
+                  title="To the moon"
+                  className="details-reacts_icons"
+                >
+                  🚀
+                </span>
+                <span
+                  onClick={() =>
+                    fireHandler(detailsCoins.fire, detailsCoins.id)
+                  }
+                  title="On fire"
+                  className="details-reacts_icons"
+                >
+                  🔥
+                </span>
+                <span
+                  onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
+                  title="Gem"
+                  className="details-reacts_icons"
+                >
+                  💎
+                </span>
+                <span
+                  onClick={() =>
+                    heartHandler(detailsCoins.heart, detailsCoins.id)
+                  }
+                  title="Love it"
+                  className="details-reacts_icons details-reacts_icons_heart"
+                >
+                  <BsHeartFill />
+                </span>
+                <span
+                  onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
+                  title="Joy"
+                  className="details-reacts_icons"
+                >
+                  😀
+                </span>
+                <span
+                  onClick={() =>
+                    likedHandler(detailsCoins.like, detailsCoins.id)
+                  }
+                  title="Like it"
+                  className="details-reacts_icons"
+                >
+                  👍
+                </span>
+                <span>{moonS || detailsCoins.moon}</span>
+                <span>{fireS || detailsCoins.fire}</span>
+                <span>{gemS || detailsCoins.gem}</span>
+                <span>{heartS || detailsCoins.heart}</span>
+                <span>{joyS || detailsCoins.joy}</span>
+                <span>{likedS || detailsCoins.liked}</span>
+              </div>
+            </div>
+            <div className="details-right">
+              <div className="details-right-price">
+                <p className="details-right-price-h">Price</p>
+                <p className="details-right-price-b">{detailsCoins.price}</p>
+                <br />
+                <p className="details-right-price-h">Market Cap</p>
+                <p className="details-right-price-b">
+                  {detailsCoins.market_cap}
+                </p>
+                <br />
+                <p className="details-right-price-h">Launch date</p>
+                <p className="details-right-price-b">{detailsCoins.launch}</p>
+                <br />
+                {dectoken.role === "admin" ? (
+                  <div>
+                    <p className="details-right-price-h">Coin ID</p>
+                    <p className="details-right-price-b">{detailsCoins.id}</p>
                     <br />
                   </div>
-                );
-              })}
-            </span>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="details-right-socials">
+                <a href={detailsCoins.telegram}>
+                  <button>Telegram</button>
+                </a>
+                <br />
+                <a href={detailsCoins.twitter}>
+                  <button>Twitter</button>
+                </a>
+                <br />
+                <a href={detailsCoins.website}>
+                  <button>Website</button>
+                </a>
+                <br />
+              </div>
+              <div className="details-right-more">
+                <p onClick={() => getRandomCoins()}>Discover</p>
+                <span>
+                  {randomCoins.map((rcoin) => {
+                    return (
+                      <div
+                        onClick={() => {
+                          let location = `/coins/${rcoin.id}`;
+                          window.location.href = location;
+                        }}
+                        className="details-right-more_coin"
+                      >
+                        <img
+                          src={rcoin.logo}
+                          style={{ height: "40px", width: "40px" }}
+                        ></img>
+                        <p className="details-right-more_coin_text">
+                          {rcoin.name}
+                        </p>
+                        <br />
+                      </div>
+                    );
+                  })}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="load-wrapp">
+          <div className="load-3">
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -9,15 +9,15 @@ const currentUrl = config.CURRENT_URL;
 const apiUrl = config.API_URL;
 
 export default function DetailsCoin() {
-  const [detailsCoins, setDetailsCoins] = React.useState([]);
-  const [randomCoins, setRandomCoins] = React.useState([]);
+  const [detailsCoins, setDetailsCoins] = useState([]);
+  const [randomCoins, setRandomCoins] = useState([]);
   const [status, setStatus] = useState(false);
-  const [moonS, setMoon] = React.useState(0);
-  const [fireS, setFire] = React.useState(0);
-  const [gemS, setGem] = React.useState(0);
-  const [heartS, setHeart] = React.useState(0);
-  const [joyS, setJoy] = React.useState(0);
-  const [likedS, setLiked] = React.useState(0);
+  const [moonS, setMoon] = useState(0);
+  const [fireS, setFire] = useState(0);
+  const [gemS, setGem] = useState(0);
+  const [heartS, setHeart] = useState(0);
+  const [joyS, setJoy] = useState(0);
+  const [likedS, setLiked] = useState(0);
 
   let token = localStorage.getItem("token");
   React.useEffect(() => {

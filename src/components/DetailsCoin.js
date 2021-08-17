@@ -40,7 +40,7 @@ export default function DetailsCoin() {
   const getCoinDetailsData = async () => {
     //fetch
     await axios.get(linkk).then(({ data }) => {
-      setStatus(true);
+      // setStatus(true);
       setDetailsCoins(data[0]);
     });
   };

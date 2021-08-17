@@ -211,10 +211,14 @@ export default function AdminCoins({ unapprovedCoins }) {
 
   return (
     <>
-      {unapprovedCoins.length >= 1 ? (
-        <h1 className="promoted-table_heading">Pending coins</h1>
+      {unapprovedCoins ? (
+        unapprovedCoins.length >= 1 ? (
+          <h1 className="promoted-table_heading">Pending coins</h1>
+        ) : (
+          <></>
+        )
       ) : (
-        <h1></h1>
+        <></>
       )}
       <div className="promoted-table_div promoted-table-admin">
         <table {...getTablePropsAdmin()} className="promoted-table">

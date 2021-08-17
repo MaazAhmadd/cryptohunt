@@ -299,10 +299,19 @@ export default function DetailsCoin() {
                         }}
                         className="details-right-more_coin"
                       >
-                        <img
-                          src={rcoin.logo}
-                          style={{ height: "40px", width: "40px" }}
-                        ></img>
+                        {rcoin.logo ? (
+                          <img
+                            src={rcoin.logo}
+                            alt="logo"
+                            style={{ height: "35px", width: "35px" }}
+                          ></img>
+                        ) : (
+                          <img
+                            src="defaultLogo.jpg"
+                            alt="logo"
+                            style={{ height: "35px", width: "35px" }}
+                          ></img>
+                        )}
                         <p className="details-right-more_coin_text">
                           {rcoin.name}
                         </p>

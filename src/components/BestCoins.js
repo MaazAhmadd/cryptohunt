@@ -33,10 +33,10 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
   };
 
   const manupilatingData = (coins) => {
-    let presale = coin.presale == "1";
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
+        let presale = coin.presale == "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {
@@ -180,6 +180,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
+        let presale = coin.presale == "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {

@@ -138,7 +138,7 @@ export default function DetailsCoin() {
                     />
                   ) : (
                     <img
-                      src="../defaultLogo"
+                      src="../defaultLogo.jpg"
                       alt="logo"
                       style={{ marginRight: "2%" }}
                     />

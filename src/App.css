@@ -210,8 +210,8 @@ td:last-child {
 }
 .promoted-table {
   border-collapse: collapse;
-  margin: 2% 5%;
-  width: 89%;
+  margin: 2% 8%;
+  width: 85%;
 }
 @media screen and (max-width: 550px) {
   .promoted-table_div {
@@ -338,6 +338,7 @@ tr:hover {
 }
 
 .promoted-table_heading {
+  margin-top: 1%;
   padding-left: 5%;
   margin-bottom: -0.6%;
   font-size: 1.3rem;
@@ -380,7 +381,7 @@ tr:hover {
   color: white;
 } */
 .bests-header {
-  margin-left: 5%;
+  margin-left: 8%;
   margin-bottom: -2%;
   margin-top: 45px;
 }

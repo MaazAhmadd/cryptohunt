@@ -15,7 +15,7 @@
  
 1. install mysql on you machine
 2. open your terminal/cmd/bash and type "mysql -u root -p" and enter the password for root user
-3. run the following mysql queries: 
+3. run the following mysql queries and please read comments: 
    "
     CREATE DATABASE cryptohunt;
     CREATE USER 'cryptohunt'@'localhost' IDENTIFIED WITH mysql_native_password BY 'cryptohunt';

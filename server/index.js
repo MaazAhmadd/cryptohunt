@@ -220,7 +220,6 @@ app.get("/coins", function (req, res) {
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {
-      console.log(results);
       if (results !== undefined && results[0].length > 0) {
         var coin_results = [];
         // for each result
@@ -316,7 +315,6 @@ app.post("/get/votes", function (req, res) {
     `SELECT count(user) AS totalVotes FROM votes WHERE coin_id=${coin_id};`,
     // `Select votes_count from coin where id='${coin_id}'`,
     function (error, results, fields) {
-      console.log(results);
       res.send(JSON.stringify(results[0]));
       // res.send(results[0]);
       // res.send(JSON.stringify({ votes: results }));
@@ -354,7 +352,6 @@ app.get("/admin/promote/:id", [auth, admin], function (req, res) {
       if (error || results.affectedRows === 0) {
         res.send("something not right with id no coin promoted");
       } else {
-        console.log(results);
         res.send("coin promoted please reload page");
       }
     }
@@ -368,7 +365,6 @@ app.get("/admin/rempromote/:id", [auth, admin], function (req, res) {
       if (error || results.affectedRows === 0) {
         res.send("something not right with id no coin unpromoted");
       } else {
-        console.log(results);
         res.send("coin unpromoted please reload page");
       }
     }

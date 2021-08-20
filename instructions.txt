@@ -21,6 +21,7 @@
     --now you're in cryptohunt database now go to the app folder and open the file cryptohunt.sql and copy all the code into the mysql command line and run it.
     
     "
+   then exit mysql by type 'exit' 
 4. run this:
    sudo nano /etc/mysql/conf.d/mysql.cnf
 
@@ -32,6 +33,7 @@
 
 (ctrl+x  ->  y  ->  enter) 
 6. sudo service mysql restart 
+7. "pm2 restart all"
 
 
 
@@ -49,13 +51,19 @@ sudo apt install nodejs
    "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
 2. open terminal in the main folder and type "npm i"
 3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
+***
+ before you make a production build you have to update api_url in config.json file for that you go to src folder and "nano config.json" and type url in the place like this :
+{
+ "API_URL" : "http://xxx.xxx.xxx.xxx:8080"
+} 
+ ***
+
 4. run "npm run build"
 5. install pm2 globally by running: "npm i -g pm2"
 6. then run "pm2 start serve -- -p 80 -- build"
 7. then open server folder "cd server" and type "npm i"
 8. then run "pm2 start node -- index.js"  
 
-** you have to update api_url in config.json file **
 
     
 

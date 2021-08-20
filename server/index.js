@@ -6,6 +6,7 @@ var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
 const api = require("./api_calls");
+const jwt_private = "cryptohuntprivateKeycc3";
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: ", err);
@@ -15,7 +16,7 @@ const auth = function (req, res, next) {
   const token = req.header("x-auth-token");
   if (!token) return res.status(401).send("Access denied. No token provided.");
   try {
-    const decoded = jwt.verify(token, "cryptohuntprivateKeycc3");
+    const decoded = jwt.verify(token, jwt_private);
     req.user = decoded;
     next();
   } catch (ex) {
@@ -74,7 +75,7 @@ app.post("/login", function (req, res) {
               email: results[0].email,
               role: results[0].role,
             },
-            "cryptohuntprivateKeycc3"
+            jwt_private
           );
           res.send(
             createResponse("success", "User Logged In", token, results[0].role)
@@ -106,31 +107,34 @@ app.post("/register", function (req, res) {
       email: email,
       role: "user",
     },
-    "cryptohuntprivateKeycc3"
+    jwt_private
   );
-
-  connection.query(
-    `Select * from users where email='${email}';`,
-    function (error, results, fields) {
-      if (results.length >= 1) {
-        res.send(createResponse("error", "User Already Exists"));
-      } else {
-        connection.query(
-          `Insert into users(email,password,name,role) VALUES ('${email}','${password}','${name}','user')`,
-          function (err, success) {
-            if (err) {
-              res.send(createResponse("error", "An Unknown Error Occured!"));
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    connection.query(
+      `Select * from users where email='${email}';`,
+      function (error, results, fields) {
+        if (results.length >= 1) {
+          res.send(createResponse("error", "User Already Exists"));
+        } else {
+          connection.query(
+            `Insert into users(email,password,name,role) VALUES ('${email}','${password}','${name}','user')`,
+            function (err, success) {
+              if (err) {
+                res.send(createResponse("error", "An Unknown Error Occured!"));
+              }
+              res.send(
+                createResponse("success", "User Registered Succesfully!", token)
+              );
             }
-            res.send(
-              createResponse("success", "User Registered Succesfully!", token)
-            );
-          }
-        );
+          );
 
-        //end else
+          //end else
+        }
       }
-    }
-  );
+    );
+  } else {
+    res.send(createResponse("error", "Enter a valid email"));
+  }
 });
 /** User Registers **/
 

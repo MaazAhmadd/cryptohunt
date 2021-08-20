@@ -31,37 +31,25 @@ function App() {
 
       <Switch>
         <Route path="/" exact component={Home} />
-      </Switch>
 
-      <Switch>
         <Route
           path="/coins/:id"
           exact
-          component={window.innerWidth < 551 ? DetailsCoinSmall : DetailsCoin}
+          children={
+            window.innerWidth < 551 ? <DetailsCoinSmall /> : <DetailsCoin />
+          }
         />
-      </Switch>
 
-      <Switch>
         <Route path="/logout" exact component={doLogout} />
-      </Switch>
 
-      <Switch>
         <Route path="/login" exact component={Login} />
-      </Switch>
 
-      <Switch>
         <Route path="/register" exact component={Register} />
-      </Switch>
 
-      <Switch>
         <Route path="/add_coin" exact component={AddCoin} />
-      </Switch>
 
-      <Switch>
         <Route path="/promote" exact component={Promote} />
-      </Switch>
 
-      <Switch>
         <Route path="/newsletter" exact component={Newsletter} />
       </Switch>
 

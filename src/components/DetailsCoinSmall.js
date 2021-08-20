@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import config from "../config.json";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
@@ -18,6 +18,8 @@ export default function DetailsCoin() {
   const [heartS, setHeart] = useState(0);
   const [joyS, setJoy] = useState(0);
   const [likedS, setLiked] = useState(0);
+
+  const history = useHistory();
 
   let token = localStorage.getItem("token");
   React.useEffect(() => {
@@ -112,7 +114,8 @@ export default function DetailsCoin() {
         <div>
           <a
             onClick={() => {
-              window.location.href = "/";
+              history.push("/");
+              // window.location.href = "/";
             }}
             // to="/"
             style={{

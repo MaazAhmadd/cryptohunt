@@ -2,11 +2,13 @@ import React from "react";
 import manupilatingData from "./utils/manupilatingData";
 import manupilatingSmallData from "./utils/manupilatingSmallData";
 import { useTable } from "react-table";
+import { useHistory } from "react-router-dom";
 import doVote from "./utils/doVote";
 import config from "../config.json";
 const currentUrl = config.CURRENT_URL;
 
 export default function PromotedCoins({ promotedCoin }) {
+  const history = useHistory();
   // const [voted, setVoted] = React.useState(false);
   let promotedCoins;
   if (window.innerWidth < 551) {
@@ -59,7 +61,8 @@ export default function PromotedCoins({ promotedCoin }) {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `${currentUrl}/coins/${row.id}`);
+      return history.push(`/coins/${row.id}`);
+      // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   return (

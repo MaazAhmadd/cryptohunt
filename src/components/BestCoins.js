@@ -3,6 +3,7 @@ import axios from "axios";
 import qs from "querystring";
 import config from "../config.json";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 import {
   useTable,
   useSortBy,
@@ -24,11 +25,14 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
 
   const [showSearch, setShowSearch] = React.useState(false);
 
+  const history = useHistory();
+
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `${currentUrl}/coins/${row.id}`);
+      return history.push(`/coins/${row.id}`);
+      // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
 

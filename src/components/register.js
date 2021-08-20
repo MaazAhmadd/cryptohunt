@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import config from "../config.json";
+import { toast } from "react-toastify";
 const qs = require("querystring");
 const apiUrl = config.API_URL;
 
@@ -29,7 +30,7 @@ function Register() {
   async function doLogin(e) {
     if (user.email !== "" && user.password !== "" && user.name !== "") {
       if (user.password.length < 6) {
-        setResp("Error: Password Should Be At Least 6 Digits Long!");
+        toast("Error: Password Should Be At Least 6 Digits Long!");
       } else {
         // secure password :)
         await axios
@@ -42,7 +43,7 @@ function Register() {
             })
           )
           .then((resp) => {
-            setResp(resp.data.msg);
+            toast(resp.data.msg);
 
             if (resp.data.code == "success") {
               localStorage.setItem("token", resp.data.token);
@@ -51,7 +52,7 @@ function Register() {
           });
       }
     } else {
-      setResp("Error: Please Fill All Fields");
+      toast("Error: Please Fill All Fields");
     }
   }
 

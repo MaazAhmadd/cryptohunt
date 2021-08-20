@@ -12,10 +12,10 @@ sudo apt install nodejs
 2. open terminal in the main folder and type "npm i"
 3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
 4. run "npm run build"
-8. install pm2 globally by running: "npm i -g pm2"
-9. then run "pm2 start serve -- -p 80 -- build"
-6. then open server folder and type "npm i"
-7. then run "pm2 start node -- index.js" 
+5. install pm2 globally by running: "npm i -g pm2"
+6. then run "pm2 start serve -- -p 80 -- build"
+7. then open server folder and type "npm i"
+8. then run "pm2 start node -- index.js" 
 
 ** you have to update api_url in config.json file **
 

@@ -6,7 +6,6 @@ import config from "../config.json";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";
 
-const currentUrl = config.CURRENT_URL;
 const apiUrl = config.API_URL;
 
 export default function DetailsCoin() {

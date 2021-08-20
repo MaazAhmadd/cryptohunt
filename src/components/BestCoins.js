@@ -18,7 +18,6 @@ import {
 } from "react-icons/bs";
 import { GlobalFilter } from "./GlobalFilter";
 const apiUrl = config.API_URL;
-const currentUrl = config.CURRENT_URL;
 
 export default function BestCoins({ promotedCoin: bestCoin, today }) {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");

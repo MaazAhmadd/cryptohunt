@@ -6,7 +6,7 @@
 5. run "serve -s build"
 6. then open server folder in different terminal and type "npm i"
 7. then run "node index.js"
-*** Make sure to set your CURRENT_URL and API_URL in config.json file ***
+*** Make sure to set your API_URL in config.json file ***
 
 
 

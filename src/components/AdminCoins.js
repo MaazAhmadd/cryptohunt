@@ -13,12 +13,13 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import config from "../config.json";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 const apiUrl = config.API_URL;
-const currentUrl = config.CURRENT_URL;
 
 export default function AdminCoins({ unapprovedCoins }) {
   const [user, setUser] = React.useState({});
   const [promo, setPromo] = React.useState({ promote: 0, presale: 0 });
+  const history = useHistory();
   // const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token = localStorage.getItem("token");
@@ -26,7 +27,8 @@ export default function AdminCoins({ unapprovedCoins }) {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return (window.location.href = `${currentUrl}/coins/${row.id}`);
+      return history.push(`/coins/${row.id}`);
+      // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   React.useEffect(() => {

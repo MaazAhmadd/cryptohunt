@@ -3,9 +3,6 @@ import manupilatingData from "./utils/manupilatingData";
 import manupilatingSmallData from "./utils/manupilatingSmallData";
 import { useTable } from "react-table";
 import { useHistory } from "react-router-dom";
-import doVote from "./utils/doVote";
-import config from "../config.json";
-const currentUrl = config.CURRENT_URL;
 
 export default function PromotedCoins({ promotedCoin }) {
   const history = useHistory();

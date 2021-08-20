@@ -15,14 +15,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 import config from "./config.json";
-const currentUrl = config.CURRENT_URL;
 
 function App() {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   function doLogout() {
     localStorage.removeItem("token");
-    window.location.href = currentUrl + "/login";
+    window.location.href = "/login";
   }
   return (
     <Router>

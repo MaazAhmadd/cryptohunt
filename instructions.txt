@@ -33,7 +33,6 @@
 
 (ctrl+x  ->  y  ->  enter) 
 6. sudo service mysql restart 
-7. "pm2 restart all"
 
 
 
@@ -63,6 +62,7 @@ sudo apt install nodejs
 6. then run "pm2 start serve -- -s -p 80 -- build"
 7. then open server folder "cd server" and type "npm i"
 8. then run "pm2 start node -- index.js"  
+9. "pm2 restart all"
 
 
     

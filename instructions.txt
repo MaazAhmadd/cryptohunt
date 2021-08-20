@@ -1,31 +1,5 @@
 ** Please create and use ubuntu not any other distro of linux **
    
-#install node
-curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-
-sudo apt update
-sudo apt install nodejs
-
-
-// instructions for npm //
-1. open and extract the provided zip file
-   OR clone repo from github:
-   "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
-2. open terminal in the main folder and type "npm i"
-3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
-4. run "npm run build"
-5. install pm2 globally by running: "npm i -g pm2"
-6. then run "pm2 start serve -- -p 80 -- build"
-7. then open server folder "cd server" and type "npm i"
-8. then run "pm2 start node -- index.js"  
-
-** you have to update api_url in config.json file **
-
-    
-
-
-
-
 // instructions for mysql //
  
 1. install mysql on you machine using following commands:
@@ -58,3 +32,33 @@ sudo apt install nodejs
 
 (ctrl+x  ->  y  ->  enter) 
 6. sudo service mysql restart 
+
+
+
+
+#install node
+   curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+
+sudo apt update
+sudo apt install nodejs
+
+
+// instructions for npm //
+1. open and extract the provided zip file
+   OR clone repo from github:
+   "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
+2. open terminal in the main folder and type "npm i"
+3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
+4. run "npm run build"
+5. install pm2 globally by running: "npm i -g pm2"
+6. then run "pm2 start serve -- -p 80 -- build"
+7. then open server folder "cd server" and type "npm i"
+8. then run "pm2 start node -- index.js"  
+
+** you have to update api_url in config.json file **
+
+    
+
+
+
+

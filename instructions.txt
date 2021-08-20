@@ -1,3 +1,5 @@
+** Please create and use ubuntu not any other distro of linux **
+   
 #install node
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
@@ -14,8 +16,8 @@ sudo apt install nodejs
 4. run "npm run build"
 5. install pm2 globally by running: "npm i -g pm2"
 6. then run "pm2 start serve -- -p 80 -- build"
-7. then open server folder and type "npm i"
-8. then run "pm2 start node -- index.js" 
+7. then open server folder "cd server" and type "npm i"
+8. then run "pm2 start node -- index.js"  
 
 ** you have to update api_url in config.json file **
 

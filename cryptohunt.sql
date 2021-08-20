@@ -109,11 +109,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `password`, `email`, `name`, `role`) VALUES
-(1, 'test', 'test@gmail.com', NULL, 'admin'),
-(2, 't', 'test@fmgail.com', 'Therapeuten', NULL),
-(3, 'thap', 'Thapa', 'Thap@gmail.com', NULL),
-(4, 'testest', 'test@fmgail.com', 'test', 'user'),
-(5, 'testtest', 'test@gmail.com', 'Test Iser', 'user');
+(1, 'testtest', 'test@gmail.com', 'Test Iser', 'user');
 
 -- --------------------------------------------------------
 

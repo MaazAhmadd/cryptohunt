@@ -1,19 +1,37 @@
+#install node
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+
+sudo apt update
+sudo apt install nodejs
+
+
 // instructions for npm //
 1. open and extract the provided zip file
+   OR clone repo from github:
+   "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
 2. open terminal in the main folder and type "npm i"
-3. for your ease you can install serve globally on your machine to serve react app. to do that type "npm i -g serve"
+3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
 4. run "npm run build"
-5. run "serve -s build"
+8. install pm2 globally by running: "npm i -g pm2"
+9. then run "pm2 start serve -- -p 80 -- build"
 6. then open server folder in different terminal and type "npm i"
-7. then run "node index.js"
-*** Make sure to set your API_URL in config.json file ***
+7. then run "pm2 start node -- index.js" 
+
+    
 
 
 
 
 // instructions for mysql //
  
-1. install mysql on you machine
+1. install mysql on you machine using following commands:
+   "
+   wget http://repo.mysql.com/mysql-apt-config_0.8.9-1_all.deb
+   sudo dpkg -i mysql-apt-config_0.8.9-1_all.deb
+
+   sudo apt-get update
+   sudo apt-get install mysql-server
+   "
 2. open your terminal/cmd/bash and type "mysql -u root -p" and enter the password for root user
 3. run the following mysql queries and please read comments: 
    "
@@ -35,4 +53,4 @@
 
 
 (ctrl+x  ->  y  ->  enter) 
-6. sudo service mysql restart
+6. sudo service mysql restart 

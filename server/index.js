@@ -81,7 +81,7 @@ app.post("/login", function (req, res) {
             createResponse("success", "User Logged In", token, results[0].role)
           );
         }
-        // if (results.length === 1) {
+        // if (results.length == 1) {
         //   res.send(createResponse("success", "User Logged In", results[0].role));
         else {
           res.send(createResponse("error", "Invalid Username/Password"));
@@ -159,7 +159,7 @@ app.post("/add_coin", auth, function (req, res) {
   connection.query(
     `Select * from coin where name='${name}' AND symbol='${symbol}'`,
     function (error, results, fields) {
-      if (results.length === 1) {
+      if (results.length == 1) {
         res.send(createResponse("error", "Coin Already Exists!"));
       } else {
         connection.query(
@@ -168,7 +168,7 @@ app.post("/add_coin", auth, function (req, res) {
             if (err)
               res.send(createResponse("error", "An Unknown Error Occured!"));
 
-            if (status === "approved") {
+            if (status == "approved") {
               res.send(createResponse("success", "Coin Added.."));
             } else {
               res.send(createResponse("success", "Coin Awaiting Approval.."));
@@ -245,9 +245,11 @@ app.get("/coins/today", function (req, res) {
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
   } catch (ex) {}
-
+  // `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;SELECT coin_id FROM votes WHERE user = '${
+  //   dectoken && dectoken.email
+  // }';`
   connection.query(
-    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;SELECT coin_id FROM votes WHERE user = '${
+    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY);SELECT coin_id FROM votes WHERE user = '${
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {

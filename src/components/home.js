@@ -2,20 +2,13 @@ import "../App.css";
 import "../responsive.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Height } from "@material-ui/icons";
 import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
-import AdminCoins from "./AdminCoins";
 import config from "../config.json";
-import jwtDecode from "jwt-decode";
-const qs = require("querystring");
-const moment = require("moment");
 
 const apiUrl = config.API_URL;
 
-//34.85.128.15
 function Home() {
-  // const [user, setUser] = React.useState({});
   const [promotedCoin, setPromotedCoins] = useState([]);
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);

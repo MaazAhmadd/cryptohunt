@@ -1,7 +1,6 @@
 import "../App.css";
-import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -50,32 +49,6 @@ function Login() {
       toast("Error: Please Fill All Fields");
     }
   }
-  // async function doLogin(e) {
-  //   if (user.email !== "" && user.password !== "") {
-  //     await axios
-  //       .post(
-  //         apiUrl + "/login",
-  //         qs.stringify({ email: user.email, password: user.password })
-  //       )
-  //       .then((resp) => {
-  //         setResp(resp.data.msg);
-
-  //         if (resp.data.code === "success") {
-  //           localStorage.setItem("logged_in", 1);
-  //           localStorage.setItem("user_email", user.email);
-  //           if (resp.data.role === "admin") {
-  //             // its admin
-  //             localStorage.setItem("is_admin", 1);
-  //             window.location.href = "./";
-  //           } else {
-  //             window.location.href = "./";
-  //           }
-  //         }
-  //       });
-  //   } else {
-  //     setResp("Error: Please Fill All Fields");
-  //   }
-  // }
 
   return (
     <>

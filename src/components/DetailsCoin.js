@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
 import axios from "axios";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import config from "../config.json";
 import { toast } from "react-toastify";
 import jwtDecode from "jwt-decode";

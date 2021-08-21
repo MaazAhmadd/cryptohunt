@@ -75,18 +75,6 @@ function Register() {
             <TextField
               variant="outlined"
               onChange={(e) => handleInput(e)}
-              id="email"
-              className="text_email"
-              type="text"
-              label="Email"
-              required
-            />
-          </div>
-
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
               id="name"
               className="text_name"
               type="text"
@@ -94,7 +82,17 @@ function Register() {
               required
             />
           </div>
-
+          <div className="input_wrapper">
+            <TextField
+              variant="outlined"
+              onChange={(e) => handleInput(e)}
+              id="email"
+              className="text_email"
+              type="text"
+              label="Email"
+              required
+            />
+          </div>
           <div className="input_wrapper">
             <TextField
               variant="outlined"

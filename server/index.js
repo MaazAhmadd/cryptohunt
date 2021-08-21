@@ -70,23 +70,32 @@ app.post("/login", function (req, res) {
     connection.query(
       `Select * FROM users WHERE email='${email}'`,
       async function (error, results, fields) {
-        const validPassword = await bcrypt.compare(
-          password,
-          results[0].password
-        );
-        if (validPassword && results.length >= 1) {
-          const token = jwt.sign(
-            {
-              name: results[0].name,
-              email: results[0].email,
-              role: results[0].role,
-            },
-            jwt_private
+        if (results.length >= 1) {
+          const validPassword = await bcrypt.compare(
+            password,
+            results[0].password
           );
+          if (validPassword) {
+            const token = jwt.sign(
+              {
+                name: results[0].name,
+                email: results[0].email,
+                role: results[0].role,
+              },
+              jwt_private
+            );
 
-          res.send(
-            createResponse("success", "User Logged In", token, results[0].role)
-          );
+            res.send(
+              createResponse(
+                "success",
+                "User Logged In",
+                token,
+                results[0].role
+              )
+            );
+          } else {
+            res.send(createResponse("error", "Invalid Username/Password"));
+          }
         } else {
           res.send(createResponse("error", "Invalid Username/Password"));
         }
@@ -98,15 +107,12 @@ app.post("/login", function (req, res) {
 });
 
 /** User Registers **/
-app.post("/register", function (req, res) {
+app.post("/register", async function (req, res) {
+  const salt = await bcrypt.genSalt(10);
   var email = req.body.email;
-  let password = hash(req.body.password);
+  let password = await bcrypt.hash(req.body.password, salt);
   var name = req.body.name;
 
-  const hash = async (password) => {
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
-  };
   const token = jwt.sign(
     {
       name: name,

@@ -249,7 +249,7 @@ app.get("/coins/today", function (req, res) {
   //   dectoken && dectoken.email
   // }';`
   connection.query(
-    `SELECT DISTINCT * FROM coin JOIN votes ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY);SELECT coin_id FROM votes WHERE user = '${
+    `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY);SELECT coin_id FROM votes WHERE user = '${
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {

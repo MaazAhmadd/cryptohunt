@@ -19,7 +19,8 @@ import {
 import { GlobalFilter } from "./GlobalFilter";
 const apiUrl = config.API_URL;
 
-export default function BestCoins({ promotedCoin: bestCoin, today }) {
+export default function BestCoins({ promotedCoin: bestCoin }) {
+  bestCoin = Array.from(new Set(bestCoin.map(JSON.stringify))).map(JSON.parse);
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   const [showSearch, setShowSearch] = React.useState(false);

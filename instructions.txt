@@ -53,6 +53,9 @@ sudo apt install nodejs
 8. then run "pm2 start node -- index.js"  
 9. "pm2 restart all"
 
+To make a user admin please go to mysql terminal and run this command:
+USE cryptohunt;
+UPDATE users set role="admin" WHERE email="yourEmail@gmail.com";
 
     
 

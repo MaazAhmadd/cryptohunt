@@ -6,7 +6,7 @@ var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
 const api = require("./api_calls");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const jwt_private = "cryptohuntprivateKeycc3";
 

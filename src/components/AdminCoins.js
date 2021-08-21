@@ -57,7 +57,8 @@ export default function AdminCoins() {
         })
       )
       .then(() => {
-        window.location = "/";
+        toast("Coin Approved");
+        setUnapprovedCoins(unapprovedCoins.filter((c) => c.id !== id));
       });
   };
   const reject = async (id) => {
@@ -69,7 +70,8 @@ export default function AdminCoins() {
         })
       )
       .then(() => {
-        window.location = "/";
+        toast("Coin Rejected");
+        setUnapprovedCoins(unapprovedCoins.filter((c) => c.id !== id));
       });
   };
   const manupilatingData = (coins) => {

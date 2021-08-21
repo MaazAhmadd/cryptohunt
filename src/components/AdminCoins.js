@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTable } from "react-table";
 import axios from "axios";
 import qs from "querystring";
@@ -16,13 +16,29 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 const apiUrl = config.API_URL;
 
-export default function AdminCoins({ unapprovedCoins }) {
-  const [user, setUser] = React.useState({});
-  const [promo, setPromo] = React.useState({ promote: 0, presale: 0 });
+export default function AdminCoins() {
+  const [unapprovedCoins, setUnapprovedCoins] = useState([]);
+  const [promo, setPromo] = useState({ promote: 0, presale: 0 });
+
   const history = useHistory();
-  // const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token = localStorage.getItem("token");
+  axios.defaults.headers.common["x-auth-token"] = token;
+  let dectoken = { role: "notAdmin" };
+
+  try {
+    dectoken = jwtDecode(token);
+  } catch (ex) {}
+  useEffect(() => {
+    if (dectoken.role === "admin") {
+      getCoinUnapprovedData();
+    }
+  }, []);
+  const getCoinUnapprovedData = async () => {
+    await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
+      setUnapprovedCoins(data.coin_results);
+    });
+  };
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
@@ -31,26 +47,6 @@ export default function AdminCoins({ unapprovedCoins }) {
       // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
-  React.useEffect(() => {
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-    try {
-      let dectoken = jwtDecode(token);
-      setUser(dectoken);
-    } catch (ex) {}
-    // getCoinUnapprovedData();
-  }, []);
-  axios.defaults.headers.common["x-auth-token"] = token;
-
-  // const handleClickRow = (row, cell) => {
-  //   if (cell.key.includes("vote")) {
-  //     return null;
-  //   } else {
-  //     return (window.location.href = `${currentUrl}/coins/${row.id}`);
-  //   }
-  // };
 
   const approve = async (id) => {
     await axios
@@ -58,7 +54,6 @@ export default function AdminCoins({ unapprovedCoins }) {
         apiUrl + "/approve_coin",
         qs.stringify({
           coin_id: id,
-          user: user.email,
         })
       )
       .then(() => {
@@ -71,7 +66,6 @@ export default function AdminCoins({ unapprovedCoins }) {
         apiUrl + "/reject_coin",
         qs.stringify({
           coin_id: id,
-          user: user.email,
         })
       )
       .then(() => {
@@ -218,7 +212,7 @@ export default function AdminCoins({ unapprovedCoins }) {
       });
   }
 
-  return (
+  return dectoken.role === "admin" ? (
     <>
       {unapprovedCoins ? (
         unapprovedCoins.length >= 1 ? (
@@ -313,5 +307,7 @@ export default function AdminCoins({ unapprovedCoins }) {
         </Button>
       </div>
     </>
+  ) : (
+    "you are not an Admin"
   );
 }

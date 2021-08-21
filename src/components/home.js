@@ -21,45 +21,15 @@ function Home() {
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
-  const [unapprovedCoins, setUnapprovedCoins] = React.useState([]);
 
   let token = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = token;
-  let dectoken = { role: "notAdmin" };
 
-  try {
-    dectoken = jwtDecode(token);
-  } catch (ex) {}
   useEffect(() => {
-    //fetch
-    // let myF = async () => {
-    //   token = await localStorage.getItem("token");
-    // };
-    // myF();
-    if (dectoken.role === "admin") {
-      getCoinUnapprovedData();
-    }
     getCoinPromotedData();
     getCoinBestData();
     getCoinTodayBestData();
   }, []);
-
-  // try {
-  //   let dectoken = jwtDecode(token);
-  //   setUser(dectoken);
-  //   console.log(dectoken);
-  // } catch (ex) {}
-
-  const getCoinUnapprovedData = async () => {
-    //fetch
-    await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
-      setUnapprovedCoins(data.coin_results);
-      // if (data) {
-      //   setUnapprovedCoins([]);
-      // } else {
-      // }
-    });
-  };
 
   const getCoinPromotedData = async () => {
     //fetch
@@ -95,7 +65,6 @@ function Home() {
 
   return (
     <>
-      {/* {status ? <div className="promoted_wrapper"></div> : <p>loading...</p>} */}
       {status ? (
         <div>
           <PromotedCoins promotedCoin={promotedCoin} />
@@ -122,17 +91,6 @@ function Home() {
           ) : (
             <BestCoins promotedCoin={bestTodayCoin} today={true} />
           )}
-          {dectoken.role === "admin" ? (
-            <AdminCoins unapprovedCoins={unapprovedCoins} />
-          ) : (
-            ""
-          )}
-
-          {/* {user.role === "admin" ? (
-            <AdminCoins unapprovedCoins={unapprovedCoins} />
-          ) : (
-            <></>
-          )} */}
         </div>
       ) : (
         <div className="load-wrapp">

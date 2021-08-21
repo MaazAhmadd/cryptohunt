@@ -10,11 +10,16 @@ import Login from "./components/login";
 import Navbar from "./components/navbar";
 import Register from "./components/register";
 import AddCoin from "./components/addcoin";
+import AdminCoins from "./components/AdminCoins";
+import Error from "./components/Error";
+import Disclaimer from "./components/Disclaimer";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsConditions from "./components/TermsConditions";
+import CoinIndex from "./components/CoinIndex";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
-import config from "./config.json";
 
 function App() {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
@@ -41,6 +46,8 @@ function App() {
 
         <Route path="/logout" exact component={doLogout} />
 
+        <Route path="/admin" exact component={AdminCoins} />
+
         <Route path="/login" exact component={Login} />
 
         <Route path="/register" exact component={Register} />
@@ -50,6 +57,16 @@ function App() {
         <Route path="/promote" exact component={Promote} />
 
         <Route path="/newsletter" exact component={Newsletter} />
+
+        <Route path="/disclaimer" exact component={Disclaimer} />
+
+        <Route path="/privacy-policy" exact component={PrivacyPolicy} />
+
+        <Route path="/terms-conditions" exact component={TermsConditions} />
+
+        <Route path="/coins-index" exact component={CoinIndex} />
+
+        <Route path="*" exact component={Error} />
       </Switch>
 
       <Footer />

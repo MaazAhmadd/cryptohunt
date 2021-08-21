@@ -26,7 +26,6 @@ body {
 a {
   text-decoration: none !important;
   cursor: pointer;
-  color: #007bff;
 }
 input[type="text"],
 textarea {
@@ -688,14 +687,16 @@ tr > td:nth-child(2) {
   text-align: center;
 }
 .footer-main > div > ul > li {
+  display: inline;
+}
+.footer-main > div > ul > li > a {
   cursor: pointer;
   color: gray;
   font-weight: 500;
   font-size: 1.2rem;
   padding: 0 9px;
-  display: inline;
 }
-.footer-main > div > ul > li:hover {
+.footer-main > div > ul > li > a:hover {
   color: #202020;
 }
 .footer-main > p {
@@ -843,4 +844,12 @@ nav {
 
 svg {
   vertical-align: middle;
+}
+.coin-index-single {  
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin: 0.8%;
+}
+.coin-index-single:hover {
+  color: gray;
 }

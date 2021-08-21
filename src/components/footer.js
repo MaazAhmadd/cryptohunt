@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function footer() {
   return (
@@ -6,10 +7,18 @@ export default function footer() {
       <br />
       <div style={{ display: "block" }}>
         <ul>
-          <li>Disclaimer</li>
-          <li>Privacy Policy</li>
-          <li>Terms &amp; conditions</li>
-          <li>Coins Index</li>
+          <li>
+            <Link to="/disclaimer"> Disclaimer</Link>
+          </li>
+          <li>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+          </li>
+          <li>
+            <Link to="/terms-conditions">Terms &amp; conditions</Link>
+          </li>
+          <li>
+            <Link to="/coins-index">Coins Index</Link>
+          </li>
         </ul>
       </div>
       <img src="" alt="" />

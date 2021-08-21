@@ -406,20 +406,10 @@ app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
 //approve coin
 app.post("/approve_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
-  let user = req.body.user;
   connection.query(
-    `select role from users where email = '${user}';`,
+    `UPDATE coin set status = 'approved' where id = ${coin_id}`,
     function (error, results, fields) {
-      if (results[0] != undefined && results[0].role == "admin") {
-        connection.query(
-          `UPDATE coin set status = 'approved' where id = ${coin_id}`,
-          function (error, results, fields) {
-            res.send(createResponse("success", "coin approved"));
-          }
-        );
-      } else {
-        res.status(400).send(createResponse("error", "user not admin"));
-      }
+      res.send(createResponse("success", "coin approved"));
     }
   );
 });
@@ -429,26 +419,13 @@ app.post("/approve_coin", [auth, admin], function (req, res) {
 //delete rejected
 app.post("/reject_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
-  let user = req.body.user;
 
   connection.query(
-    `select role from users where email = '${user}';`,
+    `DELETE from coin where id = ${coin_id}`,
     function (error, results, fields) {
-      if (results[0] != undefined && results[0].role == "admin") {
-        connection.query(
-          `DELETE from coin where id = ${coin_id}`,
-          function (error, results, fields) {
-            res.send(
-              createResponse(
-                "success",
-                "coin rejected and deleted from database"
-              )
-            );
-          }
-        );
-      } else {
-        res.status(400).send(createResponse("error", "user not admin"));
-      }
+      res.send(
+        createResponse("success", "coin rejected and deleted from database")
+      );
     }
   );
 });

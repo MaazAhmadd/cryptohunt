@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
           <li>
             <p>
               <strong>Company</strong> (referred to as either "the Company",
-              "We", "Us" or "Our" in this Agreement) refers to Coinhunt.
+              "We", "Us" or "Our" in this Agreement) refers to cryptohunt.
             </p>
           </li>
           <li>
@@ -104,13 +104,13 @@ export default function PrivacyPolicy() {
           </li>
           <li>
             <p>
-              <strong>Website</strong> refers to Coinhunt, accessible from{" "}
+              <strong>Website</strong> refers to cryptohunt, accessible from{" "}
               <a
-                href="http://www.coinhunt.cc"
+                href="http://www.cryptohunt.cc"
                 rel="external nofollow noopener"
                 target="_blank"
               >
-                http://www.coinhunt.cc
+                http://www.cryptohunt.cc
               </a>
             </p>
           </li>
@@ -535,7 +535,7 @@ export default function PrivacyPolicy() {
           us:
         </p>
         <ul>
-          <li>By email: contact@coinhunt.cc</li>
+          <li>By email: contact@cryptohunt.cc</li>
         </ul>
       </div>
     </div>

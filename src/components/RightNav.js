@@ -1,6 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import jwtDecode from "jwt-decode";
+
+let token = localStorage.getItem("token");
+let dectoken = { role: "notAdmin" };
+
+try {
+  dectoken = jwtDecode(token);
+} catch (ex) {}
 
 const Ul = styled.ul`
   list-style: none;
@@ -47,6 +55,19 @@ const RightNav = ({ open, setOpen }) => {
   return (
     <div className="header_navbar_right_outer">
       <Ul open={open} className="header_navbar_right_inner">
+        {dectoken.role === "admin" ? (
+          <li className="header_item">
+            <Link
+              to="/admin"
+              className="header_link"
+              onClick={() => setOpen(!open)}
+            >
+              Admin
+            </Link>
+          </li>
+        ) : (
+          ""
+        )}
         <li className="header_item">
           <Link
             to="/add_coin"

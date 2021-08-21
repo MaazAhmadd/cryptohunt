@@ -845,11 +845,12 @@ nav {
 svg {
   vertical-align: middle;
 }
-.coin-index-single {  
+.coin-index-single {
+  color: dodgerblue;
   font-size: 1.3rem;
   cursor: pointer;
   margin: 0.8%;
 }
 .coin-index-single:hover {
-  color: gray;
+  color: rgb(0, 80, 210);
 }

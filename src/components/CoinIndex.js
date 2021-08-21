@@ -21,7 +21,6 @@ export default function CoinIndex() {
   useEffect(() => {
     getCoinBestData();
   }, []);
-  console.log("Best coins ", bestCoin);
   return status ? (
     <div>
       <h1 style={{ margin: "1% 0 0 1%" }}>Coin Index</h1>

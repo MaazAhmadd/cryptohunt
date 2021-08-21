@@ -20,7 +20,6 @@ import { GlobalFilter } from "./GlobalFilter";
 const apiUrl = config.API_URL;
 
 export default function BestCoins({ promotedCoin: bestCoin }) {
-  bestCoin = Array.from(new Set(bestCoin.map(JSON.stringify))).map(JSON.parse);
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
   const [showSearch, setShowSearch] = React.useState(false);
@@ -100,7 +99,6 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
         let change = coin.volume_change_24h
           ? parseFloat(coin.volume_change_24h).toFixed(2)
           : false;
-        console.log(coin.volume_change_24h, coin.name);
         let isVolumePositive = Math.sign(change) === "1";
         let link = `/coins/${coin.id}`;
 

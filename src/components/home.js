@@ -40,10 +40,13 @@ function Home() {
   const getCoinTodayBestData = async () => {
     //fetch
     await axios.get(apiUrl + "/coins/today").then(({ data }) => {
-      setBestTodayCoins(data.coin_results);
+      let uniqueToday = removeDuplicates(data.coin_results, (item) => item.id);
+      setBestTodayCoins(uniqueToday);
     });
   };
-
+  function removeDuplicates(data, key) {
+    return [...new Map(data.map((item) => [key(item), item])).values()];
+  }
   const handleTodaysBest = () => {
     setTodaysBest(true);
   };

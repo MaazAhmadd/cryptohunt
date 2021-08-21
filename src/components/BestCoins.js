@@ -39,7 +39,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
-        let presale = coin.presale == "1";
+        let presale = coin.presale === "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {
@@ -94,13 +94,13 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             new Date(new Date().toLocaleDateString("en-US"))) /
             (1000 * 60 * 60 * 24)
         );
-        let isDatePositive = Math.sign(dateDiff) == "1";
-        let isDateZero = Math.sign(dateDiff) == "0";
+        let isDatePositive = Math.sign(dateDiff) === "1";
+        let isDateZero = Math.sign(dateDiff) === "0";
         let change = coin.volume_change_24h
           ? parseFloat(coin.volume_change_24h).toFixed(2)
           : false;
         console.log(coin.volume_change_24h, coin.name);
-        let isVolumePositive = Math.sign(change) == "1";
+        let isVolumePositive = Math.sign(change) === "1";
         let link = `/coins/${coin.id}`;
 
         if (coin.name) {
@@ -190,7 +190,7 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
-        let presale = coin.presale == "1";
+        let presale = coin.presale === "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {
@@ -244,12 +244,12 @@ export default function BestCoins({ promotedCoin: bestCoin, today }) {
             new Date(new Date().toLocaleDateString("en-US"))) /
             (1000 * 60 * 60 * 24)
         );
-        let isDatePositive = Math.sign(dateDiff) == "1";
-        let isDateZero = Math.sign(dateDiff) == "0";
+        let isDatePositive = Math.sign(dateDiff) === "1";
+        let isDateZero = Math.sign(dateDiff) === "0";
         let change = coin.volume_change_24h
           ? parseFloat(coin.volume_change_24h).toFixed(2)
           : false;
-        let isVolumePositive = Math.sign(change) == "1";
+        let isVolumePositive = Math.sign(change) === "1";
         let link = `/coins/${coin.id}`;
         let marketCap = [];
         if (coin.market_cap) {

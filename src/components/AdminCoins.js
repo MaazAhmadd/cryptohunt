@@ -85,10 +85,10 @@ export default function AdminCoins() {
             new Date(new Date().toLocaleDateString("en-US"))) /
             (1000 * 60 * 60 * 24)
         );
-        let isDatePositive = Math.sign(dateDiff) == "1";
-        let isDateZero = Math.sign(dateDiff) == "0";
+        let isDatePositive = Math.sign(dateDiff) === "1";
+        let isDateZero = Math.sign(dateDiff) === "0";
         let change = parseFloat(coin.volume_change_24h).toFixed(2);
-        let isVolumePositive = Math.sign(change) == "1";
+        let isVolumePositive = Math.sign(change) === "1";
         allCoins.push({
           id: coin.id,
           logo: coin.logo ? (

@@ -45,7 +45,7 @@ function Register() {
           .then((resp) => {
             toast(resp.data.msg);
 
-            if (resp.data.code == "success") {
+            if (resp.data.code === "success") {
               localStorage.setItem("token", resp.data.token);
               window.location.href = "./";
             }

@@ -41,7 +41,7 @@ function Login() {
         .then((resp) => {
           toast(resp.data.msg);
 
-          if (resp.data.code == "success") {
+          if (resp.data.code === "success") {
             localStorage.setItem("token", resp.data.token);
             window.location.href = "./";
           }
@@ -60,10 +60,10 @@ function Login() {
   //       .then((resp) => {
   //         setResp(resp.data.msg);
 
-  //         if (resp.data.code == "success") {
+  //         if (resp.data.code === "success") {
   //           localStorage.setItem("logged_in", 1);
   //           localStorage.setItem("user_email", user.email);
-  //           if (resp.data.role == "admin") {
+  //           if (resp.data.role === "admin") {
   //             // its admin
   //             localStorage.setItem("is_admin", 1);
   //             window.location.href = "./";

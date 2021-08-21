@@ -7,6 +7,7 @@ const apiUrl = config.API_URL;
 
 export default function CoinIndex() {
   const [bestCoin, setBestCoins] = useState([]);
+  const [status, setStatus] = useState(false);
 
   const history = useHistory();
 
@@ -14,13 +15,14 @@ export default function CoinIndex() {
     //fetch
     await axios.get(apiUrl + "/coins").then(({ data }) => {
       setBestCoins(data.coin_results);
+      setStatus(true);
     });
   };
   useEffect(() => {
     getCoinBestData();
   }, []);
   console.log("Best coins ", bestCoin);
-  return (
+  return status ? (
     <div>
       <h1 style={{ margin: "1% 0 0 1%" }}>Coin Index</h1>
       <section>
@@ -41,6 +43,14 @@ export default function CoinIndex() {
           })}
         </ul>
       </section>
+    </div>
+  ) : (
+    <div className="load-wrapp">
+      <div className="load-3">
+        <div className="line"></div>
+        <div className="line"></div>
+        <div className="line"></div>
+      </div>
     </div>
   );
 }

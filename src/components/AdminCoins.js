@@ -19,6 +19,7 @@ const apiUrl = config.API_URL;
 export default function AdminCoins() {
   const [unapprovedCoins, setUnapprovedCoins] = useState([]);
   const [promo, setPromo] = useState({ promote: 0, presale: 0 });
+  const [status, setStatus] = useState(false);
 
   const history = useHistory();
 
@@ -37,6 +38,7 @@ export default function AdminCoins() {
   const getCoinUnapprovedData = async () => {
     await axios.get(apiUrl + "/admin/unapproved").then(({ data }) => {
       setUnapprovedCoins(data.coin_results);
+      setStatus(true);
     });
   };
   const handleClickRow = (row, cell) => {
@@ -226,34 +228,47 @@ export default function AdminCoins() {
         <></>
       )}
       <div className="promoted-table_div promoted-table-admin">
-        <table {...getTablePropsAdmin()} className="promoted-table">
-          <tbody {...getTableBodyPropsAdmin()} className="promoted-table_body">
-            {rowsAdmin.map((row) => {
-              prepareRowAdmin(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  className="promoted-table_row promoted-table_data_underline"
-                >
-                  {row.cells.map((cell) => {
-                    return (
-                      <td
-                        style={{ paddingRight: "15px" }}
-                        onClick={() =>
-                          handleClickRow(row.original, cell.getCellProps())
-                        }
-                        {...cell.getCellProps()}
-                        className="promoted-table_data"
-                      >
-                        {cell.render("Cell")}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        {status ? (
+          <table {...getTablePropsAdmin()} className="promoted-table">
+            <tbody
+              {...getTableBodyPropsAdmin()}
+              className="promoted-table_body"
+            >
+              {rowsAdmin.map((row) => {
+                prepareRowAdmin(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="promoted-table_row promoted-table_data_underline"
+                  >
+                    {row.cells.map((cell) => {
+                      return (
+                        <td
+                          style={{ paddingRight: "15px" }}
+                          onClick={() =>
+                            handleClickRow(row.original, cell.getCellProps())
+                          }
+                          {...cell.getCellProps()}
+                          className="promoted-table_data"
+                        >
+                          {cell.render("Cell")}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div className="load-wrapp">
+            <div className="load-3">
+              <div className="line"></div>
+              <div className="line"></div>
+              <div className="line"></div>
+            </div>
+          </div>
+        )}
       </div>
       <p style={{ padding: "2% 5%" }}>
         You can Promote a coin or put it to Presale or remove from these. Just

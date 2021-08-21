@@ -6,6 +6,8 @@ var cors = require("cors");
 const app = express();
 const mysql = require("mysql");
 const api = require("./api_calls");
+const bcrypt = require("bcrypt");
+
 const jwt_private = "cryptohuntprivateKeycc3";
 
 process.on("uncaughtException", function (err) {
@@ -66,9 +68,13 @@ app.post("/login", function (req, res) {
 
   if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     connection.query(
-      `Select * FROM users WHERE email='${email}' AND password='${password}'`,
-      function (error, results, fields) {
-        if (results.length >= 1) {
+      `Select * FROM users WHERE email='${email}'`,
+      async function (error, results, fields) {
+        const validPassword = await bcrypt.compare(
+          password,
+          results[0].password
+        );
+        if (validPassword && results.length >= 1) {
           const token = jwt.sign(
             {
               name: results[0].name,
@@ -77,16 +83,12 @@ app.post("/login", function (req, res) {
             },
             jwt_private
           );
+
           res.send(
             createResponse("success", "User Logged In", token, results[0].role)
           );
-        }
-        // if (results.length == 1) {
-        //   res.send(createResponse("success", "User Logged In", results[0].role));
-        else {
+        } else {
           res.send(createResponse("error", "Invalid Username/Password"));
-          // }else {
-          //   res.send(createResponse("error", "Invalid Username/Password"));
         }
       }
     );
@@ -98,9 +100,13 @@ app.post("/login", function (req, res) {
 /** User Registers **/
 app.post("/register", function (req, res) {
   var email = req.body.email;
-  var password = req.body.password;
+  let password = hash(req.body.password);
   var name = req.body.name;
 
+  const hash = async (password) => {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+  };
   const token = jwt.sign(
     {
       name: name,

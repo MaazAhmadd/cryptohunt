@@ -108,8 +108,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
--- INSERT INTO `users` (`id`, `password`, `email`, `name`, `role`) VALUES
--- (1, 'testtest', 'test@gmail.com', 'Test Iser', 'user');
+INSERT INTO `users` (`id`, `password`, `email`, `name`, `role`) VALUES
+(1, 'testtest', 'test@gmail.com', 'Test Iser', 'user');
 
 -- --------------------------------------------------------
 

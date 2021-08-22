@@ -152,26 +152,26 @@ app.post("/register", async function (req, res) {
 
 /** Add Coin **/
 app.post("/add_coin", auth, function (req, res) {
-  var name = req.body.name;
-  var symbol = req.body.symbol;
-  var description = req.body.description;
-  var logo = req.body.logo;
-  var launch = req.body.launch;
-  var additional = req.body.additional;
-  var binancesmartchain = req.body.binancesmartchain;
-  var ethereum = req.body.ethereum;
-  var solana = req.body.solana;
-  var polygon = req.body.polygon;
-  var website = req.body.website;
-  var telegram = req.body.telegram;
-  var twitter = req.body.twitter;
-  var status = req.body.status;
-  var added_by = req.body.added_by;
+  let name = req.body.name;
+  let symbol = req.body.symbol;
+  let description = req.body.description;
+  let logo = req.body.logo;
+  let launch = req.body.launch;
+  let additional = req.body.additional;
+  let binancesmartchain = req.body.binancesmartchain;
+  let ethereum = req.body.ethereum;
+  let solana = req.body.solana;
+  let polygon = req.body.polygon;
+  let website = req.body.website;
+  let telegram = req.body.telegram;
+  let twitter = req.body.twitter;
+  let status = req.body.status;
+  let added_by = req.body.added_by;
 
   connection.query(
     `Select * from coin where name='${name}' AND symbol='${symbol}'`,
     function (error, results, fields) {
-      if (results.length == 1) {
+      if (results.length >= 1) {
         res.send(createResponse("error", "Coin Already Exists!"));
       } else {
         connection.query(
@@ -414,6 +414,46 @@ app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
     }
   );
 });
+app.post("/admin/edit/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  let name = req.body.name;
+  let symbol = req.body.symbol;
+  let description = req.body.description;
+  let logo = req.body.logo;
+  let launch = req.body.launch;
+  let additional = req.body.additional;
+  let binancesmartchain = req.body.binancesmartchain;
+  let ethereum = req.body.ethereum;
+  let solana = req.body.solana;
+  let polygon = req.body.polygon;
+  let website = req.body.website;
+  let telegram = req.body.telegram;
+  let twitter = req.body.twitter;
+
+  connection.query(
+    `UPDATE coin SET name='${name}', symbol='${symbol}', description='${description}', logo='${logo}', launch='${launch}', additional='${additional}', binancesmartchain='${binancesmartchain}', ethereum='${ethereum}', solana='${solana}', polygon='${polygon}', website='${website}', telegram='${telegram}', twitter='${twitter}' WHERE id=${coin_id}`,
+    function (error, results, fields) {
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin edited");
+      } else {
+        res.send("coin edited please reload page");
+      }
+    }
+  );
+});
+app.get("/admin/remove/:id", [auth, admin], function (req, res) {
+  let coin_id = req.params.id;
+  connection.query(
+    `Delete from coin where id = '${coin_id}'`,
+    function (error, results, fields) {
+      if (error || results.affectedRows === 0) {
+        res.send("something not right with id no coin removed");
+      } else {
+        res.send("coin removed please reload page");
+      }
+    }
+  );
+});
 
 //unapproved coins
 
@@ -448,10 +488,15 @@ app.post("/reject_coin", [auth, admin], function (req, res) {
 //sending details page of a coin
 app.get("/coins/:id", function (req, res) {
   let coin_id = req.params.id;
+
   connection.query(
     `SELECT * FROM coin where id = ${coin_id}`,
     function (error, results, fields) {
-      res.send(JSON.stringify(results));
+      if (results.length > 0) {
+        res.send(JSON.stringify(results));
+      } else {
+        res.send("something not right with id");
+      }
     }
   );
 });

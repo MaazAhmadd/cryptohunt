@@ -16,6 +16,7 @@ import Disclaimer from "./components/Disclaimer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
 import CoinIndex from "./components/CoinIndex";
+import AdminEdit from "./components/AdminEdit";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
@@ -43,6 +44,8 @@ function App() {
             window.innerWidth < 551 ? <DetailsCoinSmall /> : <DetailsCoin />
           }
         />
+
+        <Route path="/admin/edit/:id" exact component={AdminEdit} />
 
         <Route path="/logout" exact component={doLogout} />
 

@@ -18,7 +18,7 @@ const apiUrl = config.API_URL;
 
 export default function AdminCoins() {
   const [unapprovedCoins, setUnapprovedCoins] = useState([]);
-  const [promo, setPromo] = useState({ promote: 0, presale: 0 });
+  const [promo, setPromo] = useState({ promote: 0, presale: 0, edit: 0 });
   const [status, setStatus] = useState(false);
 
   const history = useHistory();
@@ -30,6 +30,7 @@ export default function AdminCoins() {
   try {
     dectoken = jwtDecode(token);
   } catch (ex) {}
+
   useEffect(() => {
     if (dectoken.role === "admin") {
       getCoinUnapprovedData();
@@ -192,28 +193,66 @@ export default function AdminCoins() {
     });
   }
   async function doPromote(e) {
-    axios.get(`${apiUrl}/admin/promote/${promo.promote}`).then(({ data }) => {
-      toast(data);
-    });
+    if (promo.promote !== 0) {
+      axios.get(`${apiUrl}/admin/promote/${promo.promote}`).then(({ data }) => {
+        toast(data);
+      });
+    } else {
+      toast("Please Enter ID");
+    }
   }
   async function doPresale(e) {
-    axios.get(`${apiUrl}/admin/presale/${promo.presale}`).then(({ data }) => {
-      toast(data);
-    });
+    if (promo.presale !== 0) {
+      axios.get(`${apiUrl}/admin/presale/${promo.presale}`).then(({ data }) => {
+        toast(data);
+      });
+    } else {
+      toast("Please Enter ID");
+    }
   }
   async function doRemPromote(e) {
-    axios
-      .get(`${apiUrl}/admin/rempromote/${promo.promote}`)
-      .then(({ data }) => {
-        toast(data);
-      });
+    if (promo.promote !== 0) {
+      axios
+        .get(`${apiUrl}/admin/rempromote/${promo.promote}`)
+        .then(({ data }) => {
+          toast(data);
+        });
+    } else {
+      toast("Please Enter ID");
+    }
   }
   async function doRemPresale(e) {
-    axios
-      .get(`${apiUrl}/admin/rempresale/${promo.presale}`)
-      .then(({ data }) => {
+    if (promo.presale !== 0) {
+      axios
+        .get(`${apiUrl}/admin/rempresale/${promo.presale}`)
+        .then(({ data }) => {
+          toast(data);
+        });
+    } else {
+      toast("Please Enter ID");
+    }
+  }
+  async function doEditCoin(e) {
+    if (promo.edit !== 0) {
+      await axios.get(`${apiUrl}/coins/${promo.edit}`).then(({ data }) => {
+        if (data[0].name) {
+          history.push(`/admin/edit/${promo.edit}`);
+        } else {
+          toast(data);
+        }
+      });
+    } else {
+      toast("Please Enter ID");
+    }
+  }
+  async function doRemoveCoin(e) {
+    if (promo.edit !== 0) {
+      axios.get(`${apiUrl}/admin/remove/${promo.edit}`).then(({ data }) => {
         toast(data);
       });
+    } else {
+      toast("Please Enter ID");
+    }
   }
 
   return dectoken.role === "admin" ? (
@@ -276,6 +315,7 @@ export default function AdminCoins() {
         is the id of coin please click on the coin to open details page and on
         the right side you will see the coin id.
       </p>
+      <h2 style={{ marginLeft: "5%" }}>Enter Coin ID</h2>
 
       <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
         <p>Promote A Coin: </p>
@@ -301,7 +341,7 @@ export default function AdminCoins() {
         </Button>
       </div>
       <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
-        <p>Presale A Coin...: </p>
+        <p>Presale A Coin: </p>
         <TextField
           style={{ margin: "0 3%", backgroundColor: "white" }}
           id="presale"
@@ -319,6 +359,29 @@ export default function AdminCoins() {
           variant="contained"
           color="secondary"
           onClick={(e) => doRemPresale(e)}
+        >
+          Remove
+        </Button>
+      </div>
+      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
+        <p>Edit or Remove A Coin: </p>
+        <TextField
+          style={{ margin: "0 3%", backgroundColor: "white" }}
+          id="edit"
+          onChange={(e) => handleInput(e)}
+          type="number"
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => doEditCoin(e)}
+        >
+          Edit
+        </Button>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={(e) => doRemoveCoin(e)}
         >
           Remove
         </Button>

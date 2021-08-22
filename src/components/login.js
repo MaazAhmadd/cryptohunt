@@ -31,6 +31,7 @@ function Login() {
   }
 
   async function doLogin(e) {
+    e.preventDefault();
     if (user.email !== "" && user.password !== "") {
       await axios
         .post(
@@ -58,37 +59,39 @@ function Login() {
           <p style={{ marginTop: "0.5rem", color: "gray" }}>
             Login To Your Account
           </p>
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
-              id="email"
-              className="text_email"
-              type="text"
-              label="Email"
-              required
-            />
-          </div>
-
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
-              id="password"
-              className="text_password"
-              type="password"
-              label="Password"
-              required
-            />
-          </div>
-          <Button
-            type="button"
-            variant="contained"
-            color="primary"
-            onClick={(e) => doLogin(e)}
-          >
-            Login
-          </Button>
+          <form action="">
+            <div className="input_wrapper">
+              <TextField
+                variant="outlined"
+                onChange={(e) => handleInput(e)}
+                id="email"
+                className="text_email"
+                type="text"
+                label="Email"
+                required
+              />
+            </div>
+            <div className="input_wrapper">
+              <TextField
+                variant="outlined"
+                onChange={(e) => handleInput(e)}
+                id="password"
+                className="text_password"
+                type="password"
+                label="Password"
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              style={{ width: "100%" }}
+              variant="contained"
+              color="primary"
+              onClick={(e) => doLogin(e)}
+            >
+              Login
+            </Button>
+          </form>
 
           <p style={{ marginTop: "0.5rem" }}>
             Don't Have An Account? <Link to="/register">Register Now</Link>

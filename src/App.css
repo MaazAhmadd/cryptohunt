@@ -854,3 +854,24 @@ svg {
 .coin-index-single:hover {
   color: rgb(0, 80, 210);
 }
+.admin-form-wrap {
+  margin: 2% 0 2% 4%;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  row-gap: 12%;
+}
+.admin-form-wrap-inner {
+  column-gap: 2%;
+  grid-template-columns: 20% 22% 15% 15%;
+  display: grid;
+}
+@media screen and (max-width: 768px) {
+  .admin-form-wrap-inner {
+    column-gap: 1%;
+    font-size: 0.9rem;
+    grid-template-columns: 34% 24% 19% 15%;
+  }
+  .admin-form-wrap-inner > button {
+    font-size: 0.7rem;
+  }
+}

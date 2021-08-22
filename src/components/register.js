@@ -69,47 +69,50 @@ function Register() {
           <p style={{ marginTop: "0.5rem", color: "gray" }}>
             Register a New Account
           </p>
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
-              id="name"
-              className="text_name"
-              type="text"
-              label="Name"
-              required
-            />
-          </div>
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
-              id="email"
-              className="text_email"
-              type="text"
-              label="Email"
-              required
-            />
-          </div>
-          <div className="input_wrapper">
-            <TextField
-              variant="outlined"
-              onChange={(e) => handleInput(e)}
-              id="password"
-              className="text_password"
-              type="password"
-              label="Password"
-              required
-            />
-          </div>
-          <Button
-            type="button"
-            variant="contained"
-            color="primary"
-            onClick={(e) => doLogin(e)}
-          >
-            Register
-          </Button>
+          <form action="">
+            <div className="input_wrapper">
+              <TextField
+                variant="outlined"
+                onChange={(e) => handleInput(e)}
+                id="name"
+                className="text_name"
+                type="text"
+                label="Name"
+                required
+              />
+            </div>
+            <div className="input_wrapper">
+              <TextField
+                variant="outlined"
+                onChange={(e) => handleInput(e)}
+                id="email"
+                className="text_email"
+                type="text"
+                label="Email"
+                required
+              />
+            </div>
+            <div className="input_wrapper">
+              <TextField
+                variant="outlined"
+                onChange={(e) => handleInput(e)}
+                id="password"
+                className="text_password"
+                type="password"
+                label="Password"
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              style={{ width: "100%" }}
+              variant="contained"
+              color="primary"
+              onClick={(e) => doLogin(e)}
+            >
+              Register
+            </Button>
+          </form>
 
           <p style={{ marginTop: "0.5rem" }}>
             Already Have An Account? <Link to="/login">Login Here</Link>

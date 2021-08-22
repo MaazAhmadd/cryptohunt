@@ -317,74 +317,100 @@ export default function AdminCoins() {
       </p>
       <h2 style={{ marginLeft: "5%" }}>Enter Coin ID</h2>
 
-      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
-        <p>Promote A Coin: </p>
-        <TextField
-          style={{ margin: "0 3%", backgroundColor: "white" }}
-          id="promote"
-          onChange={(e) => handleInput(e)}
-          type="number"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => doPromote(e)}
+      <div className="admin-form-wrap">
+        <div
+          className="admin-form-wrap-inner"
+          // style={{
+          //   padding: "0% 3%",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
         >
-          Promote
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={(e) => doRemPromote(e)}
+          <p>Promote A Coin: </p>
+          <TextField
+            style={{ margin: "0 3%", backgroundColor: "white" }}
+            id="promote"
+            onChange={(e) => handleInput(e)}
+            type="number"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => doPromote(e)}
+          >
+            Promote
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doRemPromote(e)}
+          >
+            Remove
+          </Button>
+        </div>
+        <div
+          className="admin-form-wrap-inner"
+          // style={{
+          //   padding: "0% 3%",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
         >
-          Remove
-        </Button>
-      </div>
-      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
-        <p>Presale A Coin: </p>
-        <TextField
-          style={{ margin: "0 3%", backgroundColor: "white" }}
-          id="presale"
-          onChange={(e) => handleInput(e)}
-          type="number"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => doPresale(e)}
+          <p>Presale A Coin: </p>
+          <TextField
+            style={{ margin: "0 3%", backgroundColor: "white" }}
+            id="presale"
+            onChange={(e) => handleInput(e)}
+            type="number"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => doPresale(e)}
+          >
+            Presale
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doRemPresale(e)}
+          >
+            Remove
+          </Button>
+        </div>
+        <div
+          className="admin-form-wrap-inner"
+          // style={{
+          //   padding: "0% 3%",
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          // }}
         >
-          Presale
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={(e) => doRemPresale(e)}
-        >
-          Remove
-        </Button>
-      </div>
-      <div style={{ padding: "2% 5%", display: "flex", alignItems: "center" }}>
-        <p>Edit or Remove A Coin: </p>
-        <TextField
-          style={{ margin: "0 3%", backgroundColor: "white" }}
-          id="edit"
-          onChange={(e) => handleInput(e)}
-          type="number"
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={(e) => doEditCoin(e)}
-        >
-          Edit
-        </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          onClick={(e) => doRemoveCoin(e)}
-        >
-          Remove
-        </Button>
+          <p>Edit or Remove A Coin: </p>
+          <TextField
+            style={{ margin: "0 3%", backgroundColor: "white" }}
+            id="edit"
+            onChange={(e) => handleInput(e)}
+            type="number"
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={(e) => doEditCoin(e)}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={(e) => doRemoveCoin(e)}
+          >
+            Remove
+          </Button>
+        </div>
       </div>
     </>
   ) : (

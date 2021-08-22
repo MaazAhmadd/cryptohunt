@@ -320,7 +320,7 @@ function AddCoin() {
                 color="primary"
                 onClick={(e) => doEditCoin(e)}
               >
-                Edit
+                Update
               </Button>
             </div>
           </div>

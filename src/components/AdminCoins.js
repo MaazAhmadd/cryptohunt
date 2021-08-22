@@ -318,15 +318,7 @@ export default function AdminCoins() {
       <h2 style={{ marginLeft: "5%" }}>Enter Coin ID</h2>
 
       <div className="admin-form-wrap">
-        <div
-          className="admin-form-wrap-inner"
-          // style={{
-          //   padding: "0% 3%",
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          // }}
-        >
+        <div className="admin-form-wrap-inner">
           <p>Promote A Coin: </p>
           <TextField
             style={{ margin: "0 3%", backgroundColor: "white" }}
@@ -349,15 +341,7 @@ export default function AdminCoins() {
             Remove
           </Button>
         </div>
-        <div
-          className="admin-form-wrap-inner"
-          // style={{
-          //   padding: "0% 3%",
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          // }}
-        >
+        <div className="admin-form-wrap-inner">
           <p>Presale A Coin: </p>
           <TextField
             style={{ margin: "0 3%", backgroundColor: "white" }}
@@ -380,15 +364,7 @@ export default function AdminCoins() {
             Remove
           </Button>
         </div>
-        <div
-          className="admin-form-wrap-inner"
-          // style={{
-          //   padding: "0% 3%",
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          // }}
-        >
+        <div className="admin-form-wrap-inner">
           <p>Edit or Remove A Coin: </p>
           <TextField
             style={{ margin: "0 3%", backgroundColor: "white" }}

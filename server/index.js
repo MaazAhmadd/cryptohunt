@@ -367,7 +367,7 @@ app.get("/admin/promote/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set featured='1' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin promoted");
       } else {
         res.send("coin promoted please reload page");
@@ -380,7 +380,7 @@ app.get("/admin/rempromote/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set featured='0' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin unpromoted");
       } else {
         res.send("coin unpromoted please reload page");
@@ -393,7 +393,7 @@ app.get("/admin/presale/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set presale='1' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin presaled");
       } else {
         res.send("coin presaled please reload page");
@@ -406,7 +406,7 @@ app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
   connection.query(
     `Update coin Set presale='0' where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin unpresaled");
       } else {
         res.send("coin unpresaled please reload page");
@@ -433,7 +433,7 @@ app.post("/admin/edit/:id", [auth, admin], function (req, res) {
   connection.query(
     `UPDATE coin SET name='${name}', symbol='${symbol}', description='${description}', logo='${logo}', launch='${launch}', additional='${additional}', binancesmartchain='${binancesmartchain}', ethereum='${ethereum}', solana='${solana}', polygon='${polygon}', website='${website}', telegram='${telegram}', twitter='${twitter}' WHERE id=${coin_id}`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin edited");
       } else {
         res.send("coin edited please reload page");
@@ -446,7 +446,7 @@ app.get("/admin/remove/:id", [auth, admin], function (req, res) {
   connection.query(
     `Delete from coin where id = '${coin_id}'`,
     function (error, results, fields) {
-      if (error || results.affectedRows === 0) {
+      if (error || results.affectedRows == 0) {
         res.send("something not right with id no coin removed");
       } else {
         res.send("coin removed please reload page");

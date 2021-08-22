@@ -60,7 +60,7 @@ function AddCoin() {
       coin.launch !== "" &&
       coin.website !== ""
     ) {
-      var curr_status = user.role === "admin" ? "approved" : "pending";
+      var curr_status = user.role == "admin" ? "approved" : "pending";
       var added_by = user.email;
 
       await axios

@@ -230,7 +230,7 @@ export default function DetailsCoin() {
 
                 <p className="details-right-price-b">{detailsCoins.launch}</p>
                 <br />
-                {dectoken.role === "admin" ? (
+                {dectoken.role == "admin" ? (
                   <div>
                     <p className="details-right-price-h">Coin ID</p>
                     <p className="details-right-price-b">{detailsCoins.id}</p>

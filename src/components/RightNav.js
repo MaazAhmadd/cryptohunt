@@ -55,7 +55,7 @@ const RightNav = ({ open, setOpen }) => {
   return (
     <div className="header_navbar_right_outer">
       <Ul open={open} className="header_navbar_right_inner">
-        {dectoken.role === "admin" ? (
+        {dectoken.role == "admin" ? (
           <li className="header_item">
             <Link
               to="/admin"

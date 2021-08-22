@@ -7,7 +7,7 @@ const apiUrl = config.API_URL;
 export default async (id, status) => {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
 
-  if (status === "vote") {
+  if (status == "vote") {
     await axios
       .post(
         apiUrl + "/vote",
@@ -18,7 +18,7 @@ export default async (id, status) => {
       .then(() => {
         window.location = "/";
       });
-  } else if (status === "unvote") {
+  } else if (status == "unvote") {
     await axios
       .post(
         apiUrl + "/unvote",

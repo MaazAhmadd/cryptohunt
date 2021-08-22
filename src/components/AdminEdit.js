@@ -98,7 +98,7 @@ function AddCoin() {
     });
   }
 
-  return dectoken.role === "admin" ? (
+  return dectoken.role == "admin" ? (
     <>
       <div className="pbody add_coin_wrapper_outer">
         <div className="add_coin_wrapper">

@@ -98,16 +98,20 @@ function Home() {
               <BestCoins promotedCoin={bestTodayCoin} />
             )}
           </div>
-          <div style={{ margin: "2% 33% 4% 36%" }}>
-            <Pagination
-              currentPage={currentPage}
-              totalCount={totalCount}
-              pageSize={pageSize}
-              onPageChange={(page) => {
-                setCurrentPage(page);
-              }}
-            />
-          </div>
+          {todaysBest ? (
+            <div style={{ margin: "2% 33% 4% 36%" }}>
+              <Pagination
+                currentPage={currentPage}
+                totalCount={totalCount}
+                pageSize={pageSize}
+                onPageChange={(page) => {
+                  setCurrentPage(page);
+                }}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       ) : (
         <div className="load-wrapp">

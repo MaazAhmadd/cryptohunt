@@ -916,6 +916,7 @@ svg {
   cursor: pointer;
 }
 .pagination-container .pagination-item.selected {
+  pointer-events: none;
   background-color: #28a745;
   color: white;
 }

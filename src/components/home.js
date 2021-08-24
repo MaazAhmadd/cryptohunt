@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import PromotedCoins from "./PromotedCoins";
 import BestCoins from "./BestCoins";
 import config from "../config.json";
+import Pagination from "./Pagination";
 
 const apiUrl = config.API_URL;
 
@@ -14,15 +15,19 @@ function Home() {
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [status, setStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+
+  let pageSize = 10;
 
   let token = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = token;
-
+  console.log(currentPage);
   useEffect(() => {
     getCoinPromotedData();
     getCoinBestData();
     getCoinTodayBestData();
-  }, []);
+  }, [currentPage]);
 
   const getCoinPromotedData = async () => {
     //fetch
@@ -33,8 +38,12 @@ function Home() {
   };
   const getCoinBestData = async () => {
     //fetch
-    await axios.get(apiUrl + "/coins").then(({ data }) => {
+    await axios.get(`${apiUrl}/${currentPage}/coins`).then(({ data }) => {
       setBestCoins(data.coin_results);
+      setTotalCount(
+        data.coin_results &&
+          data.coin_results[data.coin_results.length - 2].total
+      );
     });
   };
   const getCoinTodayBestData = async () => {
@@ -82,11 +91,23 @@ function Home() {
               Today's Best
             </button>
           </div>
-          {todaysBest ? (
-            <BestCoins promotedCoin={bestCoin} />
-          ) : (
-            <BestCoins promotedCoin={bestTodayCoin} today={true} />
-          )}
+          <div>
+            {todaysBest ? (
+              <BestCoins promotedCoin={bestCoin} />
+            ) : (
+              <BestCoins promotedCoin={bestTodayCoin} />
+            )}
+          </div>
+          <div style={{ margin: "2% 33% 4% 36%" }}>
+            <Pagination
+              currentPage={currentPage}
+              totalCount={totalCount}
+              pageSize={pageSize}
+              onPageChange={(page) => {
+                setCurrentPage(page);
+              }}
+            />
+          </div>
         </div>
       ) : (
         <div className="load-wrapp">

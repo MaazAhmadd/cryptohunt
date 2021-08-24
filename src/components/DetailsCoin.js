@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import config from "../config.json";
 import { toast } from "react-toastify";
+import qs from "querystring";
 import jwtDecode from "jwt-decode";
 
 const apiUrl = config.API_URL;
@@ -11,6 +12,7 @@ const apiUrl = config.API_URL;
 export default function DetailsCoin() {
   const [detailsCoins, setDetailsCoins] = useState([]);
   const [randomCoins, setRandomCoins] = useState([]);
+  const [isCvoted, setCIsvoted] = useState(0);
   const [status, setStatus] = useState(false);
   const [moonS, setMoon] = useState(0);
   const [fireS, setFire] = useState(0);
@@ -21,6 +23,11 @@ export default function DetailsCoin() {
 
   const history = useHistory();
 
+  let isvoted = false;
+  if (isCvoted == 1) {
+    isvoted = true;
+  }
+  console.log(isCvoted);
   let token = localStorage.getItem("token");
   React.useEffect(() => {
     let myF = async () => {
@@ -29,6 +36,7 @@ export default function DetailsCoin() {
     myF();
   }, []);
   let dectoken = { role: "notAdmin" };
+  let id = useParams().id;
 
   try {
     dectoken = jwtDecode(token);
@@ -38,7 +46,6 @@ export default function DetailsCoin() {
 
   // let splitted = window.location.href.split("/");
   // let id = splitted[splitted.length - 1];
-  let id = useParams().id;
   let linkk = `${apiUrl}/coins/${id}`;
   const getCoinDetailsData = async () => {
     //fetch
@@ -49,8 +56,14 @@ export default function DetailsCoin() {
   };
   const getRandomCoins = async () => {
     //fetch
-    await axios.get(apiUrl + "/random").then(({ data }) => {
+    await axios.get(`${apiUrl}/random`).then(({ data }) => {
       setRandomCoins(data);
+    });
+  };
+  const getCoinVote = async () => {
+    //fetch
+    await axios.get(`${apiUrl}/get/vote/${id}`).then(({ data }) => {
+      setCIsvoted(data);
     });
   };
 
@@ -107,7 +120,50 @@ export default function DetailsCoin() {
     //fetch
     getCoinDetailsData();
     getRandomCoins();
+    getCoinVote();
   }, []);
+
+  const handleVoteClick = (v, e) => {
+    e.preventDefault();
+    if (localStorage.getItem("token")) {
+      let upArrow = `<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none; margin: 0px 3px 3px 0px;"><path fill-rule="evenodd" d="M7.27 1.047a1 1 0 011.46 0l6.345 6.77c.6.638.146 1.683-.73 1.683H11.5v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1H1.654C.78 9.5.326 8.455.924 7.816L7.27 1.047zM4.5 13.5a1 1 0 011-1h5a1 1 0 011 1v1a1 1 0 01-1 1h-5a1 1 0 01-1-1v-1z" clip-rule="evenodd"></path></svg>`;
+      if (!v) {
+        e.target.className = "promoted-table_votebtn_green";
+        e.target.innerHTML = upArrow + ++detailsCoins.votes_count;
+        isvoted = true;
+        axios
+          .post(
+            apiUrl + "/vote",
+            qs.stringify({
+              coin: detailsCoins.id,
+            })
+          )
+          .catch(() => {
+            e.target.className = "promoted-table_votebtn";
+            e.target.innerHTML = upArrow + --detailsCoins.votes_count;
+            isvoted = false;
+          });
+      } else {
+        e.target.className = "promoted-table_votebtn";
+        e.target.innerHTML = upArrow + --detailsCoins.votes_count;
+        isvoted = false;
+        axios
+          .post(
+            apiUrl + "/unvote",
+            qs.stringify({
+              coin: detailsCoins.id,
+            })
+          )
+          .catch(() => {
+            e.target.className = "promoted-table_votebtn_green";
+            e.target.innerHTML = upArrow + ++detailsCoins.votes_count;
+            isvoted = true;
+          });
+      }
+    } else {
+      toast.warn("Please Login First");
+    }
+  };
 
   return (
     <>
@@ -171,12 +227,18 @@ export default function DetailsCoin() {
                     {detailsCoins.symbol}
                   </p>
                   <button
-                    // onClick={() => handleVoteClick(coin.id)}
+                    style={{ fontSize: "0.6rem" }}
+                    onClick={(e) => handleVoteClick(isvoted, e)}
                     title="Vote?"
-                    className="promoted-table_votebtn"
+                    className={
+                      isvoted
+                        ? "promoted-table_votebtn_green"
+                        : "promoted-table_votebtn"
+                    }
                   >
-                    <BsCapslockFill />
-                    <span> </span>
+                    <BsCapslockFill
+                      style={{ pointerEvents: "none", margin: "0 3px 3px 0" }}
+                    />
                     {!detailsCoins.votes_count
                       ? "0"
                       : Math.abs(detailsCoins.votes_count)}

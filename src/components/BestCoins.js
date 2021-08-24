@@ -30,7 +30,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return history.push(`/coins/${row.id}`);
+      return (window.location = `/coins/${row.id}`);
       // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
@@ -39,7 +39,6 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
-        let presale = coin.presale == "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {
@@ -96,6 +95,8 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
         );
         let isDatePositive = Math.sign(dateDiff) == "1";
         let isDateZero = Math.sign(dateDiff) == "0";
+        let presale = coin.presale == "1" && isDatePositive;
+
         let change = coin.volume_change_24h
           ? parseFloat(coin.volume_change_24h).toFixed(2)
           : false;
@@ -418,7 +419,8 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     usePagination
   );
   const { globalFilter, pageIndex } = state;
-  const onSearchClick = () => setShowSearch(true);
+  const onSearchClick = () => setShowSearch(!showSearch);
+
   return (
     <>
       <div className="promoted-table_div">
@@ -427,58 +429,60 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                    {column.render("Header")}
-                    <span>
-                      {column.isSorted ? (
-                        column.isSortedDesc ? (
-                          <BsCaretUpFill />
+                  <th
+                    {...(column.id == "logo" || column.id == "name"
+                      ? {}
+                      : column.getHeaderProps(column.getSortByToggleProps()))}
+                  >
+                    {column.id == "logo" ? (
+                      <button
+                        onClick={onSearchClick}
+                        style={{
+                          cursor: "pointer",
+                          backgroundColor: "#28a745",
+                          color: "white",
+                          borderRadius: "6px",
+                          border: "none",
+                          padding: "10px",
+                        }}
+                      >
+                        <BsSearch
+                          style={{
+                            fontSize: "1rem",
+                          }}
+                        />
+                      </button>
+                    ) : column.id == "name" ? (
+                      showSearch ? (
+                        <GlobalFilter
+                          filter={globalFilter}
+                          setFilter={setGlobalFilter}
+                        />
+                      ) : null
+                    ) : (
+                      column.render("Header")
+                    )}
+                    {column.id == "logo" || column.id == "name" ? (
+                      ""
+                    ) : (
+                      <span>
+                        {column.isSorted ? (
+                          column.isSortedDesc ? (
+                            <BsCaretUpFill />
+                          ) : (
+                            <BsCaretDownFill />
+                          )
                         ) : (
-                          <BsCaretDownFill />
-                        )
-                      ) : (
-                        ""
-                      )}
-                    </span>
+                          ""
+                        )}
+                      </span>
+                    )}
                   </th>
                 ))}
               </tr>
             ))}
           </thead>
           <tbody {...getTableBodyProps()} className="promoted-table_body">
-            <tr role="row" className="promoted-table_row">
-              <td className="promoted-table_data" role="cell">
-                <button
-                  onClick={onSearchClick}
-                  style={{
-                    cursor: "pointer",
-                    backgroundColor: "#28a745",
-                    color: "white",
-                    borderRadius: "6px",
-                    border: "none",
-                    padding: "10px",
-                  }}
-                >
-                  <BsSearch
-                    style={{
-                      fontSize: "1rem",
-                    }}
-                  />
-                </button>
-              </td>
-              <td className="promoted-table_data table-search" role="cell">
-                {showSearch ? (
-                  <GlobalFilter
-                    filter={globalFilter}
-                    setFilter={setGlobalFilter}
-                  />
-                ) : null}
-              </td>
-              <td className="promoted-table_data" role="cell"></td>
-              <td className="promoted-table_data" role="cell"></td>
-              <td className="promoted-table_data" role="cell"></td>
-              <td className="promoted-table_data" role="cell"></td>
-            </tr>
             {page.map((row) => {
               prepareRow(row);
               return (
@@ -506,7 +510,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
           </tbody>
         </table>
       </div>
-      <div className="promoted-pagination">
+      {/* <div className="promoted-pagination">
         <span>
           Page{" "}
           <strong>
@@ -519,7 +523,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           Next
         </button>
-      </div>
+      </div> */}
     </>
   );
 }

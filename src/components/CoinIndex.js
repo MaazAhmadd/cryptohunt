@@ -13,7 +13,7 @@ export default function CoinIndex() {
 
   const getCoinBestData = async () => {
     //fetch
-    await axios.get(apiUrl + "/coins").then(({ data }) => {
+    await axios.get(apiUrl + "/coins_index").then(({ data }) => {
       setBestCoins(data.coin_results);
       setStatus(true);
     });
@@ -32,7 +32,7 @@ export default function CoinIndex() {
                 <li
                   className="coin-index-single"
                   onClick={() => {
-                    history.push(`/coins/${coin.id}`);
+                    window.location = `/coins/${coin.id}`;
                   }}
                 >
                   {coin.name}

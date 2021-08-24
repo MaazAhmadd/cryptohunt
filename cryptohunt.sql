@@ -31,10 +31,10 @@ CREATE TABLE `coin` (
   `id` int(11) NOT NULL,
   `name` text DEFAULT NULL,
   `symbol` text DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
+  `description` text DEFAULT NULL, 
   `logo` text DEFAULT NULL,
   `launch` text DEFAULT NULL,
-  `additional` longtext DEFAULT NULL,
+  `additional` text DEFAULT NULL,
   `binancesmartchain` text DEFAULT NULL,
   `ethereum` text DEFAULT NULL,
   `solana` text DEFAULT NULL,
@@ -67,7 +67,9 @@ INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `ad
 INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `additional`, `binancesmartchain`, `ethereum`, `solana`, `polygon`, `website`, `telegram`, `twitter`, `status`, `added_by`, `featured`, `price`, `market_cap`, `volume_change_24h`, `votes_count`,`moon`,`fire`,`gem`,`heart`,`joy`,`liked`,`presale`) VALUES
 (1, 'Bitcoin', 'test', 'testeststes esatsea', 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 1, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1','1'); 
 INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `additional`, `binancesmartchain`, `ethereum`, `solana`, `polygon`, `website`, `telegram`, `twitter`, `status`, `added_by`, `featured`, `price`, `market_cap`, `volume_change_24h`, `votes_count`,`moon`,`fire`,`gem`,`heart`,`joy`,`liked`,`presale`) VALUES
-(12, 'Bitcoin5', 'test', 'testeststes esatsea', 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 0, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1','0');   
+(3, 'Bitcoin5', 'test', 'testeststes esatsea', 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png', '04/01/2022', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 0, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1','0');   
+INSERT INTO `coin` (`id`, `name`, `symbol`, `description`, `logo`, `launch`, `additional`, `binancesmartchain`, `ethereum`, `solana`, `polygon`, `website`, `telegram`, `twitter`, `status`, `added_by`, `featured`, `price`, `market_cap`, `volume_change_24h`, `votes_count`,`moon`,`fire`,`gem`,`heart`,`joy`,`liked`,`presale`) VALUES
+(4, 'Bitcoin6', 'test', 'testeststes esatsea', 'https://s2.coinmarketcap.com/static/img/coins/64x64/1.png', '04/01/2021', 'teatsa', '0x00000000', '0x00000000', 'xxxxxxxxxxxx', '0x00000000', 'https://twitter.com', 'https://twitter.com', 'https://twitter.com', 'approved', 'testtest@gmail.com', 0, '38238', '713982204867.5432', '-1.6066169920848632', '1','6','5','4','3','2','1','0');   
 -- UPDATE coin set featured = 0 where id = 4;
 -- UPDATE coin set featured = 0 where id = 5;
 -- UPDATE coin set featured = 0 where id = 7;

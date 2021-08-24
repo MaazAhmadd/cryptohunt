@@ -15,6 +15,7 @@ const apiUrl = config.API_URL;
 
 function AddCoin() {
   const [user, setUser] = useState({});
+  const [presale, setPresale] = useState(false);
   const [coin, addCoin] = useState({
     name: "",
     symbol: "",
@@ -80,6 +81,7 @@ function AddCoin() {
             website: coin.website,
             telegram: coin.telegram,
             twitter: coin.twitter,
+            presale: presale ? 1 : 0,
             status: curr_status,
             added_by: added_by,
           })
@@ -162,8 +164,9 @@ function AddCoin() {
                   id="description"
                   type="text"
                   label="Description"
-                  placeholder="Ex Bitcoin is a Decentralized Cryptocurrency"
+                  placeholder="Enter Description of your coin. (max length 2048)"
                   multiline
+                  inputProps={{ maxLength: 2048 }}
                   rows={5}
                 />
               </div>
@@ -204,8 +207,9 @@ function AddCoin() {
                   id="additional"
                   type="text"
                   label="Additional Information"
-                  placeholder="Other Things You Like To Add In Your Coin Request"
+                  placeholder="Additional requests for your coin. (max length 2048)"
                   multiline
+                  inputProps={{ maxLength: 2048 }}
                   rows={5}
                 />
               </div>
@@ -276,7 +280,8 @@ function AddCoin() {
                     onChange={(e) => handleInput(e)}
                     id="website"
                     type="text"
-                    label="Website *"
+                    label="Website"
+                    required
                     placeholder="Ex https://www.domain.tld"
                   />
                 </div>
@@ -301,6 +306,24 @@ function AddCoin() {
                     label="Twitter"
                     placeholder="Ex https://twitter.com/youracc"
                   />
+                </div>
+                <div
+                  style={{
+                    padding: "2% 6%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                  }}
+                >
+                  <input
+                    onClick={(e) => setPresale(e.target.checked)}
+                    id="presale"
+                    type="checkbox"
+                    // label="presale"
+                  />
+                  <label style={{ marginLeft: "3%" }} for="presale">
+                    Presale
+                  </label>
                 </div>
               </div>
             </div>

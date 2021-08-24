@@ -165,6 +165,7 @@ app.post("/add_coin", auth, function (req, res) {
   let website = req.body.website;
   let telegram = req.body.telegram;
   let twitter = req.body.twitter;
+  let presale = req.body.presale;
   let status = req.body.status;
   let added_by = req.body.added_by;
 
@@ -175,7 +176,7 @@ app.post("/add_coin", auth, function (req, res) {
         res.send(createResponse("error", "Coin Already Exists!"));
       } else {
         connection.query(
-          `Insert into coin(name,symbol,description,logo,launch,additional,binancesmartchain,ethereum,solana,polygon,website,telegram,twitter,status,added_by,featured) VALUES ('${name}','${symbol}','${description}','${logo}','${launch}','${additional}','${binancesmartchain}','${ethereum}','${solana}','${polygon}','${website}','${telegram}','${twitter}','${status}','${added_by}',0)`,
+          `Insert into coin(name,symbol,description,logo,launch,additional,binancesmartchain,ethereum,solana,polygon,website,telegram,twitter,status,added_by,featured,presale) VALUES ('${name}','${symbol}','${description}','${logo}','${launch}','${additional}','${binancesmartchain}','${ethereum}','${solana}','${polygon}','${website}','${telegram}','${twitter}','${status}','${added_by}',0,${presale})`,
           function (err, success) {
             if (err)
               res.send(createResponse("error", "An Unknown Error Occured!"));
@@ -225,14 +226,16 @@ app.get("/coins/promoted", function (req, res) {
 
   //end fetching
 });
-app.get("/coins", function (req, res) {
+app.get("/:page/coins", function (req, res) {
+  let page = (req.params.page - 1) * 10;
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
   } catch (ex) {}
-
   connection.query(
-    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
+    `Select * from coin where status='approved' LIMIT ${
+      page && page - 1
+    },10;Select COUNT(*) as tc from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {
@@ -243,9 +246,24 @@ app.get("/coins", function (req, res) {
           api.updateCoin(result.name);
           coin_results.push(result);
         });
-        coin_results.push(results[1]);
+        coin_results.push({ total: results[1][0].tc });
+        coin_results.push(results[2]);
         // for each result
         res.send(JSON.stringify({ coin_results }));
+      }
+    }
+  );
+
+  //end fetching
+});
+app.get("/coins_index", function (req, res) {
+  connection.query(
+    `Select name from coin where status='approved';`,
+    function (error, results, fields) {
+      if (results && results.length > 0) {
+        res.send(JSON.stringify({ coin_results: results }));
+      } else {
+        res.send("nothing");
       }
     }
   );
@@ -325,17 +343,24 @@ app.post("/unvote", auth, function (req, res) {
   );
 });
 
-// get votes
-app.post("/get/votes", function (req, res) {
-  var coin_id = req.body.coin_id;
-  var total_rows_in;
+// get vote
+app.get("/get/vote/:coinid", auth, function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
+  var coin_id = req.params.coinid;
   connection.query(
-    `SELECT count(user) AS totalVotes FROM votes WHERE coin_id=${coin_id};`,
-    // `Select votes_count from coin where id='${coin_id}'`,
+    `SELECT coin_id FROM votes WHERE user = '${
+      dectoken && dectoken.email
+    }' and coin_id=${coin_id};`,
     function (error, results, fields) {
-      res.send(JSON.stringify(results[0]));
-      // res.send(results[0]);
-      // res.send(JSON.stringify({ votes: results }));
+      console.log(results);
+      if (results.length >= 1) {
+        res.send("1");
+      } else {
+        res.send("");
+      }
     }
   );
 });

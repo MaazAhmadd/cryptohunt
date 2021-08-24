@@ -46,7 +46,7 @@ export default function AdminCoins() {
     if (cell.key.includes("vote")) {
       return null;
     } else {
-      return history.push(`/coins/${row.id}`);
+      return window.location = `/coins/${row.id}`;
       // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };

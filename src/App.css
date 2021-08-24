@@ -930,3 +930,19 @@ svg {
   background-color: transparent;
   cursor: default;
 }
+
+.pagination-new {
+  margin: 2% 33% 4% 36%;
+}
+@media screen and (max-width: 768px) {
+  .pagination-new {
+    margin: 10% 0 0 0;
+  }
+  .pagination-container .pagination-item.dots {
+    width: 32px;
+    padding-left: 3%;
+  }
+  .pagination-container .pagination-item {
+    margin: auto 3px;
+  }
+}

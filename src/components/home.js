@@ -111,7 +111,7 @@ function Home() {
             )}
           </div>
           {todaysBest ? (
-            <div style={{ margin: "2% 33% 4% 36%" }}>
+            <div className="pagination-new">
               <Pagination
                 currentPage={currentPage}
                 totalCount={totalCount}

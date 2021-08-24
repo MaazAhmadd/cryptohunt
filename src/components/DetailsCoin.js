@@ -27,7 +27,6 @@ export default function DetailsCoin() {
   if (isCvoted == 1) {
     isvoted = true;
   }
-  console.log(isCvoted);
   let token = localStorage.getItem("token");
   React.useEffect(() => {
     let myF = async () => {
@@ -165,6 +164,15 @@ export default function DetailsCoin() {
     }
   };
 
+  let dateDiff = Math.ceil(
+    (new Date(detailsCoins.launch) -
+      new Date(new Date().toLocaleDateString("en-US"))) /
+      (1000 * 60 * 60 * 24)
+  );
+
+  let isDatePositive = Math.sign(dateDiff) == "1";
+  let presale = detailsCoins.presale == "1" && isDatePositive;
+  console.log(presale);
   return (
     <>
       {status ? (
@@ -227,7 +235,6 @@ export default function DetailsCoin() {
                     {detailsCoins.symbol}
                   </p>
                   <button
-                    style={{ fontSize: "0.6rem" }}
                     onClick={(e) => handleVoteClick(isvoted, e)}
                     title="Vote?"
                     className={
@@ -245,9 +252,16 @@ export default function DetailsCoin() {
                   </button>
                 </div>
                 <div className="details-left-top2">
-                  <p className="details-left-chain">
-                    Binance Smart Chain: {detailsCoins.binancesmartchain}
-                  </p>
+                  {presale ? (
+                    <p className="details-left-chain">
+                      WARNING: The contract is kept hidden for pre launch, make
+                      sure to DYOR
+                    </p>
+                  ) : (
+                    <p className="details-left-chain">
+                      Binance Smart Chain: {detailsCoins.binancesmartchain}
+                    </p>
+                  )}
                 </div>
               </div>
               <p className="details-left-desc">{detailsCoins.description}</p>

@@ -14,6 +14,7 @@ function Home() {
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [status, setStatus] = useState(false);
+  const [bestStatus, setBestStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -33,12 +34,13 @@ function Home() {
     //fetch
     await axios.get(apiUrl + "/coins/promoted").then(({ data }) => {
       setPromotedCoins(data.coin_results);
-      setStatus(true);
     });
   };
   const getCoinBestData = async () => {
     //fetch
     await axios.get(`${apiUrl}/${currentPage}/coins`).then(({ data }) => {
+      setStatus(true);
+      setBestStatus(true);
       setBestCoins(data.coin_results);
       setTotalCount(
         data.coin_results &&
@@ -93,7 +95,17 @@ function Home() {
           </div>
           <div>
             {todaysBest ? (
-              <BestCoins promotedCoin={bestCoin} />
+              bestStatus ? (
+                <BestCoins promotedCoin={bestCoin} />
+              ) : (
+                <div className="load-wrapp">
+                  <div className="load-3">
+                    <div className="line"></div>
+                    <div className="line"></div>
+                    <div className="line"></div>
+                  </div>
+                </div>
+              )
             ) : (
               <BestCoins promotedCoin={bestTodayCoin} />
             )}
@@ -105,6 +117,7 @@ function Home() {
                 totalCount={totalCount}
                 pageSize={pageSize}
                 onPageChange={(page) => {
+                  setBestStatus(false);
                   setCurrentPage(page);
                 }}
               />

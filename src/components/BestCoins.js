@@ -190,7 +190,6 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     let allCoins = [];
     if (coins) {
       coins.forEach((coin) => {
-        let presale = coin.presale == "1";
         let votesByUser = coins[coins.length - 1];
         let isvoted = false;
         votesByUser.forEach((c) => {
@@ -246,6 +245,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
         );
         let isDatePositive = Math.sign(dateDiff) == "1";
         let isDateZero = Math.sign(dateDiff) == "0";
+        let presale = coin.presale == "1" && isDatePositive;
         let change = coin.volume_change_24h
           ? parseFloat(coin.volume_change_24h).toFixed(2)
           : false;

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
+import {
+  BsCapslockFill,
+  BsArrowLeft,
+  BsHeartFill,
+  BsClipboard,
+} from "react-icons/bs";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
 import config from "../config.json";
@@ -259,6 +264,17 @@ export default function DetailsCoin() {
                   ) : (
                     <p className="details-left-chain">
                       Binance Smart Chain: {detailsCoins.binancesmartchain}
+                      {"      "}
+                      <BsClipboard
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          navigator.clipboard
+                            .writeText(detailsCoins.binancesmartchain)
+                            .then(() => {
+                              toast.info("Copied to Clipboard");
+                            });
+                        }}
+                      />
                     </p>
                   )}
                 </div>

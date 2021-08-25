@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { BsCapslockFill, BsArrowLeft, BsHeartFill } from "react-icons/bs";
+import {
+  BsCapslockFill,
+  BsArrowLeft,
+  BsHeartFill,
+  BsClipboard,
+} from "react-icons/bs";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import config from "../config.json";
@@ -261,8 +266,27 @@ export default function DetailsCoin() {
                       sure to DYOR
                     </p>
                   ) : (
-                    <p className="details-left-chain">
+                    <p
+                      className="details-left-chain"
+                      style={{
+                        margin: "0 4%",
+                        display: "inherit",
+                        width: "92%",
+                        fontSize: "0.7rem",
+                      }}
+                    >
                       Binance Smart Chain: {detailsCoins.binancesmartchain}
+                      {"      "}
+                      <BsClipboard
+                        style={{ cursor: "pointer", fontSize: "1rem" }}
+                        onClick={() => {
+                          navigator.clipboard
+                            .writeText(detailsCoins.binancesmartchain)
+                            .then(() => {
+                              toast.info("Copied to Clipboard");
+                            });
+                        }}
+                      />
                     </p>
                   )}
                 </div>

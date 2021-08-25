@@ -14,21 +14,15 @@ function Home() {
   const [bestCoin, setBestCoins] = useState([]);
   const [bestTodayCoin, setBestTodayCoins] = useState([]);
   const [status, setStatus] = useState(false);
-  const [bestStatus, setBestStatus] = useState(false);
   const [todaysBest, setTodaysBest] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
-
-  let pageSize = 10;
 
   let token = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = token;
-  console.log(currentPage);
   useEffect(() => {
     getCoinPromotedData();
     getCoinBestData();
     getCoinTodayBestData();
-  }, [currentPage]);
+  }, []);
 
   const getCoinPromotedData = async () => {
     //fetch
@@ -38,14 +32,9 @@ function Home() {
   };
   const getCoinBestData = async () => {
     //fetch
-    await axios.get(`${apiUrl}/${currentPage}/coins`).then(({ data }) => {
+    await axios.get(`${apiUrl}/coins`).then(({ data }) => {
       setStatus(true);
-      setBestStatus(true);
       setBestCoins(data.coin_results);
-      setTotalCount(
-        data.coin_results &&
-          data.coin_results[data.coin_results.length - 2].total
-      );
     });
   };
   const getCoinTodayBestData = async () => {
@@ -95,22 +84,12 @@ function Home() {
           </div>
           <div>
             {todaysBest ? (
-              bestStatus ? (
-                <BestCoins promotedCoin={bestCoin} />
-              ) : (
-                <div className="load-wrapp">
-                  <div className="load-3">
-                    <div className="line"></div>
-                    <div className="line"></div>
-                    <div className="line"></div>
-                  </div>
-                </div>
-              )
+              <BestCoins promotedCoin={bestCoin} />
             ) : (
               <BestCoins promotedCoin={bestTodayCoin} />
             )}
           </div>
-          {todaysBest ? (
+          {/* {todaysBest ? (
             <div className="pagination-new">
               <Pagination
                 currentPage={currentPage}
@@ -124,7 +103,7 @@ function Home() {
             </div>
           ) : (
             ""
-          )}
+          )} */}
         </div>
       ) : (
         <div className="load-wrapp">

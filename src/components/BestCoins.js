@@ -413,6 +413,14 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     {
       columns,
       data,
+      initialState: {
+        sortBy: [
+          {
+            id: "vote",
+            desc: false,
+          },
+        ],
+      },
     },
     useGlobalFilter,
     useSortBy,
@@ -510,7 +518,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
           </tbody>
         </table>
       </div>
-      {/* <div className="promoted-pagination">
+      <div className="promoted-pagination">
         <span>
           Page{" "}
           <strong>
@@ -523,7 +531,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
         <button onClick={() => nextPage()} disabled={!canNextPage}>
           Next
         </button>
-      </div> */}
+      </div>
     </>
   );
 }

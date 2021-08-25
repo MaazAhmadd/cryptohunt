@@ -226,16 +226,13 @@ app.get("/coins/promoted", function (req, res) {
 
   //end fetching
 });
-app.get("/:page/coins", function (req, res) {
-  let page = (req.params.page - 1) * 10;
+app.get("/coins", function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
   } catch (ex) {}
   connection.query(
-    `Select * from coin where status='approved' LIMIT ${
-      page && page - 1
-    },10;Select COUNT(*) as tc from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
+    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
       dectoken && dectoken.email
     }';`,
     function (error, results, fields) {
@@ -246,8 +243,7 @@ app.get("/:page/coins", function (req, res) {
           api.updateCoin(result.name);
           coin_results.push(result);
         });
-        coin_results.push({ total: results[1][0].tc });
-        coin_results.push(results[2]);
+        coin_results.push(results[1]);
         // for each result
         res.send(JSON.stringify({ coin_results }));
       }
@@ -256,6 +252,36 @@ app.get("/:page/coins", function (req, res) {
 
   //end fetching
 });
+// app.get("/:page/coins", function (req, res) {
+//   let page = (req.params.page - 1) * 10;
+//   let dectoken = false;
+//   try {
+//     dectoken = jwtDecode(req.header("x-auth-token"));
+//   } catch (ex) {}
+//   connection.query(
+//     `Select * from coin where status='approved' LIMIT ${
+//       page && page - 1
+//     },10;Select COUNT(*) as tc from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
+//       dectoken && dectoken.email
+//     }';`,
+//     function (error, results, fields) {
+//       if (results !== undefined && results[0].length > 0) {
+//         var coin_results = [];
+//         // for each result
+//         results[0].forEach((result) => {
+//           api.updateCoin(result.name);
+//           coin_results.push(result);
+//         });
+//         coin_results.push({ total: results[1][0].tc });
+//         coin_results.push(results[2]);
+//         // for each result
+//         res.send(JSON.stringify({ coin_results }));
+//       }
+//     }
+//   );
+
+//   //end fetching
+// });
 app.get("/coins_index", function (req, res) {
   connection.query(
     `Select name from coin where status='approved';`,

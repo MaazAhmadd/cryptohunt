@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
 });
 
 connection.connect();
-/** MYSQL DATAABASE **/
+// /** MYSQL DATAABASE **/
 
 module.exports = {
   async updateCoin(coin) {
@@ -38,5 +38,24 @@ module.exports = {
           );
         }
       }); //price is fetched
+  },
+  async checkCoinChain(id, chain) {
+    await axios
+      .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
+      // .then((response) => {
+      //   if (!response.error) {
+      //     return null;
+      //   } else {
+      //   }
+      //   console.log("error");
+      // })
+      .catch((ex) => {
+        connection.query(
+          `UPDATE coin set binancesmartchain=false where id=${id};`,
+          function (error, results, fields) {
+            if (error) throw err;
+          }
+        );
+      });
   },
 };

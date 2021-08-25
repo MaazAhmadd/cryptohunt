@@ -241,6 +241,7 @@ app.get("/coins", function (req, res) {
         // for each result
         results[0].forEach((result) => {
           api.updateCoin(result.name);
+          api.checkCoinChain(result.id, result.binancesmartchain);
           coin_results.push(result);
         });
         coin_results.push(results[1]);
@@ -381,7 +382,6 @@ app.get("/get/vote/:coinid", auth, function (req, res) {
       dectoken && dectoken.email
     }' and coin_id=${coin_id};`,
     function (error, results, fields) {
-      console.log(results);
       if (results.length >= 1) {
         res.send("1");
       } else {

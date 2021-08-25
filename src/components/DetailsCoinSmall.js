@@ -255,7 +255,7 @@ export default function DetailsCoin() {
                 </div>
 
                 <div className="details-left-top2">
-                  {presale ? (
+                  {presale || detailsCoins.binancesmartchain == 0 ? (
                     <p className="details-left-chain">
                       WARNING: The contract is kept hidden for pre launch, make
                       sure to DYOR

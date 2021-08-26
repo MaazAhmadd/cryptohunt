@@ -427,7 +427,10 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     usePagination
   );
   const { globalFilter, pageIndex } = state;
-  const onSearchClick = () => setShowSearch(!showSearch);
+  const onSearchClick = () => {
+    setGlobalFilter("");
+    return setShowSearch(!showSearch);
+  };
 
   return (
     <>

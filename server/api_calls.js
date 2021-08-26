@@ -57,6 +57,9 @@ module.exports = {
             }
           );
         }
+      })
+      .catch((ex) => {
+        console.log("Error while updating the coins ", ex);
       }); //price is fetched
   },
   async checkCoinChain(id, chain) {

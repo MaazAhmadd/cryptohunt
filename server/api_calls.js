@@ -58,17 +58,19 @@ module.exports = {
           );
         }
       })
-      .catch((ex) => {
-        console.log("Error while updating the coins ", ex);
-      }); //price is fetched
+      .catch((ex) => {}); //price is fetched
   },
   async checkCoinChain(id, chain) {
     await axios
       .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
-      // .then((response) => {
-      //   if (!response.error) {
-      //     return null;
-      //   } else {
+      // .then(({ data }) => {
+      //   if (data.price) {
+      //     connection.query(
+      //       `UPDATE coin set price='${data.price}' where id=${id};`,
+      //       function (error, results, fields) {
+      //         if (error) throw err;
+      //       }
+      //     );
       //   }
       //   console.log("error");
       // })

@@ -177,7 +177,6 @@ export default function DetailsCoin() {
 
   let isDatePositive = Math.sign(dateDiff) == "1";
   let presale = detailsCoins.presale == "1" && isDatePositive;
-  console.log(presale);
 
   return (
     <>

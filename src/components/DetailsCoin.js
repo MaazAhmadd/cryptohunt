@@ -65,10 +65,12 @@ export default function DetailsCoin() {
     });
   };
   const getCoinVote = async () => {
+    if (token) {
+      await axios.get(`${apiUrl}/get/vote/${id}`).then(({ data }) => {
+        setCIsvoted(data);
+      });
+    }
     //fetch
-    await axios.get(`${apiUrl}/get/vote/${id}`).then(({ data }) => {
-      setCIsvoted(data);
-    });
   };
 
   const moonHandler = async (moon, id) => {

@@ -34,7 +34,7 @@ export default function DetailsCoin() {
   }
 
   let token = localStorage.getItem("token");
-  
+
   let dectoken = { role: "notAdmin" };
 
   try {
@@ -229,12 +229,9 @@ export default function DetailsCoin() {
                     style={{
                       fontSize: "80%",
                       backgroundColor: "lightgray",
-                      width: "12%",
-                      height: "20px",
-                      textAlign: "center",
-                      paddingTop: "0.6%",
                       marginLeft: "-5%",
                       borderRadius: "6px",
+                      padding: "1.4%",
                     }}
                   >
                     {detailsCoins.symbol}
@@ -260,7 +257,15 @@ export default function DetailsCoin() {
 
                 <div className="details-left-top2">
                   {presale || detailsCoins.chain == 0 ? (
-                    <p className="details-left-chain">
+                    <p
+                      className="details-left-chain"
+                      style={{
+                        margin: "0 4%",
+                        display: "inherit",
+                        width: "92%",
+                        fontSize: "0.7rem",
+                      }}
+                    >
                       WARNING: The contract is kept hidden for pre launch, make
                       sure to DYOR
                     </p>

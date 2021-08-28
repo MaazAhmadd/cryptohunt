@@ -142,6 +142,7 @@ function AddCoin() {
                   label="Name"
                   placeholder="Ex Bitcoin"
                   required
+                  inputProps={{ maxLength: 64 }}
                 />
               </div>
 
@@ -153,6 +154,7 @@ function AddCoin() {
                   type="text"
                   label="Symbol"
                   placeholder="Ex BTC"
+                  inputProps={{ maxLength: 64 }}
                   required
                 />
               </div>
@@ -177,6 +179,7 @@ function AddCoin() {
                   onChange={(e) => handleInput(e)}
                   id="logo"
                   type="text"
+                  inputProps={{ maxLength: 1024 }}
                   label="Logo"
                   placeholder="Ex http://url.com/logo.png"
                 />
@@ -195,6 +198,7 @@ function AddCoin() {
                   onBlur={(e) => {
                     e.target.type = "text";
                   }}
+                  inputProps={{ maxLength: 64 }}
                   // placeholder="Ex DD/MM/YYYY"
                   required
                 />
@@ -228,6 +232,7 @@ function AddCoin() {
                     onChange={(e) => handleInput(e)}
                     id="binancesmartchain"
                     type="text"
+                    inputProps={{ maxLength: 256 }}
                     label="Binance Smart Chain"
                     placeholder="Ex 0x000000000000000"
                   />
@@ -240,6 +245,7 @@ function AddCoin() {
                     id="ethereum"
                     type="text"
                     label="Ethereum"
+                    inputProps={{ maxLength: 256 }}
                     placeholder="Ex 0x000000000000000"
                   />
                 </div>
@@ -251,6 +257,7 @@ function AddCoin() {
                     id="solana"
                     type="text"
                     label="Solana"
+                    inputProps={{ maxLength: 256 }}
                     placeholder="Ex xxxxxxxxxxxxxxxxx"
                   />
                 </div>
@@ -262,6 +269,7 @@ function AddCoin() {
                     id="polygon"
                     type="text"
                     label="Polygon"
+                    inputProps={{ maxLength: 256 }}
                     placeholder="Ex 0x000000000000000"
                   />
                 </div>
@@ -281,6 +289,7 @@ function AddCoin() {
                     id="website"
                     type="text"
                     label="Website"
+                    inputProps={{ maxLength: 64 }}
                     required
                     placeholder="Ex https://www.domain.tld"
                   />
@@ -293,6 +302,7 @@ function AddCoin() {
                     id="telegram"
                     type="text"
                     label="Telegram"
+                    inputProps={{ maxLength: 64 }}
                     placeholder="Ex https://t.me/bitcoin"
                   />
                 </div>
@@ -303,6 +313,7 @@ function AddCoin() {
                     onChange={(e) => handleInput(e)}
                     id="twitter"
                     type="text"
+                    inputProps={{ maxLength: 64 }}
                     label="Twitter"
                     placeholder="Ex https://twitter.com/youracc"
                   />

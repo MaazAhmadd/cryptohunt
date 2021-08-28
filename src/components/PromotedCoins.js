@@ -15,14 +15,6 @@ export default function PromotedCoins({ promotedCoin }) {
   }
   const dataPromoted = React.useMemo(() => promotedCoins, [promotedCoin]);
 
-  // let token;
-  // React.useEffect(() => {
-  //   let myF = async () => {
-  //     token = await localStorage.getItem("token");
-  //   };
-  //   myF();
-  // }, []);
-
   const columnsHPromoted = [
     {
       accessor: "logo",

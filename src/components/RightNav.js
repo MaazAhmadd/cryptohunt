@@ -43,13 +43,6 @@ const Ul = styled.ul`
 `;
 
 const RightNav = ({ open, setOpen }) => {
-  // let token;
-  // React.useEffect(() => {
-  //   let myF = async () => {
-  //     token = await localStorage.getItem("token");
-  //   };
-  //   myF();
-  // }, []);
   const is_user_logged_in = localStorage.getItem("token") ? false : true;
 
   return (

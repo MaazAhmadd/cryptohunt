@@ -33,12 +33,7 @@ export default function DetailsCoin() {
     isvoted = true;
   }
   let token = localStorage.getItem("token");
-  React.useEffect(() => {
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-  }, []);
+  
   let dectoken = { role: "notAdmin" };
   let id = useParams().id;
 

@@ -10,13 +10,7 @@ const qs = require("querystring");
 const apiUrl = config.API_URL;
 
 function Login() {
-  let token;
-  React.useEffect(() => {
-    let myF = async () => {
-      token = await localStorage.getItem("token");
-    };
-    myF();
-  }, []);
+  let token = localStorage.getItem("token");
   axios.defaults.headers.common["x-auth-token"] = token;
   const [user, setUser] = useState({
     email: "",

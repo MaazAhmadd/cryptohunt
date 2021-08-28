@@ -236,10 +236,12 @@ app.get("/coins/promoted", function (req, res) {
 
   connection.query(
     `Select * from coin where status='approved' and featured=1;SELECT coin_id FROM votes WHERE user = '${
-      dectoken && dectoken.email
+      // dectoken && dectoken.email
+      dectoken?.email
     }';`,
     function (error, results, fields) {
-      if (results && results[0].length > 0) {
+      // if (results && results[0].length > 0) {
+      if (results[0]?.length > 0) {
         var coin_results = [];
         // for each result
         results[0].forEach((result) => {
@@ -264,10 +266,12 @@ app.get("/coins", function (req, res) {
   } catch (ex) {}
   connection.query(
     `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
-      dectoken && dectoken.email
+      // dectoken && dectoken.email
+      dectoken?.email
     }';`,
     function (error, results, fields) {
-      if (results !== undefined && results[0].length > 0) {
+      // if (results && results[0].length > 0) {
+      if (results[0]?.length > 0) {
         var coin_results = [];
         // for each result
         results[0].forEach((result) => {
@@ -318,7 +322,8 @@ app.get("/coins_index", function (req, res) {
   connection.query(
     `Select name from coin where status='approved';`,
     function (error, results, fields) {
-      if (results && results.length > 0) {
+      // if (results && results.length > 0) {
+      if (results?.length > 0) {
         res.send(JSON.stringify({ coin_results: results }));
       } else {
         res.send("nothing");
@@ -338,11 +343,13 @@ app.get("/coins/today", function (req, res) {
   // }';`
   connection.query(
     `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY);SELECT coin_id FROM votes WHERE user = '${
-      dectoken && dectoken.email
+      // dectoken && dectoken.email
+      dectoken?.email
     }';`,
     function (error, results, fields) {
       let coin_results = results;
-      if (results !== undefined && results.length > 0) {
+      // if (results && results.length > 0) {
+      if (results?.length > 0) {
         let coin_results = [];
         results[0].forEach((result) => {
           coin_results.push(result);
@@ -410,7 +417,8 @@ app.get("/get/vote/:coinid", auth, function (req, res) {
   var coin_id = req.params.coinid;
   connection.query(
     `SELECT coin_id FROM votes WHERE user = '${
-      dectoken && dectoken.email
+      dectoken?.email
+      // dectoken && dectoken.email
     }' and coin_id=${coin_id};`,
     function (error, results, fields) {
       if (results.length >= 1) {
@@ -429,7 +437,8 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
   connection.query(
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {
-      if (results && results.length > 0) {
+      if (results?.length > 0) {
+        // if (results && results.length > 0) {
         var coin_results = [];
         // for each result
         results.forEach((result) => {
@@ -575,6 +584,8 @@ app.get("/coins/:id", function (req, res) {
     `SELECT * FROM coin where id = ${coin_id}`,
     function (error, results, fields) {
       if (results.length > 0) {
+        api.updateCoin(results[0].name);
+        api.checkCoinChain(results[0].id, results[0].binancesmartchain);
         res.send(JSON.stringify(results));
       } else {
         res.send("something not right with id");

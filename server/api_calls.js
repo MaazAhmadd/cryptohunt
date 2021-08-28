@@ -37,7 +37,7 @@ module.exports = {
   async updateCoin(coin) {
     // fetch from axios
     var coin_normal = coin;
-    coin = coin.toLowerCase();
+    coin = coin?.toLowerCase();
 
     await axios
       .get(
@@ -52,7 +52,7 @@ module.exports = {
           connection.query(
             `UPDATE coin set price='${current_price}',market_cap='${market_cap}',volume_change_24h='${onedaychange}' where name='${coin_normal}'`,
             function (error, results, fields) {
-              if (error) throw err;
+              if (error) throw new Error("coin not updated");
               console.log("Updated");
             }
           );
@@ -63,22 +63,28 @@ module.exports = {
   async checkCoinChain(id, chain) {
     await axios
       .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
-      // .then(({ data }) => {
-      //   if (data.price) {
-      //     connection.query(
-      //       `UPDATE coin set price='${data.price}' where id=${id};`,
-      //       function (error, results, fields) {
-      //         if (error) throw err;
-      //       }
-      //     );
-      //   }
-      //   console.log("error");
-      // })
+      .then(({ data }) => {
+        console.log("not error");
+        if (data?.data) {
+          connection.query(
+            `UPDATE coin set price='${data.data.price.toFixed(
+              2
+            )}' and chain=true where id=${id};`,
+            function (error, results, fields) {
+              if (error) throw new Error("coin not updated");
+            }
+          );
+        }
+      })
       .catch((ex) => {
+        console.log("error", ex.data);
         connection.query(
-          `UPDATE coin set binancesmartchain=false where id=${id};`,
+          `UPDATE coin set chain=false where id=${id};`,
           function (error, results, fields) {
-            if (error) throw err;
+            if (error) {
+              console.log(error);
+              throw new Error("coin not updated");
+            }
           }
         );
       });

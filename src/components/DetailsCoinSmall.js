@@ -218,15 +218,18 @@ export default function DetailsCoin() {
                       style={{ marginRight: "2%" }}
                     />
                   )}
-                  <p
-                    style={{
-                      fontSize: "100%",
-                      fontWeight: "600",
-                      marginLeft: "-10%",
-                    }}
-                  >
-                    {detailsCoins.name}
-                  </p>
+                  <div style={{ width: "120px" }}>
+                    <p
+                      style={{
+                        fontSize: "1rem",
+                        fontWeight: "600",
+                        marginLeft: "-10%",
+                        overflowWrap: "break-word",
+                      }}
+                    >
+                      {detailsCoins.name}
+                    </p>
+                  </div>
                   <p
                     style={{
                       fontSize: "80%",
@@ -261,7 +264,7 @@ export default function DetailsCoin() {
                 </div>
 
                 <div className="details-left-top2">
-                  {presale || detailsCoins.binancesmartchain == 0 ? (
+                  {presale || detailsCoins.chain == 0 ? (
                     <p className="details-left-chain">
                       WARNING: The contract is kept hidden for pre launch, make
                       sure to DYOR

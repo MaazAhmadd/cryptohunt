@@ -64,12 +64,10 @@ module.exports = {
     await axios
       .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
       .then(({ data }) => {
-        console.log("not error");
         if (data?.data) {
+          let price = Number(data?.data?.price).toFixed(2);
           connection.query(
-            `UPDATE coin set price='${data.data.price.toFixed(
-              2
-            )}' and chain=true where id=${id};`,
+            `UPDATE coin set price='${price}', chain=true where id=${id};`,
             function (error, results, fields) {
               if (error) throw new Error("coin not updated");
             }
@@ -77,12 +75,10 @@ module.exports = {
         }
       })
       .catch((ex) => {
-        console.log("error", ex.data);
         connection.query(
           `UPDATE coin set chain=false where id=${id};`,
           function (error, results, fields) {
             if (error) {
-              console.log(error);
               throw new Error("coin not updated");
             }
           }

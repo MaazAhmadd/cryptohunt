@@ -213,7 +213,7 @@ export default function DetailsCoin() {
                       style={{ marginRight: "2%" }}
                     />
                   )}
-                  <div style={{ width: "120px" }}>
+                  <div style={{ width: "110px" }}>
                     <p
                       style={{
                         fontSize: "1rem",
@@ -232,6 +232,9 @@ export default function DetailsCoin() {
                       marginLeft: "-5%",
                       borderRadius: "6px",
                       padding: "1.4%",
+                      overflowWrap: "break-word",
+                      width: "55px",
+                      textAlign: "center",
                     }}
                   >
                     {detailsCoins.symbol}

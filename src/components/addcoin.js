@@ -68,7 +68,7 @@ function AddCoin() {
         .post(
           apiUrl + "/add_coin",
           qs.stringify({
-            name: coin.name.split(" ").join(""),
+            name: coin.name,
             symbol: coin.symbol,
             description: coin.description,
             logo: coin.logo,

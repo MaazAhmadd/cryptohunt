@@ -65,7 +65,7 @@ module.exports = {
       .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
       .then(({ data }) => {
         if (data?.data) {
-          let price = Number(data?.data?.price).toFixed(2);
+          let price = Number(data?.data?.price).toFixed(10);
           connection.query(
             `UPDATE coin set price='${price}', chain=true where id=${id};`,
             function (error, results, fields) {

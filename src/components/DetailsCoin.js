@@ -219,7 +219,6 @@ export default function DetailsCoin() {
                       fontWeight: "600",
                       marginLeft: "-14%",
                       overflowWrap: "break-word",
-                      textAlign: "center",
                     }}
                   >
                     {detailsCoins.name}

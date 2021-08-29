@@ -217,7 +217,7 @@ export default function DetailsCoin() {
                       width: "350px",
                       fontSize: "215%",
                       fontWeight: "600",
-                      marginLeft: "-14%",
+                      marginLeft: "-11%",
                       overflowWrap: "break-word",
                     }}
                   >

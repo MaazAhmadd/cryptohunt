@@ -259,7 +259,9 @@ export default function DetailsCoin() {
                 </div>
 
                 <div className="details-left-top2">
-                  {presale || detailsCoins.chain == 0 ? (
+                  {presale ||
+                  detailsCoins.chain == 0 ||
+                  !detailsCoins.binancesmartchain ? (
                     <p
                       className="details-left-chain"
                       style={{

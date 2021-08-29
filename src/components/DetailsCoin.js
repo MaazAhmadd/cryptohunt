@@ -228,7 +228,6 @@ export default function DetailsCoin() {
                       fontSize: "150%",
                       backgroundColor: "lightgray",
                       width: "110px",
-                      height: "40px",
                       textAlign: "center",
                       paddingTop: "0.3%",
                       marginLeft: "-10%",
@@ -257,7 +256,9 @@ export default function DetailsCoin() {
                   </button>
                 </div>
                 <div className="details-left-top2">
-                  {presale || detailsCoins.chain == 0 ? (
+                  {presale ||
+                  detailsCoins.chain == 0 ||
+                  !detailsCoins.binancesmartchain ? (
                     <p className="details-left-chain">
                       WARNING: The contract is kept hidden for pre launch, make
                       sure to DYOR

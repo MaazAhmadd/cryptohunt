@@ -33,7 +33,7 @@ export default function DetailsCoin() {
     isvoted = true;
   }
   let token = localStorage.getItem("token");
-  
+
   let dectoken = { role: "notAdmin" };
   let id = useParams().id;
 
@@ -214,9 +214,12 @@ export default function DetailsCoin() {
                   )}
                   <p
                     style={{
+                      width: "350px",
                       fontSize: "215%",
                       fontWeight: "600",
-                      marginLeft: "-34%",
+                      marginLeft: "-14%",
+                      overflowWrap: "break-word",
+                      textAlign: "center",
                     }}
                   >
                     {detailsCoins.name}
@@ -225,12 +228,14 @@ export default function DetailsCoin() {
                     style={{
                       fontSize: "150%",
                       backgroundColor: "lightgray",
-                      width: "8%",
+                      width: "110px",
                       height: "40px",
                       textAlign: "center",
                       paddingTop: "0.3%",
-                      marginLeft: "-32%",
+                      marginLeft: "-10%",
                       borderRadius: "7px",
+                      overflowWrap: "break-word",
+                      textAlign: "center",
                     }}
                   >
                     {detailsCoins.symbol}

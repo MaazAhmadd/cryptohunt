@@ -28,6 +28,21 @@ export default function DetailsCoin() {
 
   const history = useHistory();
 
+  const returnCurrencyUSD = (number) => {
+    if (typeof number == "undefined") {
+      return "";
+    }
+    number = Number(number);
+    if (number[0] == 0 || number < 1000) return `$${number}`;
+
+    number = number.toFixed(10);
+    number = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(number);
+    number = number.slice(0, -3);
+    return number;
+  };
   let isvoted = false;
   if (isCvoted == 1) {
     isvoted = true;
@@ -346,7 +361,7 @@ export default function DetailsCoin() {
                 <p className="details-right-price-h">Price</p>
                 <p className="details-right-price-b">
                   {detailsCoins.price ? (
-                    `$${detailsCoins.price}`
+                    returnCurrencyUSD(detailsCoins.price)
                   ) : (
                     <span>-</span>
                   )}
@@ -355,7 +370,7 @@ export default function DetailsCoin() {
                 <p className="details-right-price-h">Market Cap</p>
                 <p className="details-right-price-b">
                   {detailsCoins.market_cap ? (
-                    `$${detailsCoins.market_cap}`
+                    returnCurrencyUSD(detailsCoins.market_cap)
                   ) : (
                     <span>-</span>
                   )}

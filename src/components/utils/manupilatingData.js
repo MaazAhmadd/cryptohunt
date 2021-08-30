@@ -6,7 +6,21 @@ import config from "../../config.json";
 import { toast } from "react-toastify";
 
 const apiUrl = config.API_URL;
+const returnCurrencyUSD = (number) => {
+  if (typeof number == "undefined") {
+    return "";
+  }
+  number = Number(number);
+  if (number[0] == 0 || number < 1000) return `$${number}`;
 
+  number = number.toFixed(10);
+  number = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(number);
+  number = number.slice(0, -3);
+  return number;
+};
 export default (coins) => {
   let allCoins = [];
   if (coins) {
@@ -126,7 +140,7 @@ export default (coins) => {
           ) : !coin.market_cap ? (
             <span>-</span>
           ) : (
-            `$${coin.market_cap}`
+            returnCurrencyUSD(coin.market_cap)
           ),
           launch: !isDateZero
             ? isDatePositive

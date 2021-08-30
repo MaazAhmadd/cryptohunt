@@ -26,6 +26,22 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
 
   const history = useHistory();
 
+  const returnCurrencyUSD = (number) => {
+    if (typeof number == "undefined") {
+      return "";
+    }
+    number = Number(number);
+    if (number[0] == 0 || number < 1000) return `$${number}`;
+
+    number = number.toFixed(10);
+    number = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(number);
+    number = number.slice(0, -3);
+    return number;
+  };
+
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
@@ -156,7 +172,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             ) : !coin.market_cap ? (
               <span>-</span>
             ) : (
-              `$${coin.market_cap}`
+              returnCurrencyUSD(coin.market_cap)
             ),
             launch: !isDateZero
               ? isDatePositive

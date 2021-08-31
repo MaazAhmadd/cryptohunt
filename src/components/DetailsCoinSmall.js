@@ -249,7 +249,7 @@ export default function DetailsCoin() {
                     style={{
                       fontSize: "80%",
                       backgroundColor: "lightgray",
-                      marginLeft: "-5%",
+                      marginLeft: "-3%",
                       borderRadius: "6px",
                       padding: "1.4%",
                       overflowWrap: "break-word",

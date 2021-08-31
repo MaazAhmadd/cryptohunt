@@ -33,9 +33,11 @@ export default function DetailsCoin() {
       return "";
     }
     number = Number(number);
-    if (number[0] == 0) return `$${number}`;
-    if (number < 10000) return `$${number.toFixed(3)}`;
-
+    if (number[0] == 0) {
+      return `$${number}`;
+    } else if (number < 10000) {
+      return `$${number.toFixed(3)}`;
+    }
     number = number.toFixed(10);
     number = new Intl.NumberFormat("en-US", {
       style: "currency",

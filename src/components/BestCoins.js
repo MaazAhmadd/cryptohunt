@@ -30,10 +30,11 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
     if (typeof number == "undefined") {
       return "";
     }
-    number = Number(number);
     if (number[0] == 0) {
       return `$${number}`;
-    } else if (number < 10000) {
+    }
+    number = Number(number);
+    if (number < 10000) {
       return `$${number.toFixed(3)}`;
     }
     number = number.toFixed(10);

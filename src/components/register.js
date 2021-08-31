@@ -20,7 +20,8 @@ function Register() {
 
   axios.defaults.headers.common["x-auth-token"] = token;
 
-  async function doLogin(e) {
+  async function doRegister(e) {
+    e.preventDefault();
     if (user.email !== "" && user.password !== "" && user.name !== "") {
       if (user.password.length < 6) {
         toast("Error: Password Should Be At Least 6 Digits Long!");
@@ -37,10 +38,9 @@ function Register() {
           )
           .then((resp) => {
             toast(resp.data.msg);
-
             if (resp.data.code == "success") {
               localStorage.setItem("token", resp.data.token);
-              window.location.href = "./";
+              window.location = "./";
             }
           });
       }
@@ -103,7 +103,7 @@ function Register() {
               style={{ width: "100%" }}
               variant="contained"
               color="primary"
-              onClick={(e) => doLogin(e)}
+              onClick={(e) => doRegister(e)}
             >
               Register
             </Button>

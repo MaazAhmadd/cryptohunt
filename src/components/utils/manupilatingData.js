@@ -4,28 +4,10 @@ import axios from "axios";
 import qs from "querystring";
 import config from "../../config.json";
 import { toast } from "react-toastify";
+import toUsd from "./toUsd";
 
 const apiUrl = config.API_URL;
-const returnCurrencyUSD = (number) => {
-  if (typeof number == "undefined") {
-    return "";
-  }
-  if (number[0] == 0) {
-    return `$${number}`;
-  }
-  number = Number(number);
-  if (number < 10000) {
-    return `$${number.toFixed(3)}`;
-  }
 
-  number = number.toFixed(10);
-  number = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(number);
-  number = number.slice(0, -3);
-  return number;
-};
 export default (coins) => {
   let allCoins = [];
   if (coins) {
@@ -145,7 +127,7 @@ export default (coins) => {
           ) : !coin.market_cap ? (
             <span>-</span>
           ) : (
-            returnCurrencyUSD(coin.market_cap)
+            toUsd(coin.market_cap)
           ),
           launch: !isDateZero
             ? isDatePositive

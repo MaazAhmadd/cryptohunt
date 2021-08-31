@@ -17,34 +17,14 @@ import {
   BsCapslockFill,
 } from "react-icons/bs";
 import { GlobalFilter } from "./GlobalFilter";
+import toUsd from "./utils/toUsd";
 const apiUrl = config.API_URL;
 
 export default function BestCoins({ promotedCoin: bestCoin }) {
   axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token");
-
   const [showSearch, setShowSearch] = React.useState(false);
 
   const history = useHistory();
-
-  const returnCurrencyUSD = (number) => {
-    if (typeof number == "undefined") {
-      return "";
-    }
-    if (number[0] == 0) {
-      return `$${number}`;
-    }
-    number = Number(number);
-    if (number < 10000) {
-      return `$${number.toFixed(3)}`;
-    }
-    number = number.toFixed(10);
-    number = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(number);
-    number = number.slice(0, -3);
-    return number;
-  };
 
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
@@ -176,7 +156,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
             ) : !coin.market_cap ? (
               <span>-</span>
             ) : (
-              returnCurrencyUSD(coin.market_cap)
+              toUsd(coin.market_cap)
             ),
             launch: !isDateZero
               ? isDatePositive

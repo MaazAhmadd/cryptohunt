@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toUsd from "./utils/toUsd";
 import {
   BsCapslockFill,
   BsArrowLeft,
@@ -28,33 +29,12 @@ export default function DetailsCoin() {
 
   const history = useHistory();
 
-  const returnCurrencyUSD = (number) => {
-    if (typeof number == "undefined") {
-      return "";
-    }
-    if (number[0] == 0) {
-      return `$${number}`;
-    }
-    number = Number(number);
-    if (number < 10000) {
-      return `$${number.toFixed(3)}`;
-    }
-    number = number.toFixed(10);
-    number = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(number);
-    number = number.slice(0, -3);
-    return number;
-  };
+  let token = localStorage.getItem("token");
 
   let isvoted = false;
   if (isCvoted == 1) {
     isvoted = true;
   }
-
-  let token = localStorage.getItem("token");
-
   let dectoken = { role: "notAdmin" };
 
   try {
@@ -342,7 +322,7 @@ export default function DetailsCoin() {
 
                 <p className="details-right-price-b">
                   {detailsCoins.price ? (
-                    returnCurrencyUSD(detailsCoins.price)
+                    toUsd(detailsCoins.price)
                   ) : (
                     <span>-</span>
                   )}
@@ -352,7 +332,7 @@ export default function DetailsCoin() {
 
                 <p className="details-right-price-b">
                   {detailsCoins.market_cap ? (
-                    returnCurrencyUSD(detailsCoins.market_cap)
+                    toUsd(detailsCoins.market_cap)
                   ) : (
                     <span>-</span>
                   )}

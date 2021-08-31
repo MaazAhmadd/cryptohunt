@@ -320,7 +320,7 @@ app.get("/coins", function (req, res) {
 // });
 app.get("/coins_index", function (req, res) {
   connection.query(
-    `Select name from coin where status='approved';`,
+    `Select name,id from coin where status='approved';`,
     function (error, results, fields) {
       // if (results && results.length > 0) {
       if (results?.length > 0) {

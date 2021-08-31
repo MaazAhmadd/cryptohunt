@@ -31,7 +31,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       return "";
     }
     number = Number(number);
-    if (number[0] == 0 || number < 10000) return `$${number}`;
+    if (number[0] == 0 || number < 10000) return `$${number.toFixed(3)}`;
 
     number = number.toFixed(10);
     number = new Intl.NumberFormat("en-US", {

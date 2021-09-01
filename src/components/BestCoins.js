@@ -379,7 +379,7 @@ export default function BestCoins({ promotedCoin: bestCoin }) {
       accessor: "name",
     },
     {
-      Header: <h3 style={{ display: "inline" }}>1h</h3>,
+      Header: <h3 style={{ display: "inline" }}>24h</h3>,
       accessor: "volumeChange",
     },
     {

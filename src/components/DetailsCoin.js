@@ -4,6 +4,8 @@ import {
   BsArrowLeft,
   BsHeartFill,
   BsClipboard,
+  BsCaretUpFill,
+  BsCaretDownFill,
 } from "react-icons/bs";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
@@ -125,6 +127,11 @@ export default function DetailsCoin() {
     getCoinVote();
   }, []);
 
+  let change = detailsCoins.volume_change_24h
+    ? parseFloat(detailsCoins.volume_change_24h).toFixed(2)
+    : false;
+  let isVolumePositive = Math.sign(change) == "1";
+
   const handleVoteClick = (v, e) => {
     e.preventDefault();
     if (localStorage.getItem("token")) {
@@ -227,10 +234,10 @@ export default function DetailsCoin() {
                   <p
                     style={{
                       fontSize: "150%",
-                      backgroundColor: "lightgray",
+                      backgroundColor: "gray",
+                      color: "white",
                       width: "110px",
                       textAlign: "center",
-                      paddingTop: "0.3%",
                       marginLeft: "-10%",
                       borderRadius: "7px",
                       overflowWrap: "break-word",
@@ -344,7 +351,43 @@ export default function DetailsCoin() {
             </div>
             <div className="details-right">
               <div className="details-right-price">
-                <p className="details-right-price-h">Price</p>
+                <div>
+                  <span className="details-right-price-h">Price</span>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      marginLeft: "2%",
+                    }}
+                    className={
+                      isVolumePositive
+                        ? "volume_color_green"
+                        : "volume_color_red"
+                    }
+                  >
+                    {isVolumePositive ? (
+                      <BsCaretUpFill style={{ marginBottom: "3px" }} />
+                    ) : (
+                      <BsCaretDownFill style={{ marginTop: "3px" }} />
+                    )}
+                    <span>{Math.abs(change)}%</span>
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "0.9rem",
+                      color: "white",
+                      backgroundColor: "gray",
+                      width: "100px",
+                      textAlign: "center",
+                      padding: "0.5% 5%",
+                      marginLeft: "5%",
+                      borderRadius: "7px",
+                      overflowWrap: "break-word",
+                    }}
+                  >
+                    1h
+                  </span>
+                </div>
+
                 <p className="details-right-price-b">
                   {detailsCoins.price ? (
                     toUsd(detailsCoins.price)

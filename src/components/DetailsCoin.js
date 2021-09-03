@@ -387,7 +387,7 @@ export default function DetailsCoin() {
                         overflowWrap: "break-word",
                       }}
                     >
-                      1h
+                      24h
                     </span>
                   </span>
                 )}

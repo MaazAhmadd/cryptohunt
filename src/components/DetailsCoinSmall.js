@@ -450,7 +450,7 @@ export default function DetailsCoin() {
                   </span>
                   <span
                     onClick={() =>
-                      likedHandler(detailsCoins.like, detailsCoins.id)
+                      likedHandler(detailsCoins.liked, detailsCoins.id)
                     }
                     title="Like it"
                     className="details-reacts_icons"

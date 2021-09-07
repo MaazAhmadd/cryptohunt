@@ -79,7 +79,9 @@ handleDisconnect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(8080, () => console.log("listening on port 8080"));
+app.use(express.static("../build"));
+
+app.listen(80, () => console.log("listening on port 80"));
 
 function createResponse(type, response, token, role) {
   if (role !== "" || role !== null) {

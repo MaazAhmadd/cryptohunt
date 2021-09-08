@@ -188,6 +188,11 @@ app.post("/api/register", async function (req, res) {
 
 /** Add Coin **/
 app.post("/api/add_coin", auth, function (req, res) {
+  let dectoken = false;
+  try {
+    dectoken = jwtDecode(req.header("x-auth-token"));
+  } catch (ex) {}
+
   let name = req.body.name;
   let symbol = req.body.symbol;
   let description = req.body.description;
@@ -217,7 +222,7 @@ app.post("/api/add_coin", auth, function (req, res) {
             if (err)
               res.send(createResponse("error", "An Unknown Error Occured!"));
 
-            if (status == "approved") {
+            if (status == "approved" && dectoken?.role == "admin") {
               res.send(createResponse("success", "Coin Added.."));
             } else {
               res.send(createResponse("success", "Coin Awaiting Approval.."));

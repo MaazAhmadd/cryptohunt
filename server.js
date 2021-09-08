@@ -222,7 +222,7 @@ app.post("/api/add_coin", auth, function (req, res) {
             if (err)
               res.send(createResponse("error", "An Unknown Error Occured!"));
 
-            if (status == "approved" && dectoken?.role == "admin") {
+            if (status == "approved" && dectoken.role == "admin") {
               res.send(createResponse("success", "Coin Added.."));
             } else {
               res.send(createResponse("success", "Coin Awaiting Approval.."));

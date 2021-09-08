@@ -82,10 +82,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
 // app.use(express.static("../build"));
 
 app.listen(80, () => console.log("listening on port 80"));
@@ -618,4 +614,9 @@ app.get("/api/random", function (req, res) {
   );
 });
 //sending details page of a coin
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
+
 module.exports = app;

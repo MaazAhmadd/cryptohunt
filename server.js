@@ -206,7 +206,7 @@ app.post("/api/add_coin", auth, function (req, res) {
   let added_by = req.body.added_by;
 
   connection.query(
-    `Select * from coin where name='${name}' AND symbol='${symbol}'`,
+    `Select * from coin where name='${name}'`,
     function (error, results, fields) {
       if (results.length >= 1) {
         res.send(createResponse("error", "Coin Already Exists!"));

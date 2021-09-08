@@ -91,11 +91,11 @@ function createResponse(type, response, token, role) {
   }
 }
 
-app.get("/", function (req, res) {
+app.get("/api/", function (req, res) {
   return res.send({ Error: "Do Request To Specific Paths, CodingEagle" });
 });
 
-app.post("/login", function (req, res) {
+app.post("/api/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
 
@@ -140,7 +140,7 @@ app.post("/login", function (req, res) {
 });
 
 /** User Registers **/
-app.post("/register", async function (req, res) {
+app.post("/api/register", async function (req, res) {
   const salt = await bcrypt.genSalt(10);
   var email = req.body.email;
   let password = await bcrypt.hash(req.body.password, salt);
@@ -184,7 +184,7 @@ app.post("/register", async function (req, res) {
 /** User Registers **/
 
 /** Add Coin **/
-app.post("/add_coin", auth, function (req, res) {
+app.post("/api/add_coin", auth, function (req, res) {
   let name = req.body.name;
   let symbol = req.body.symbol;
   let description = req.body.description;
@@ -230,7 +230,7 @@ app.post("/add_coin", auth, function (req, res) {
 /** Add Coin **/
 
 /** Fetch Coins **/
-app.get("/coins/promoted", function (req, res) {
+app.get("/api/coins/promoted", function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -261,7 +261,7 @@ app.get("/coins/promoted", function (req, res) {
 
   //end fetching
 });
-app.get("/coins", function (req, res) {
+app.get("/api/coins", function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -290,7 +290,7 @@ app.get("/coins", function (req, res) {
 
   //end fetching
 });
-// app.get("/:page/coins", function (req, res) {
+// app.get("/api/:page/coins", function (req, res) {
 //   let page = (req.params.page - 1) * 10;
 //   let dectoken = false;
 //   try {
@@ -320,7 +320,7 @@ app.get("/coins", function (req, res) {
 
 //   //end fetching
 // });
-app.get("/coins_index", function (req, res) {
+app.get("/api/coins_index", function (req, res) {
   connection.query(
     `Select name,id from coin where status='approved';`,
     function (error, results, fields) {
@@ -335,7 +335,7 @@ app.get("/coins_index", function (req, res) {
 
   //end fetching
 });
-app.get("/coins/today", function (req, res) {
+app.get("/api/coins/today", function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -365,7 +365,7 @@ app.get("/coins/today", function (req, res) {
 });
 /** Fetch Coins **/
 
-app.post("/vote", auth, function (req, res) {
+app.post("/api/vote", auth, function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -393,7 +393,7 @@ app.post("/vote", auth, function (req, res) {
   );
 });
 
-app.post("/unvote", auth, function (req, res) {
+app.post("/api/unvote", auth, function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -411,7 +411,7 @@ app.post("/unvote", auth, function (req, res) {
 });
 
 // get vote
-app.get("/get/vote/:coinid", auth, function (req, res) {
+app.get("/api/get/vote/:coinid", auth, function (req, res) {
   let dectoken = false;
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
@@ -435,7 +435,7 @@ app.get("/get/vote/:coinid", auth, function (req, res) {
 //check votes
 
 //unapproved coins
-app.get("/admin/unapproved", [auth, admin], function (req, res) {
+app.get("/api/admin/unapproved", [auth, admin], function (req, res) {
   connection.query(
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {
@@ -455,7 +455,7 @@ app.get("/admin/unapproved", [auth, admin], function (req, res) {
     }
   );
 });
-app.get("/admin/promote/:id", [auth, admin], function (req, res) {
+app.get("/api/admin/promote/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `Update coin Set featured='1' where id = '${coin_id}'`,
@@ -468,7 +468,7 @@ app.get("/admin/promote/:id", [auth, admin], function (req, res) {
     }
   );
 });
-app.get("/admin/rempromote/:id", [auth, admin], function (req, res) {
+app.get("/api/admin/rempromote/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `Update coin Set featured='0' where id = '${coin_id}'`,
@@ -481,7 +481,7 @@ app.get("/admin/rempromote/:id", [auth, admin], function (req, res) {
     }
   );
 });
-app.get("/admin/presale/:id", [auth, admin], function (req, res) {
+app.get("/api/admin/presale/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `Update coin Set presale='1' where id = '${coin_id}'`,
@@ -494,7 +494,7 @@ app.get("/admin/presale/:id", [auth, admin], function (req, res) {
     }
   );
 });
-app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
+app.get("/api/admin/rempresale/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `Update coin Set presale='0' where id = '${coin_id}'`,
@@ -507,7 +507,7 @@ app.get("/admin/rempresale/:id", [auth, admin], function (req, res) {
     }
   );
 });
-app.post("/admin/edit/:id", [auth, admin], function (req, res) {
+app.post("/api/admin/edit/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   let name = req.body.name;
   let symbol = req.body.symbol;
@@ -534,7 +534,7 @@ app.post("/admin/edit/:id", [auth, admin], function (req, res) {
     }
   );
 });
-app.get("/admin/remove/:id", [auth, admin], function (req, res) {
+app.get("/api/admin/remove/:id", [auth, admin], function (req, res) {
   let coin_id = req.params.id;
   connection.query(
     `Delete from coin where id = '${coin_id}'`,
@@ -551,7 +551,7 @@ app.get("/admin/remove/:id", [auth, admin], function (req, res) {
 //unapproved coins
 
 //approve coin
-app.post("/approve_coin", [auth, admin], function (req, res) {
+app.post("/api/approve_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
   connection.query(
     `UPDATE coin set status = 'approved' where id = ${coin_id}`,
@@ -564,7 +564,7 @@ app.post("/approve_coin", [auth, admin], function (req, res) {
 //approve coin
 
 //delete rejected
-app.post("/reject_coin", [auth, admin], function (req, res) {
+app.post("/api/reject_coin", [auth, admin], function (req, res) {
   let coin_id = req.body.coin_id;
 
   connection.query(
@@ -579,7 +579,7 @@ app.post("/reject_coin", [auth, admin], function (req, res) {
 //delete rejected
 
 //sending details page of a coin
-app.get("/coins/:id", function (req, res) {
+app.get("/api/coins/:id", function (req, res) {
   let coin_id = req.params.id;
 
   connection.query(
@@ -596,13 +596,13 @@ app.get("/coins/:id", function (req, res) {
   );
 });
 
-app.get("/reacts/:id/:react", auth, function (req, res) {
+app.get("/api/reacts/:id/:react", auth, function (req, res) {
   let id = req.params.id;
   let react = req.params.react;
   connection.query(`UPDATE coin set ${react} = ${react} + 1 WHERE id = ${id}`);
 });
 
-app.get("/random", function (req, res) {
+app.get("/api/random", function (req, res) {
   connection.query(
     `SELECT * FROM coin ORDER BY RAND() LIMIT 4`,
     function (error, results, fields) {

@@ -46,10 +46,11 @@ var db_config = {
 };
 
 var connection;
+// connection = mysql.createPool(db_config);
 
 function handleDisconnect() {
   connection = mysql.createPool(db_config);
-  connection.connect(function (err) {
+  connection.getConnection(function (err) {
     if (err) {
       console.log("error when connecting to db:", err);
       setTimeout(handleDisconnect, 2000);

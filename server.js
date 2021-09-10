@@ -84,7 +84,7 @@ app.use(express.static(path.join(__dirname, "client", "build")));
 
 // app.use(express.static("../build"));
 
-app.listen(80, () => console.log("listening on port 80"));
+app.listen(8000, () => console.log("listening on port 8000"));
 
 function createResponse(type, response, token, role) {
   if (role !== "" || role !== null) {

@@ -83,8 +83,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 // app.use(express.static("../build"));
+let port = process.env.PORT || 8000;
 
-app.listen(8000, () => console.log("listening on port 8000"));
+app.listen(port, () => console.log(`listening on port ${port}`));
 
 function createResponse(type, response, token, role) {
   if (role !== "" || role !== null) {

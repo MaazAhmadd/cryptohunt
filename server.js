@@ -38,10 +38,10 @@ app.use(cors());
 /** MYSQL DATAABASE **/
 
 var db_config = {
-  host: "localhost",
-  user: "cryptohunt",
-  password: "cryptohunt",
-  database: "cryptohunt",
+  host: "us-cdbr-east-04.cleardb.com",
+  user: "bff61217815fe1",
+  password: "e084474c",
+  database: "heroku_6a380d34692cf74",
   multipleStatements: true,
 };
 

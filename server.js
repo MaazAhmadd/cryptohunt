@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const jwtDecode = require("jwt-decode");
 var cors = require("cors");
 const app = express();
-const mysql = require("mysql");
+const handleDisconnect = require("./db_config");
 const api = require("./api_calls");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 
-const jwt_private = "cryptohuntprivateKeycc3";
+let jwt_private = process.env.JWT_PRIVATE;
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: ", err);
@@ -35,49 +35,10 @@ const admin = function (req, res, next) {
 };
 
 app.use(cors());
+
 /** MYSQL DATAABASE **/
-
-var db_config = {
-  host: "us-cdbr-east-04.cleardb.com",
-  user: "bff61217815fe1",
-  password: "e084474c",
-  database: "heroku_6a380d34692cf74",
-  multipleStatements: true,
-};
-
-var connection;
-// connection = mysql.createPool(db_config);
-
-function handleDisconnect() {
-  connection = mysql.createPool(db_config);
-  connection.getConnection(function (err) {
-    if (err) {
-      console.log("error when connecting to db:", err);
-      setTimeout(handleDisconnect, 2000);
-    }
-  });
-  connection.on("error", function (err) {
-    console.log("db error", err);
-    if (err.code === "PROTOCOL_CONNECTION_LOST") {
-      handleDisconnect();
-    } else {
-      throw err;
-    }
-  });
-}
-
-handleDisconnect();
-
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "cryptohunt",
-//   password: "cryptohunt",
-//   database: "cryptohunt",
-//   multipleStatements: true,
-// });
-
-// connection.connect();
-/** MYSQL DATAABASE **/
+var connection = handleDisconnect();
+// /** MYSQL DATAABASE **/
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

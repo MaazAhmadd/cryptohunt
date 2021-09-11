@@ -1,5 +1,5 @@
-** Please create and use ubuntu not any other distro of linux **
-   
+** follow these instructions if you want to deploy on linux **
+    
 // instructions for mysql //
  
 1. install mysql on you machine using following commands:
@@ -23,7 +23,7 @@
     "
    then exit mysql by type 'exit' 
 
-
+4. if you have your own database credentials please enter them in db_config.js file
 
 
 #install node
@@ -38,20 +38,16 @@ sudo apt install nodejs
    OR clone repo from github:
    "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
 2. open terminal in the main folder and type "npm i"
-3. install serve globally on your machine to serve react app. to do that type "npm i -g serve"
 ***
- before you make a production build you have to update api_url in config.json file for that you go to src folder and "nano config.json" and type url in the place like this :
-{
- "API_URL" : "http://xxx.xxx.xxx.xxx:8080"
-} 
+ before you make a production build you have to update api_url in config.json file for that you go to client/src folder and "nano config.json" and type url in the place like this :
+{ 
+ "API_URL" : "https://you_app_url.com/api" 
+}  
  ***
 
-4. run "npm run build"
-5. install pm2 globally by running: "npm i -g pm2"
-6. then run "pm2 start serve -- -s -p 80 -- build"
-7. then open server folder "cd server" and type "npm i"
-8. then run "pm2 start node -- index.js"  
-9. "pm2 restart all"
+3. run "npm run build" in client folder
+4. lastly run "npm start" in the main folder
+ 
 
 To make a user admin please go to mysql terminal and run this command:
 USE cryptohunt;

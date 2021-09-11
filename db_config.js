@@ -11,13 +11,6 @@ var db_config = {
   database: process.env.DB_DATABASE,
   multipleStatements: true,
 };
-// var db_config = {
-//   host: "db4free.net",
-//   user: "cryptohunt",
-//   password: "cryptohunt",
-//   database: "cryptohunt",
-//   multipleStatements: true,
-// };
 let connection;
 
 module.exports = function handleDisconnect() {

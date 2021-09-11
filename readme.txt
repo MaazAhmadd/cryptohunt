@@ -46,6 +46,7 @@ sudo apt install nodejs
  ***
 
 3. run "npm run build" in client folder
+4. add env variable for jwt key. variable name is JWT_PRIVATE
 4. lastly run "npm start" in the main folder
  
 

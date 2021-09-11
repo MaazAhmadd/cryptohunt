@@ -8,7 +8,7 @@ please enter your database credentials in env variables and run mysql queries fr
     DB_PASSWORD,
     DB_DATABASE
 }
-if you are using heroku then you can easily set them in app's setting then config var
+if you are using heroku then you can easily set them in app's setting then config vars
 
 // instructions for npm //
 1. open and extract the provided zip file
@@ -24,6 +24,9 @@ if you are using heroku then you can easily set them in app's setting then confi
 
 3. run "npm run build" in client folder
 4. add env variable for jwt key. variable name is JWT_PRIVATE
+
+if you are using heroku then you can easily set this in app's setting then config vars
+
 5. lastly run "npm start" in the main folder
  
 

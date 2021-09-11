@@ -1,7 +1,14 @@
 // instructions for mysql //
 
-please enter your database credentials in db_config.js file and run mysql queries from cryptohunt.sql file
+please enter your database credentials in env variables and run mysql queries from cryptohunt.sql file in your database
 
+{
+    DB_HOST,
+    DB_USERNAME,
+    DB_PASSWORD,
+    DB_DATABASE
+}
+if you are using heroku then you can easily set them in app's setting then config var
 
 // instructions for npm //
 1. open and extract the provided zip file

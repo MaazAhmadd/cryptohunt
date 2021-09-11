@@ -1,12 +1,23 @@
 const mysql = require("mysql");
 
 var db_config = {
-  host: "us-cdbr-east-04.cleardb.com",
-  user: "bff61217815fe1",
-  password: "e084474c",
-  database: "heroku_6a380d34692cf74",
+  connectionLimit: 1000,
+  connectTimeout: 60 * 60 * 1000,
+  acquireTimeout: 60 * 60 * 1000,
+  timeout: 60 * 60 * 1000,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   multipleStatements: true,
 };
+// var db_config = {
+//   host: "db4free.net",
+//   user: "cryptohunt",
+//   password: "cryptohunt",
+//   database: "cryptohunt",
+//   multipleStatements: true,
+// };
 let connection;
 
 module.exports = function handleDisconnect() {

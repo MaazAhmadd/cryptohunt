@@ -444,7 +444,7 @@ th > div > input {
   grid-column: 1/10;
   margin-top: 3px;
   margin-left: 5%;
-  height: 70vh;
+  height: 100%;
   width: 70vw;
 }
 .details-left-top1 {

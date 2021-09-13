@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import qs from "querystring";
 import jwtDecode from "jwt-decode";
 import toUsd from "./utils/toUsd";
+import ReactTooltip from "react-tooltip";
 
 const apiUrl = config.API_URL;
 
@@ -186,6 +187,7 @@ export default function DetailsCoin() {
     <>
       {status ? (
         <div>
+          <ReactTooltip />
           <a
             onClick={() => {
               history.push("/");
@@ -312,7 +314,7 @@ export default function DetailsCoin() {
                   onClick={() =>
                     moonHandler(detailsCoins.moon, detailsCoins.id)
                   }
-                  title="To the moon"
+                  data-tip="To the moon"
                   className="details-reacts_icons"
                 >
                   🚀
@@ -321,14 +323,14 @@ export default function DetailsCoin() {
                   onClick={() =>
                     fireHandler(detailsCoins.fire, detailsCoins.id)
                   }
-                  title="On fire"
+                  data-tip="On fire"
                   className="details-reacts_icons"
                 >
                   🔥
                 </span>
                 <span
                   onClick={() => gemHandler(detailsCoins.gem, detailsCoins.id)}
-                  title="Gem"
+                  data-tip="Gem"
                   className="details-reacts_icons"
                 >
                   💎
@@ -337,14 +339,14 @@ export default function DetailsCoin() {
                   onClick={() =>
                     heartHandler(detailsCoins.heart, detailsCoins.id)
                   }
-                  title="Love it"
+                  data-tip="Love it"
                   className="details-reacts_icons details-reacts_icons_heart"
                 >
                   <BsHeartFill />
                 </span>
                 <span
                   onClick={() => joyHandler(detailsCoins.joy, detailsCoins.id)}
-                  title="Joy"
+                  data-tip="Joy"
                   className="details-reacts_icons"
                 >
                   😀
@@ -353,7 +355,7 @@ export default function DetailsCoin() {
                   onClick={() =>
                     likedHandler(detailsCoins.liked, detailsCoins.id)
                   }
-                  title="Like it"
+                  data-tip="Like it"
                   className="details-reacts_icons"
                 >
                   👍

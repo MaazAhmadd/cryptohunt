@@ -585,8 +585,10 @@ th > div > input {
 }
 /* reacts */
 .details-reacts {
+  height: 200px;
   justify-items: center;
   align-items: end;
+  align-content: end;
   justify-content: center;
   display: grid;
   grid-template-rows: 60px 30px;

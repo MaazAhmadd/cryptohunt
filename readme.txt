@@ -1,39 +1,17 @@
-// instructions for mysql //
 
-please enter your database credentials in env variables and run mysql queries from cryptohunt.sql file in your database
+-> First setup your database. Create a db by the name 'cryptohunt'. you can use any other name too.
+-> Then run all the queries from 'cryptohunt.sql' file
+-> Then you need to enter your api address in the 'config.json' file. For that just enter the your domain's address or your VPS's address and append it with '/api'.
+-> Then you need to make a production build. Everything is already set just run this command in client folder: 'npm run build'
+you can do this on your pc and push the code to github along with the 'build' folder and then clone the repo into your hosting, this way you won't have to install node_modules for frontend on your hosting machine.
+-> Then you need to add environment variables for your database and jwt key. which are as follows:
+    {
+        DB_HOST,
+        DB_USERNAME,
+        DB_PASSWORD,
+        DB_DATABASE,
+        JWT_PRIVATE_KEY
+    }
 
-{
-    DB_HOST,
-    DB_USERNAME,
-    DB_PASSWORD,
-    DB_DATABASE
-}
-if you are using heroku then you can easily set them in app's setting then config vars
-
-// instructions for npm //
-1. open and extract the provided zip file
-   OR clone repo from github:
-   "git clone https://github.com/MaazAhmadd/cryptohunt.git" 
-2. open terminal in the main folder and type "npm i"
-***
- before you make a production build you have to update api_url in config.json file for that you go to client/src folder and "nano config.json" and type url in the place like this :
-{ 
- "API_URL" : "https://you_app_url.com/api" 
-}  
- ***
-
-3. run "npm run build" in client folder
-4. add env variable for jwt key. variable name is JWT_PRIVATE
-
-if you are using heroku then you can easily set this in app's setting then config vars
-
-5. lastly run "npm start" in the main folder
- 
-
-To make a user admin please go to mysql terminal and run this command:
-USE cryptohunt;
-UPDATE users set role="admin" WHERE email="yourEmail@gmail.com";
-
-    
-
-
+-> If you are hosting on heroku, set these variables in app's settings>>config vars
+otherwise set them manually in the terminal.

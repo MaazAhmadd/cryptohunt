@@ -9,7 +9,7 @@ const api = require("./api_calls");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 
-let jwt_private = process.env.JWT_PRIVATE;
+let jwt_private = process.env.JWT_PRIVATE_KEY;
 
 process.on("uncaughtException", function (err) {
   console.log("Caught exception: ", err);

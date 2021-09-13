@@ -225,7 +225,6 @@ export default function DetailsCoin() {
                       width: "350px",
                       fontSize: "215%",
                       fontWeight: "600",
-                      marginLeft: "-11%",
                       overflowWrap: "break-word",
                     }}
                   >
@@ -234,14 +233,13 @@ export default function DetailsCoin() {
                   <p
                     style={{
                       fontSize: "150%",
-                      backgroundColor: "gray",
-                      color: "white",
-                      width: "110px",
+                      backgroundColor: "rgb(128, 128, 128)",
+                      color: "rgb(255, 255, 255)",
+                      maxWidth: "150px",
                       textAlign: "center",
-                      marginLeft: "-10%",
                       borderRadius: "7px",
                       overflowWrap: "break-word",
-                      textAlign: "center",
+                      padding: "0.3% 2% 0.6% 2%",
                     }}
                   >
                     {detailsCoins.symbol}

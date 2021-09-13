@@ -458,21 +458,16 @@ th > div > input {
   margin: 0 5%;
 }
 .details-left-chain {
-  margin-left: 18%;
+  margin: 0% 2%;
   font-size: 90%;
-  width: 100%;
   border-radius: 10px;
   background-color: #eaeaea;
-  display: inline;
   padding: 1%;
 }
 .details-left-desc {
-  margin-top: 4%;
-  margin-left: 9%;
-  margin-right: 7%;
-  padding: 2%;
+  padding: 3%;
 }
-.details-left-top1 > img {
+.details-left-top1 > div > img {
   width: 80px;
   height: 80px;
   margin: 2%;

@@ -207,43 +207,62 @@ export default function DetailsCoin() {
             <div className="details-left">
               <div className="details-left-top">
                 <div className="details-left-top1">
-                  {detailsCoins.logo ? (
-                    <img
-                      src={detailsCoins.logo}
-                      alt="logo"
-                      style={{ marginRight: "2%" }}
-                    />
-                  ) : (
-                    <img
-                      src="../defaultLogo.jpg"
-                      alt="logo"
-                      style={{ marginRight: "2%" }}
-                    />
-                  )}
-                  <p
+                  <div
                     style={{
-                      width: "350px",
-                      fontSize: "215%",
-                      fontWeight: "600",
-                      overflowWrap: "break-word",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-start",
+                      alignContent: "center",
                     }}
                   >
-                    {detailsCoins.name}
-                  </p>
-                  <p
-                    style={{
-                      fontSize: "150%",
-                      backgroundColor: "rgb(128, 128, 128)",
-                      color: "rgb(255, 255, 255)",
-                      maxWidth: "150px",
-                      textAlign: "center",
-                      borderRadius: "7px",
-                      overflowWrap: "break-word",
-                      padding: "0.3% 2% 0.6% 2%",
-                    }}
-                  >
-                    {detailsCoins.symbol}
-                  </p>
+                    {detailsCoins.logo ? (
+                      <img
+                        src={detailsCoins.logo}
+                        alt="logo"
+                        style={{ margin: "4%" }}
+                      />
+                    ) : (
+                      <img
+                        src="../defaultLogo.jpg"
+                        alt="logo"
+                        style={{ margin: "4%" }}
+                      />
+                    )}
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        alignContent: "center",
+                      }}
+                    >
+                      <p
+                        style={{
+                          maxWidth: "450px",
+                          fontSize: "215%",
+                          fontWeight: "600",
+                          overflowWrap: "break-word",
+                        }}
+                      >
+                        {detailsCoins.name}
+                      </p>
+                      <p
+                        style={{
+                          fontSize: "150%",
+                          backgroundColor: "rgb(128, 128, 128)",
+                          color: "rgb(255, 255, 255)",
+                          maxWidth: "200px",
+                          textAlign: "center",
+                          borderRadius: "7px",
+                          overflowWrap: "break-word",
+                          padding: "0.3% 2% 0.6% 2%",
+                          marginLeft: "5%",
+                        }}
+                      >
+                        {detailsCoins.symbol}
+                      </p>
+                    </div>
+                  </div>
                   <button
                     onClick={(e) => handleVoteClick(isvoted, e)}
                     title="Vote?"

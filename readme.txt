@@ -15,3 +15,4 @@ you can do this on your pc and push the code to github along with the 'build' fo
 
 -> If you are hosting on heroku, set these variables in app's settings>>config vars
 otherwise set them manually in the terminal.
+ 

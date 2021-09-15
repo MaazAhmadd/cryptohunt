@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 
 export default function PromotedCoins({ promotedCoin }) {
   const history = useHistory();
-  // const [voted, setVoted] = React.useState(false);
   let promotedCoins;
   if (window.innerWidth < 551) {
     promotedCoins = manupilatingSmallData(promotedCoin);
@@ -45,13 +44,11 @@ export default function PromotedCoins({ promotedCoin }) {
     columns: columnsPromoted,
     data: dataPromoted,
   });
-  // <Link to="/register">Register Now</Link>
   const handleClickRow = (row, cell) => {
     if (cell.key.includes("vote")) {
       return null;
     } else {
       return window.location = `/coins/${row.id}`;
-      // return (window.location.href = `${currentUrl}/coins/${row.id}`);
     }
   };
   return (

@@ -33,19 +33,6 @@ module.exports = {
       .catch((ex) => {}); //price is fetched
   },
   async checkCoinChain(id, chain) {
-    // await axios
-    //   .post(
-    //     "https://bsc.streamingfast.io/subgraphs/name/pancakeswap/exchange-v2",
-    //     {
-    //       operationName: "tokens",
-    //       variables: {},
-    //       query: `query tokens {  tokens(    where: {id_in: ["${chain}"]}    orderBy: tradeVolumeUSD    orderDirection: desc  ) {  id    symbol    name    derivedBNB    derivedUSD    tradeVolumeUSD    tradeVolume    totalTransactions    totalLiquidity    __typename   }}`,
-    //     }
-    //   )
-    //   .then(({ data }) => {
-    //     console.log("results ", data.data.tokens[0]);
-    //   });
-
     await axios
       .get(`https://api.pancakeswap.info/api/v2/tokens/${chain}`)
       .then(({ data }) => {

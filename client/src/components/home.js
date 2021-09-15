@@ -89,21 +89,6 @@ function Home() {
               <BestCoins promotedCoin={bestTodayCoin} />
             )}
           </div>
-          {/* {todaysBest ? (
-            <div className="pagination-new">
-              <Pagination
-                currentPage={currentPage}
-                totalCount={totalCount}
-                pageSize={pageSize}
-                onPageChange={(page) => {
-                  setBestStatus(false);
-                  setCurrentPage(page);
-                }}
-              />
-            </div>
-          ) : (
-            ""
-          )} */}
         </div>
       ) : (
         <div className="load-wrapp">

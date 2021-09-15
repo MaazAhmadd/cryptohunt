@@ -47,8 +47,6 @@ export default function DetailsCoin() {
 
   axios.defaults.headers.common["x-auth-token"] = token;
 
-  // let splitted = window.location.href.split("/");
-  // let id = splitted[splitted.length - 1];
   let linkk = `${apiUrl}/coins/${id}`;
   const getCoinDetailsData = async () => {
     //fetch
@@ -191,9 +189,7 @@ export default function DetailsCoin() {
           <a
             onClick={() => {
               history.push("/");
-              // window.location.href = "/";
             }}
-            // to="/"
             style={{
               cursor: "pointer",
               textDecoration: "none",

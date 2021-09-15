@@ -208,21 +208,15 @@ app.get("/api/coins/promoted", function (req, res) {
   } catch (ex) {}
 
   connection.query(
-    `Select * from coin where status='approved' and featured=1;SELECT coin_id FROM votes WHERE user = '${
-      // dectoken && dectoken.email
-      dectoken?.email
-    }';`,
+    `Select * from coin where status='approved' and featured=1;SELECT coin_id FROM votes WHERE user = '${dectoken?.email}';`,
     function (error, results, fields) {
-      // if (results && results[0].length > 0) {
       if (results[0]?.length > 0) {
         var coin_results = [];
-        // for each result
         results[0].forEach((result) => {
           api.updateCoin(result.name);
           coin_results.push(result);
         });
         coin_results.push(results[1]);
-        // for each result
         res.send(JSON.stringify({ coin_results }));
       } else {
         res.send([]);
@@ -238,15 +232,10 @@ app.get("/api/coins", function (req, res) {
     dectoken = jwtDecode(req.header("x-auth-token"));
   } catch (ex) {}
   connection.query(
-    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
-      // dectoken && dectoken.email
-      dectoken?.email
-    }';`,
+    `Select * from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${dectoken?.email}';`,
     function (error, results, fields) {
-      // if (results && results[0].length > 0) {
       if (results[0]?.length > 0) {
         var coin_results = [];
-        // for each result
         results[0].forEach((result) => {
           api.updateCoin(result.name);
           api.checkCoinChain(result.id, result.binancesmartchain);
@@ -261,41 +250,11 @@ app.get("/api/coins", function (req, res) {
 
   //end fetching
 });
-// app.get("/api/:page/coins", function (req, res) {
-//   let page = (req.params.page - 1) * 10;
-//   let dectoken = false;
-//   try {
-//     dectoken = jwtDecode(req.header("x-auth-token"));
-//   } catch (ex) {}
-//   connection.query(
-//     `Select * from coin where status='approved' LIMIT ${
-//       page && page - 1
-//     },10;Select COUNT(*) as tc from coin where status='approved';SELECT coin_id FROM votes WHERE user = '${
-//       dectoken && dectoken.email
-//     }';`,
-//     function (error, results, fields) {
-//       if (results !== undefined && results[0].length > 0) {
-//         var coin_results = [];
-//         // for each result
-//         results[0].forEach((result) => {
-//           api.updateCoin(result.name);
-//           coin_results.push(result);
-//         });
-//         coin_results.push({ total: results[1][0].tc });
-//         coin_results.push(results[2]);
-//         // for each result
-//         res.send(JSON.stringify({ coin_results }));
-//       }
-//     }
-//   );
 
-//   //end fetching
-// });
 app.get("/api/coins_index", function (req, res) {
   connection.query(
     `Select name,id from coin where status='approved';`,
     function (error, results, fields) {
-      // if (results && results.length > 0) {
       if (results?.length > 0) {
         res.send(JSON.stringify({ coin_results: results }));
       } else {
@@ -311,9 +270,6 @@ app.get("/api/coins/today", function (req, res) {
   try {
     dectoken = jwtDecode(req.header("x-auth-token"));
   } catch (ex) {}
-  // `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY) GROUP BY coin_id;SELECT coin_id FROM votes WHERE user = '${
-  //   dectoken && dectoken.email
-  // }';`
   connection.query(
     `SELECT * FROM votes JOIN coin ON votes.coin_id = coin.id WHERE (time >= NOW() - INTERVAL 1 DAY);SELECT coin_id FROM votes WHERE user = '${
       // dectoken && dectoken.email
@@ -332,7 +288,6 @@ app.get("/api/coins/today", function (req, res) {
       }
     }
   );
-  // res.send(JSON.stringify({ coin_results }));
 });
 /** Fetch Coins **/
 
@@ -353,7 +308,6 @@ app.post("/api/vote", auth, function (req, res) {
       } else {
         connection.query(
           `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW());UPDATE coin SET votes_count = votes_count+1 WHERE id = ${coin_id}`,
-          // `INSERT into votes(coin_id,user,time) VALUES (${coin_id},'${user}',NOW())`,
           function (err, success) {
             if (err) throw err;
           }
@@ -374,7 +328,6 @@ app.post("/api/unvote", auth, function (req, res) {
 
   connection.query(
     `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}';UPDATE coin SET votes_count = votes_count-1 WHERE id = ${coin_id}`,
-    // `DELETE FROM votes WHERE user='${user}' AND coin_id='${coin_id}'`,
     function (error, results, fields) {
       res.send(createResponse("success", "Vote Removed!"));
     }
@@ -389,10 +342,7 @@ app.get("/api/get/vote/:coinid", auth, function (req, res) {
   } catch (ex) {}
   var coin_id = req.params.coinid;
   connection.query(
-    `SELECT coin_id FROM votes WHERE user = '${
-      dectoken?.email
-      // dectoken && dectoken.email
-    }' and coin_id=${coin_id};`,
+    `SELECT coin_id FROM votes WHERE user = '${dectoken?.email}' and coin_id=${coin_id};`,
     function (error, results, fields) {
       if (results.length >= 1) {
         res.send("1");
@@ -411,7 +361,6 @@ app.get("/api/admin/unapproved", [auth, admin], function (req, res) {
     `Select * from coin where status!='approved'`,
     function (error, results, fields) {
       if (results?.length > 0) {
-        // if (results && results.length > 0) {
         var coin_results = [];
         // for each result
         results.forEach((result) => {

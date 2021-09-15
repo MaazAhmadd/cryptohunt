@@ -1,3 +1,4 @@
 {
- "API_URL" : "https://lit-escarpment-16534.herokuapp.com/api" 
+ "API_URL" : "https://lit-escarpment-16534.herokuapp.com/api", 
+ "API_URL1" : "http://localhost:8000/api" 
 }  

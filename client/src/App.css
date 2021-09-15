@@ -172,17 +172,17 @@ table {
   margin-bottom: 2%;
 }
 .promoted-pagination > button {
+  cursor: pointer;
   background: #fff;
   color: rgb(51, 125, 204);
   border: 2px solid rgb(51, 125, 204);
   border-radius: 7px;
-  transition: 0.02s background-color;
+  transition: all 0.2s linear;
   margin: 1%;
   width: 70px;
   height: 30px;
 }
 .promoted-pagination > button:hover {
-  transition-delay: 0.02s;
   background-color: rgb(51, 125, 204);
   color: #fff;
 }
@@ -256,7 +256,7 @@ td:last-child {
   }
 } */
 tr {
-  transition: 0.02s background-color;
+  transition: all 0.2s linear;
 }
 /* @media screen and (max-width: 768px) {
   tr {
@@ -266,8 +266,7 @@ tr {
   }
 } */
 tr:hover {
-  transition-delay: 0.02s;
-  background-color: #f4f4f4;
+  background-color: #ececec;
 }
 th > div > input {
   width: 100%;
@@ -282,14 +281,16 @@ th > div > input {
   text-align: center;
 }
 .promoted-table_votebtn {
+  text-transform: uppercase;
   cursor: pointer;
   height: 40px;
   width: 80px;
-  background-color: #fff;
+  background: #fff;
   color: #28a745;
-  border: 2px solid #28a745;
+  border: 1px solid #28a745;
   border-radius: 7px;
-  transition: 0.02s background-color;
+  transition: all 0.2s linear;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 .promoted-table_votebtn_green {
   cursor: pointer;
@@ -305,8 +306,8 @@ th > div > input {
   box-shadow: 0 0 0 0.2rem rgb(72 180 97 / 50%);
 }
 .promoted-table_votebtn:hover {
-  transition-delay: 0.02s;
-  background-color: #28a745;
+  /* transition-delay: 0.02s; */
+  background: #28a745;
   color: #fff;
 }
 .promoted-table_votebtn_green:focus {
@@ -458,11 +459,18 @@ th > div > input {
   margin: 0 5%;
 }
 .details-left-chain {
+  height: 40px;
   margin: 0% 2%;
   font-size: 90%;
   border-radius: 10px;
   background-color: #eaeaea;
   padding: 1%;
+}
+.details-left-chain > svg {
+  transition: all 0.1s ease;
+}
+.details-left-chain > svg:hover {
+  font-size: 1.3rem;
 }
 .details-left-desc {
   padding: 3%;
@@ -515,7 +523,8 @@ th > div > input {
   background-color: white;
 }
 .details-right-socials > a > button {
-  transition: 0.02s background-color;
+  cursor: pointer;
+  transition: all 0.2s linear;
   border: none;
   border-radius: 5px;
   color: white;

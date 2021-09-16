@@ -285,9 +285,8 @@ export default function DetailsCoin() {
                     <p
                       className="details-left-chain"
                       style={{
-                        margin: "0 4%",
+                        margin: "2%",
                         display: "inherit",
-                        width: "92%",
                         fontSize: "0.7rem",
                       }}
                     >
